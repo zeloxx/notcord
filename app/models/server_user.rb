@@ -1,0 +1,3 @@
+class ServerUser < ApplicationRecord
+    
+end
