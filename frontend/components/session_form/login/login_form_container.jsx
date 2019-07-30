@@ -1,30 +1,18 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { login, removeErrors } from '../../../actions/session_actions';
+import LoginForm from './login_form';
 
-class LoginForm extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            username: '',
-            password: '',
-        };
-    }
+const mapStateToProps = ({ errors }) => {
+    return {
+        errors: errors.session,
+    };
+};
 
-    update(field) {
-        return e => this.setState({
-            [field]: e.currentTarget.value
-        });
-    }
+const mapDispatchToProps = dispatch => {
+    return {
+        removeErrors: () => dispatch(removeErrors()),
+        login: (user) => dispatch(login(user)),
+    };
+};
 
-    handleSubmit(e) {
-
-    }
-
-    render() {
-        return (
-            <div>login form container rendered</div>
-        )
-    }
-}
-
-export default LoginForm;
+export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);
