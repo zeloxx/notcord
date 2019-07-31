@@ -68,9 +68,11 @@ export default class Splash extends Component {
                     </section>
 
                     <footer className="splash-footer">
-                        <h1 className="splash-footer__header">Ready to try Notcord? It's free!</h1>
-                        <p className="splash-footer__text">Join over 250 million players today</p>
-                        <Link to="/signup" className="btn">Sign Up Now</Link>
+                        <div className="splash-footer-text-container">
+                            <div className="splash-footer__header">Ready to try Notcord? It's free!</div>
+                            <div className="splash-footer__text">Join over 250 million players today</div>
+                        </div>
+                        <Link to="/signup" className="splash-footer__signup">Sign Up Now</Link>
                     </footer>
                 </main>
             </div>
