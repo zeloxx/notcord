@@ -1,11 +1,28 @@
+import { connect } from 'react-redux';
+import { logout } from '../../actions/session_actions'
+
 import React, { Component } from 'react'
 
-export default class AppRoot extends Component {
+class AppRoot extends Component {
     render() {
         return (
             <div>
-                rendering app root component
+                <button onClick={this.props.logout}>logout</button>
             </div>
         )
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        logout: () => dispatch(logout()),
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AppRoot);
