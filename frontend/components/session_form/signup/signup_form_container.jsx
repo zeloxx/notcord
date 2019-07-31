@@ -3,6 +3,7 @@ import { signup, removeErrors } from '../../../actions/session_actions';
 import SignupForm from './signup_form';
 
 const mapStateToProps = ({ errors }) => {
+
     return {
         errors: errors.session,
     };

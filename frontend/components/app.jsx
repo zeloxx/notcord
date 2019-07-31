@@ -9,7 +9,7 @@ import AppRoot from './app/app_root';
 const App = () => (
     <Switch>
         <AuthRoute path="/login" component={LoginForm} />
-        {/* <AuthRoute path="/signup" component={SignupForm} /> */}
+        <AuthRoute path="/signup" component={SignupForm} />
         {/* <ProtectedRoute path="/channels" component={AppRoot} /> */}
         {/* <Route path="/" component={Splash} /> */}
     </Switch>
