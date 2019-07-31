@@ -50,8 +50,8 @@ class LoginForm extends React.Component {
                     <form onSubmit={this.handleSubmit} className="session-form">
 
                         <div className="session-form__content-container">
-                            <h1 className="session-form__header">Welcome back!</h1>
-                            <h2 className="session-form__sub-header">We're so excited to see you again!</h2>
+                            <h1 className="session-form__header margin-bottom--xs">Welcome back!</h1>
+                            <h2 className="session-form__sub-header margin-bottom--l">We're so excited to see you again!</h2>
 
                             <div className="session-form__input-container">
                                 <span className={`session-form__label ${this.state.usernameError || controllerError ? 'session-form__label--error' : ''}`}>Username</span>

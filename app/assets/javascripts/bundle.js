@@ -177,7 +177,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _session_form_login_login_form_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./session_form/login/login_form_container */ "./frontend/components/session_form/login/login_form_container.jsx");
 /* harmony import */ var _session_form_signup_signup_form_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./session_form/signup/signup_form_container */ "./frontend/components/session_form/signup/signup_form_container.jsx");
 /* harmony import */ var _splash_splash_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./splash/splash_container */ "./frontend/components/splash/splash_container.jsx");
-/* harmony import */ var _splash_splash_container__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_splash_splash_container__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _util_route_util__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../util/route_util */ "./frontend/util/route_util.jsx");
 /* harmony import */ var _app_app_root__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./app/app_root */ "./frontend/components/app/app_root.jsx");
 
@@ -195,6 +194,10 @@ var App = function App() {
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_5__["AuthRoute"], {
     path: "/signup",
     component: _session_form_signup_signup_form_container__WEBPACK_IMPORTED_MODULE_3__["default"]
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+    exact: true,
+    path: "/",
+    component: _splash_splash_container__WEBPACK_IMPORTED_MODULE_4__["default"]
   }));
 };
 
@@ -407,9 +410,9 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "session-form__content-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
-        className: "session-form__header"
+        className: "session-form__header margin-bottom--xs"
       }, "Welcome back!"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
-        className: "session-form__sub-header"
+        className: "session-form__sub-header margin-bottom--l"
       }, "We're so excited to see you again!"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "session-form__input-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
@@ -589,7 +592,7 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "session-form__content-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
-        className: "session-form__header"
+        className: "session-form__header margin-bottom--l"
       }, "Create an account"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "session-form__input-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
@@ -680,14 +683,271 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 
 /***/ }),
 
+/***/ "./frontend/components/splash/splash.jsx":
+/*!***********************************************!*\
+  !*** ./frontend/components/splash/splash.jsx ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Splash; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/react.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+var Splash =
+/*#__PURE__*/
+function (_Component) {
+  _inherits(Splash, _Component);
+
+  function Splash(props) {
+    var _this;
+
+    _classCallCheck(this, Splash);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Splash).call(this, props));
+    _this.demoLogin = _this.demoLogin.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(Splash, [{
+    key: "demoLogin",
+    value: function demoLogin() {
+      var _this2 = this;
+
+      this.props.login({
+        username: 'jimothy',
+        password: "password"
+      }).then(function () {
+        return _this2.props.history.push('/channels/@me');
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "splash"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", {
+        className: "splash-header"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
+        className: "splash-nav"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "splash-nav__logo"
+      }, "Notcord"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        to: "/login",
+        className: "splash-nav__btn"
+      }, "Login"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("main", {
+        className: "splash-main"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
+        className: "splash-main-hero"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+        className: "splash-main-hero__header"
+      }, "It's time to ditch Skype and TeamSpeak."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "splash-main-hero__text"
+      }, "All-in-one voice and text chat for gamers that's free, secure, and works on both your desktop and phone. Stop paying for TeamSpeak servers and hassling with Skype. Simplify your life."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "splash-main-hero__cta-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        onClick: this.demoLogin,
+        className: "btn btn--green margin-right--xxxl"
+      }, "Try the demo"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        to: "/signup",
+        className: "btn"
+      }, "Signup"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
+        className: "splash-collage"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        className: "triangle-1",
+        src: "https://discordapp.com/assets/0a2fd7b3bab977b4619f466b81b426d4.svg",
+        alt: "triangle"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        className: "triangle-2",
+        src: "https://discordapp.com/assets/0a2fd7b3bab977b4619f466b81b426d4.svg",
+        alt: "triangle"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        className: "triangle-3",
+        src: "https://discordapp.com/assets/0a2fd7b3bab977b4619f466b81b426d4.svg",
+        alt: "triangle"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        className: "dot-1",
+        src: "https://discordapp.com/assets/f877364ca453abc089cf7fe8d22c9c3f.svg",
+        alt: "dot"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        className: "dot-2",
+        src: "https://discordapp.com/assets/f877364ca453abc089cf7fe8d22c9c3f.svg",
+        alt: "dot"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        className: "dot-3",
+        src: "https://discordapp.com/assets/f877364ca453abc089cf7fe8d22c9c3f.svg",
+        alt: "dot"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        className: "dot-4",
+        src: "https://discordapp.com/assets/f877364ca453abc089cf7fe8d22c9c3f.svg",
+        alt: "dot"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        className: "dot-5",
+        src: "https://discordapp.com/assets/f877364ca453abc089cf7fe8d22c9c3f.svg",
+        alt: "dot"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        className: "circle-1",
+        src: "https://discordapp.com/assets/afdfaaeb6d6639e24086ced7aa07975d.svg",
+        alt: "circle"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        className: "circle-2",
+        src: "https://discordapp.com/assets/afdfaaeb6d6639e24086ced7aa07975d.svg",
+        alt: "circle"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        className: "circle-3",
+        src: "https://discordapp.com/assets/afdfaaeb6d6639e24086ced7aa07975d.svg",
+        alt: "circle"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        className: "square-1",
+        src: "https://discordapp.com/assets/173ee5a6d2f1b6a19190465c41371a3b.svg",
+        alt: "square"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        className: "square-2",
+        src: "https://discordapp.com/assets/173ee5a6d2f1b6a19190465c41371a3b.svg",
+        alt: "square"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        className: "square-3",
+        src: "https://discordapp.com/assets/173ee5a6d2f1b6a19190465c41371a3b.svg",
+        alt: "square"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        className: "diagonal-1",
+        src: "https://discordapp.com/assets/a14c5b02487874dca7fae0481ef90dbb.svg",
+        alt: "diagonal"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        className: "diagonal-2",
+        src: "https://discordapp.com/assets/a14c5b02487874dca7fae0481ef90dbb.svg",
+        alt: "diagonal"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        className: "diagonal-3",
+        src: "https://discordapp.com/assets/a14c5b02487874dca7fae0481ef90dbb.svg",
+        alt: "diagonal"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        className: "potion",
+        src: "https://discordapp.com/assets/0b5a0339571e72656eea93eb55d73eae.svg",
+        alt: "potion"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        className: "bomb",
+        src: "https://discordapp.com/assets/eb301f28da3199edbd3ef19690d61674.svg",
+        alt: "bomb"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        className: "coin-1",
+        src: "https://discordapp.com/assets/9e05338bd66e0985fceb83317cb94b9c.svg",
+        alt: "coin"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        className: "coin-2",
+        src: "https://discordapp.com/assets/9e05338bd66e0985fceb83317cb94b9c.svg",
+        alt: "coin"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        className: "cartridge",
+        src: "https://discordapp.com/assets/215346366a9a7d50924fc245ddb048d2.svg",
+        alt: "cartridge"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        className: "shield",
+        src: "https://discordapp.com/assets/15149ecb9d5cd8faa24e1bbf45d70e5b.svg",
+        alt: "shield"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        className: "question-mark-box",
+        src: "https://discordapp.com/assets/81d74b2ebb053fbccee41865a47d48c3.svg",
+        alt: "question mark"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        className: "desktop-monitor",
+        src: "https://discordapp.com/assets/0d82411c439e3558f8b2f6fb12eccbc1.svg",
+        alt: "desktop monitor"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        className: "android",
+        src: "https://discordapp.com/assets/5a31f41848bf3ba1817a092ac28c623d.svg",
+        alt: "android phone"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        className: "iphone",
+        src: "https://discordapp.com/assets/82fa4f388cfc9cf47a6972ae39ae90de.svg",
+        alt: "iphone"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        className: "game-controller",
+        src: "https://discordapp.com/assets/c4bae281354a2b4e2db85415955e0994.svg",
+        alt: "game controller"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        className: "laptop",
+        src: "https://discordapp.com/assets/7edaed9d86e1b5dd9d4c98484372222b.svg",
+        alt: "laptop"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        className: "headphones",
+        src: "https://discordapp.com/assets/69db64955960eb333f5ff831cc1c0294.svg",
+        alt: "headphones"
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("footer", {
+        className: "splash-footer"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+        className: "splash-footer__header"
+      }, "Ready to try Notcord? It's free!"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "splash-footer__text"
+      }, "Join over 250 million players today"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        to: "/signup",
+        className: "btn"
+      }, "Sign Up Now"))));
+    }
+  }]);
+
+  return Splash;
+}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
+
+
+
+/***/ }),
+
 /***/ "./frontend/components/splash/splash_container.jsx":
 /*!*********************************************************!*\
   !*** ./frontend/components/splash/splash_container.jsx ***!
   \*********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/session_actions */ "./frontend/actions/session_actions.js");
+/* harmony import */ var _splash__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./splash */ "./frontend/components/splash/splash.jsx");
 
 
+
+
+var mapStateToProps = function mapStateToProps(_ref) {
+  var session = _ref.session;
+  return {
+    currentUserId: session.id
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    login: function login(user) {
+      return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_1__["login"])(user));
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_splash__WEBPACK_IMPORTED_MODULE_2__["default"]));
 
 /***/ }),
 
@@ -731,10 +991,10 @@ document.addEventListener('DOMContentLoaded', function () {
   } else {
     store = Object(_store_store__WEBPACK_IMPORTED_MODULE_3__["default"])();
   } // FOR TESTING PURPOSES ONLY, DO NOT USE IN PRODUCTION
+  // window.store = store;
+  // window.logout = logout;
+  // 
 
-
-  window.store = store;
-  window.logout = _actions_session_actions__WEBPACK_IMPORTED_MODULE_4__["logout"]; // 
 
   var root = document.getElementById('root');
   react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_root__WEBPACK_IMPORTED_MODULE_2__["default"], {

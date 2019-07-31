@@ -34,7 +34,7 @@ class SignupForm extends React.Component {
                     <form onSubmit={this.handleSubmit} className="session-form">
 
                         <div className="session-form__content-container">
-                            <h1 className="session-form__header">Create an account</h1>
+                            <h1 className="session-form__header margin-bottom--l">Create an account</h1>
 
                             <div className="session-form__input-container">
                                 <span className={`session-form__label ${emailError ? 'session-form__label--error' : ''}`}>Email</span>
