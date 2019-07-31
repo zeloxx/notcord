@@ -1,7 +1,6 @@
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { logout } from '../../actions/session_actions'
-
-import React, { Component } from 'react'
+import { logout } from '../../actions/session_actions';
 
 class AppRoot extends Component {
     render() {
