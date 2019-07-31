@@ -114,3 +114,39 @@
 .session-form__error-description--animate {
     transition: 1.1s ease;
 }
+
+.session-background {
+    background-image: url(https://discordapp.com/assets/fd91131ea693096d6be5e8aa99d18f9e.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100vh;
+}
+
+.session-background {
+  -webkit-animation: KEYFRAME-NAME .75s;
+  -moz-animation:    KEYFRAME-NAME .75s;
+  -o-animation:      KEYFRAME-NAME .75s;
+  animation:         KEYFRAME-NAME .75s;
+}
+
+@-webkit-keyframes KEYFRAME-NAME {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+@-moz-keyframes KEYFRAME-NAME {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+@-o-keyframes KEYFRAME-NAME {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+@keyframes KEYFRAME-NAME {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.session-container {
+    background-color: #36393F;
+}

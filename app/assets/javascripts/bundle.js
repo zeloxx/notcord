@@ -496,6 +496,8 @@ function (_React$Component) {
         return el.includes('Password');
       });
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "session-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "session-background"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         onSubmit: this.handleSubmit,
@@ -545,7 +547,7 @@ function (_React$Component) {
           return _this4.props.removeErrors();
         },
         className: "session-form__login-link"
-      }, "Already have an account?"))));
+      }, "Already have an account?")))));
     }
   }]);
 
