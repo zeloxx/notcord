@@ -33,6 +33,15 @@
     font-weight: 300;
 }
 
+.session-form__sub-header {
+    color: #64686F;
+    text-align: center;
+    font-size: 18px;
+    line-height: 22px;
+    margin-bottom: 20px;
+    font-weight: 400;
+}
+
 .session-form__label {
     color: #b9bbbe;
     font-size: 12px;
@@ -149,4 +158,9 @@
 
 .session-container {
     background-color: #36393F;
+}
+
+.session-form__signup-text {
+    color: #64686F;
+    font-size: 14px;
 }

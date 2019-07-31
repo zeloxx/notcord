@@ -24,8 +24,6 @@ class SignupForm extends React.Component {
     }
 
     render() {
-        debugger;
-
         const usernameError = this.props.errors.find((el) => el.includes('Username'));
         const emailError = this.props.errors.find((el) => el.includes('Email'));
         const passwordError = this.props.errors.find((el) => el.includes('Password'));

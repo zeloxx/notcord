@@ -313,9 +313,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
@@ -337,8 +337,11 @@ function (_React$Component) {
     _this = _possibleConstructorReturn(this, _getPrototypeOf(LoginForm).call(this, props));
     _this.state = {
       username: '',
-      password: ''
+      password: '',
+      usernameError: null,
+      passwordError: null
     };
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -352,12 +355,94 @@ function (_React$Component) {
       };
     }
   }, {
+    key: "setStateErrors",
+    value: function setStateErrors() {
+      if (this.state.username.length <= 0) {
+        this.setState({
+          usernameError: "Username can't be blank"
+        });
+      } else {
+        this.setState({
+          usernameError: null
+        });
+      }
+
+      if (this.state.password.length <= 0) {
+        this.setState({
+          passwordError: "Password can't be blank"
+        });
+      } else {
+        this.setState({
+          passwordError: null
+        });
+      }
+    }
+  }, {
     key: "handleSubmit",
-    value: function handleSubmit(e) {}
+    value: function handleSubmit(e) {
+      var _this3 = this;
+
+      e.preventDefault();
+      this.setStateErrors();
+
+      if (this.state.usernameError == null && this.state.passwordError == null) {
+        this.props.login(this.state).then(function () {
+          return _this3.props.history.push('/channels/@me');
+        });
+      }
+    }
   }, {
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null);
+      var _this4 = this;
+
+      var controllerError = this.props.errors[0];
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "session-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "session-background"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        onSubmit: this.handleSubmit,
+        className: "session-form"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "session-form__content-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+        className: "session-form__header"
+      }, "Welcome back!"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+        className: "session-form__sub-header"
+      }, "We're so excited to see you again!"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "session-form__input-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "session-form__label ".concat(this.state.usernameError || controllerError ? 'session-form__label--error' : '')
+      }, "Username"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "session-form__error-description"
+      }, this.state.usernameError || controllerError ? " - ".concat(this.state.usernameError || controllerError) : ''), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "".concat(this.state.usernameError || controllerError ? 'session-form__input--error' : 'session-form__input'),
+        type: "text",
+        value: this.state.username,
+        onChange: this.update('username')
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "session-form__input-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "session-form__label ".concat(this.state.passwordError || controllerError ? 'session-form__label--error' : '')
+      }, "Password"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "session-form__error-description"
+      }, this.state.passwordError || controllerError ? " - ".concat(this.state.passwordError || controllerError) : ''), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "".concat(this.state.passwordError || controllerError ? 'session-form__input--error' : 'session-form__input'),
+        type: "password",
+        value: this.state.password,
+        onChange: this.update('password')
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "session-form__submit"
+      }, "Login"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "session-form__signup-text"
+      }, "Need an account? "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        to: "/signup",
+        onClick: function onClick() {
+          return _this4.props.removeErrors();
+        },
+        className: "session-form__login-link"
+      }, "Register")))));
     }
   }]);
 
@@ -485,7 +570,6 @@ function (_React$Component) {
     value: function render() {
       var _this4 = this;
 
-      debugger;
       var usernameError = this.props.errors.find(function (el) {
         return el.includes('Username');
       });
@@ -748,7 +832,6 @@ __webpack_require__.r(__webpack_exports__);
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
   var action = arguments.length > 1 ? arguments[1] : undefined;
   Object.freeze(state);
-  debugger;
 
   switch (action.type) {
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_SESSION_ERRORS"]:
