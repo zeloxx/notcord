@@ -369,6 +369,11 @@ function (_React$Component) {
   }
 
   _createClass(LoginForm, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.removeErrors();
+    }
+  }, {
     key: "update",
     value: function update(field) {
       var _this2 = this;
@@ -417,8 +422,6 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this4 = this;
-
       var controllerError = this.props.errors[0];
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "session-container"
@@ -461,9 +464,6 @@ function (_React$Component) {
         className: "session-form__signup-text"
       }, "Need an account? "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: "/signup",
-        onClick: function onClick() {
-          return _this4.props.removeErrors();
-        },
         className: "session-form__login-link"
       }, "Register")))));
     }
@@ -570,6 +570,11 @@ function (_React$Component) {
   }
 
   _createClass(SignupForm, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.removeErrors();
+    }
+  }, {
     key: "update",
     value: function update(field) {
       var _this2 = this;
@@ -591,8 +596,6 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this4 = this;
-
       var usernameError = this.props.errors.find(function (el) {
         return el.includes('Username');
       });
@@ -650,9 +653,6 @@ function (_React$Component) {
         className: "session-form__submit"
       }, "Continue"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: "/login",
-        onClick: function onClick() {
-          return _this4.props.removeErrors();
-        },
         className: "session-form__login-link"
       }, "Already have an account?")))));
     }
@@ -748,6 +748,7 @@ function (_Component) {
     _classCallCheck(this, Splash);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(Splash).call(this, props));
+    debugger;
     _this.demoLogin = _this.demoLogin.bind(_assertThisInitialized(_this));
     return _this;
   }
@@ -778,7 +779,7 @@ function (_Component) {
       }, "Notcord"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: "/login",
         className: "splash-nav__btn"
-      }, "Login"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("main", {
+      }, this.props.currentUserId ? "Open" : "Login"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("main", {
         className: "splash-main"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
         className: "splash-main-hero"

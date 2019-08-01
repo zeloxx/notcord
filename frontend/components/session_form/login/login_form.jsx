@@ -14,6 +14,10 @@ class LoginForm extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    componentDidMount() {
+        this.props.removeErrors();
+    }
+
     update(field) {
         return e => this.setState({
             [field]: e.currentTarget.value
@@ -76,7 +80,7 @@ class LoginForm extends React.Component {
                             <button className="session-form__submit">Login</button>
 
                             <span className="session-form__signup-text">Need an account? </span>
-                            <Link to="/signup" onClick={() => this.props.removeErrors()} className="session-form__login-link">Register</Link>
+                            <Link to="/signup" className="session-form__login-link">Register</Link>
                         </div>
                     </form>
                 </div >

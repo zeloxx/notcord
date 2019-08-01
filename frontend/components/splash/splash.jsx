@@ -5,6 +5,7 @@ export default class Splash extends Component {
 
     constructor(props) {
         super(props)
+        debugger;
         this.demoLogin = this.demoLogin.bind(this);
     }
 
@@ -18,7 +19,7 @@ export default class Splash extends Component {
                 <header className="splash-header">
                     <nav className="splash-nav">
                         <div className="splash-nav__logo">Notcord</div>
-                        <Link to="/login" className="splash-nav__btn">Login</Link>
+                        <Link to="/login" className="splash-nav__btn">{this.props.currentUserId ? "Open" : "Login"}</Link>
                     </nav>
                 </header>
 
