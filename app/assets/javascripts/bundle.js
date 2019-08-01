@@ -776,10 +776,16 @@ function (_Component) {
         className: "splash-nav"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "splash-nav__logo"
-      }, "Notcord"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+      }, "Notcord"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "splash-nav__right"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        href: "https://github.com/zeloxx"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        className: "fa fa-github splash-nav__github"
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: "/login",
-        className: "splash-nav__btn"
-      }, this.props.currentUserId ? "Open" : "Login"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("main", {
+        className: "splash-nav__login"
+      }, this.props.currentUserId ? "Open" : "Login")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("main", {
         className: "splash-main"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
         className: "splash-main-hero"
@@ -928,7 +934,7 @@ function (_Component) {
       }, "Join over 250 million players today")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: "/signup",
         className: "splash-footer__signup"
-      }, "Sign Up Now"))));
+      }, this.props.currentUserId ? "Open Discord" : "Sign Up Now"))));
     }
   }]);
 

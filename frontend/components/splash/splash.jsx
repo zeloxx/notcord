@@ -19,7 +19,13 @@ export default class Splash extends Component {
                 <header className="splash-header">
                     <nav className="splash-nav">
                         <div className="splash-nav__logo">Notcord</div>
-                        <Link to="/login" className="splash-nav__btn">{this.props.currentUserId ? "Open" : "Login"}</Link>
+                        <div className="splash-nav__right">
+                            <a href="https://github.com/zeloxx">
+                                <i className="fa fa-github splash-nav__github"></i>
+                            </a>
+                            <Link to="/login" className="splash-nav__login">{this.props.currentUserId ? "Open" : "Login"}</Link>
+                        </div>
+
                     </nav>
                 </header>
 
@@ -73,7 +79,7 @@ export default class Splash extends Component {
                             <div className="splash-footer__header">Ready to try Notcord? It's free!</div>
                             <div className="splash-footer__text">Join over 250 million players today</div>
                         </div>
-                        <Link to="/signup" className="splash-footer__signup">Sign Up Now</Link>
+                        <Link to="/signup" className="splash-footer__signup">{this.props.currentUserId ? "Open Discord" : "Sign Up Now"}</Link>
                     </footer>
                 </main>
             </div>

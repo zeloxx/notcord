@@ -1,3 +1,5 @@
+@import "font-awesome";
+
 html {
     background-color: #25252B;
 }
@@ -22,7 +24,26 @@ html {
     font-size: 22px;
 }
 
-.splash-nav__btn {
+.splash-nav__right {
+    display: flex;
+    align-items: center;
+}
+
+.splash-nav__github {
+    font-size: 20px !important;
+    color: #fff;
+    margin-right: 15px;
+    opacity: .75;
+
+    &:hover {
+        transition: .5s;
+        opacity: 1;
+        cursor: pointer;
+    }
+}
+
+.splash-nav__login {
+    display: inline-block;
     text-decoration: none;
     color: #fff;
     border: solid #fff 2px;
