@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // FOR TESTING PURPOSES ONLY, DO NOT USE IN PRODUCTION
-    // window.store = store;
+    window.store = store;
     // window.logout = logout;
     // 
 
