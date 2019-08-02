@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { logout } from '../../actions/session_actions';
+import Servers from './servers/servers_container';
+import Modals from './modals/modals_container';
 
 class AppRoot extends Component {
     render() {
         return (
             <div>
+                <Servers />
+                <Modals />
                 <button onClick={this.props.logout}>logout</button>
             </div>
         )

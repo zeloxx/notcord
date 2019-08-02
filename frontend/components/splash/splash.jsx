@@ -5,7 +5,6 @@ export default class Splash extends Component {
 
     constructor(props) {
         super(props)
-        debugger;
         this.demoLogin = this.demoLogin.bind(this);
     }
 
