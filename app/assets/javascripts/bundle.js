@@ -90,7 +90,7 @@
 /*!********************************************!*\
   !*** ./frontend/actions/server_actions.js ***!
   \********************************************/
-/*! exports provided: RECEIVE_SERVERS, RECEIVE_SERVER, receiveServers, receiveServer, fetchCurrentUserServers, createServer */
+/*! exports provided: RECEIVE_SERVERS, RECEIVE_SERVER, receiveServers, receiveServer, fetchCurrentUserServers, createServer, joinServer */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -101,6 +101,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveServer", function() { return receiveServer; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchCurrentUserServers", function() { return fetchCurrentUserServers; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createServer", function() { return createServer; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "joinServer", function() { return joinServer; });
 /* harmony import */ var _util_server_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/server_api_util */ "./frontend/util/server_api_util.js");
 
 var RECEIVE_SERVERS = "RECEIVE_SERVERS";
@@ -127,7 +128,14 @@ var fetchCurrentUserServers = function fetchCurrentUserServers() {
 var createServer = function createServer(serverName) {
   return function (dispatch) {
     return _util_server_api_util__WEBPACK_IMPORTED_MODULE_0__["createServer"](serverName).then(function (server) {
-      dispatch(receiveServer(server));
+      return dispatch(receiveServer(server));
+    });
+  };
+};
+var joinServer = function joinServer(serverName) {
+  return function (dispatch) {
+    return _util_server_api_util__WEBPACK_IMPORTED_MODULE_0__["joinServer"](serverName).then(function (server) {
+      return dispatch(receiveServer(server));
     });
   };
 };
@@ -309,9 +317,9 @@ function (_Component) {
   _createClass(AppRoot, [{
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_servers_servers_container__WEBPACK_IMPORTED_MODULE_3__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_modals_modals_container__WEBPACK_IMPORTED_MODULE_4__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: this.props.logout
-      }, "logout"));
+      }, "logout"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_modals_modals_container__WEBPACK_IMPORTED_MODULE_4__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_servers_servers_container__WEBPACK_IMPORTED_MODULE_3__["default"], null));
     }
   }]);
 
@@ -542,9 +550,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
@@ -566,6 +574,7 @@ function (_Component) {
     _this.state = {
       inviteCodeInput: ''
     };
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -579,8 +588,16 @@ function (_Component) {
       };
     }
   }, {
+    key: "handleSubmit",
+    value: function handleSubmit(e) {
+      debugger;
+      e.preventDefault();
+      this.props.joinServer(this.state.inviteCodeInput);
+    }
+  }, {
     key: "render",
     value: function render() {
+      debugger;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "modal-background"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -591,7 +608,9 @@ function (_Component) {
         className: "join-server-header__heading"
       }, "Join a server"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "join-server-header__text"
-      }, "Enter an Invite Code below to join an existing server.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "Enter an Invite Code below to join an existing server.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        onSubmit: this.handleSubmit
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "join-server-body"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
         className: "join-server-body__heading"
@@ -707,6 +726,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 var mapStateToProps = function mapStateToProps(state) {
   return {
     state: state
@@ -715,19 +735,9 @@ var mapStateToProps = function mapStateToProps(state) {
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
-    joinServer: function (_joinServer) {
-      function joinServer(_x) {
-        return _joinServer.apply(this, arguments);
-      }
-
-      joinServer.toString = function () {
-        return _joinServer.toString();
-      };
-
-      return joinServer;
-    }(function (inviteCode) {
-      return dispatch(joinServer(inviteCode));
-    }),
+    joinServer: function joinServer(inviteCode) {
+      return dispatch(Object(_actions_server_actions__WEBPACK_IMPORTED_MODULE_2__["joinServer"])(inviteCode));
+    },
     createServer: function createServer(serverName) {
       return dispatch(Object(_actions_server_actions__WEBPACK_IMPORTED_MODULE_2__["createServer"])(serverName));
     }
@@ -2214,13 +2224,14 @@ var ProtectedRoute = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["withR
 /*!******************************************!*\
   !*** ./frontend/util/server_api_util.js ***!
   \******************************************/
-/*! exports provided: fetchCurrentUserServers, createServer */
+/*! exports provided: fetchCurrentUserServers, createServer, joinServer */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchCurrentUserServers", function() { return fetchCurrentUserServers; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createServer", function() { return createServer; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "joinServer", function() { return joinServer; });
 var fetchCurrentUserServers = function fetchCurrentUserServers() {
   return $.ajax({
     method: "GET",
@@ -2234,6 +2245,17 @@ var createServer = function createServer(name) {
     data: {
       server_info: {
         name: name
+      }
+    }
+  });
+};
+var joinServer = function joinServer(code) {
+  return $.ajax({
+    method: "POST",
+    url: "/api/servers/join",
+    data: {
+      server_info: {
+        code: code
       }
     }
   });

@@ -12,3 +12,11 @@ export const createServer = (name) => {
         data: { server_info: { name } }
     })
 }
+
+export const joinServer = (code) => {
+    return $.ajax({
+        method: "POST",
+        url: "/api/servers/join",
+        data: { server_info: { code } }
+    })
+}

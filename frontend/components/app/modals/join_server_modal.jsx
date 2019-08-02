@@ -7,13 +7,22 @@ export default class JoinServerModal extends Component {
         this.state = {
             inviteCodeInput: '',
         }
+
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     update(property) {
         return e => this.setState({ [property]: e.target.value });
     }
 
+    handleSubmit(e) {
+        debugger;
+        e.preventDefault();
+        this.props.joinServer(this.state.inviteCodeInput);
+    }
+
     render() {
+        debugger;
         return (
             <div className="modal-background">
                 <div className="modal">
@@ -22,7 +31,7 @@ export default class JoinServerModal extends Component {
                         <p className="join-server-header__text">Enter an Invite Code below to join an existing server.</p>
                     </div>
 
-                    <form>
+                    <form onSubmit={this.handleSubmit}>
                         <div className="join-server-body">
                             <h1 className="join-server-body__heading">Invite Code</h1>
                             < input

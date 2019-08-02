@@ -1,6 +1,7 @@
 import { connect } from 'react-redux'
 import Modals from './modals';
 import { createServer } from '../../../actions/server_actions';
+import { joinServer } from '../../../actions/server_actions';
 
 const mapStateToProps = (state) => {
     return {

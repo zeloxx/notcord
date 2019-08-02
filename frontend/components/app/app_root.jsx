@@ -8,9 +8,9 @@ class AppRoot extends Component {
     render() {
         return (
             <div>
-                <Servers />
-                <Modals />
                 <button onClick={this.props.logout}>logout</button>
+                <Modals />
+                <Servers />
             </div>
         )
     }

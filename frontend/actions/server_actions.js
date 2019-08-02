@@ -22,7 +22,9 @@ export const fetchCurrentUserServers = () => dispatch => {
 }
 
 export const createServer = (serverName) => dispatch => {
-    return APIUtil.createServer(serverName).then(server => {
-        dispatch(receiveServer(server))
-    })
+    return APIUtil.createServer(serverName).then(server => dispatch(receiveServer(server)))
+}
+
+export const joinServer = (serverName) => dispatch => {
+    return APIUtil.joinServer(serverName).then(server => dispatch(receiveServer(server)))
 }

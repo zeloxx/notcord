@@ -24,9 +24,28 @@ class Api::ServersController < ApplicationController
         end
     end
 
+    def join
+        @server = Server.find_by(invite_code: server_params[:code])
+        if @server 
+            if !current_user.servers.map { |server| server.id }.include?(@server.id)
+                @server_user = ServerUser.create(
+                    server_id: @server.id, 
+                    user_id: current_user.id, 
+                    username_alias: current_user.username,
+                    is_admin: false, 
+                )
+                render :show
+            else
+                render json: ["You're already in that server"], status: 422
+            end
+        else
+            render json: ["Server does not exist"], status: 401
+        end
+    end
+
     private
 
     def server_params
-        params.require(:server_info).permit(:name)
+        params.require(:server_info).permit(:name, :code)
     end
 end
