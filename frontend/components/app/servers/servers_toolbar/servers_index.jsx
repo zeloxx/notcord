@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import ServersIndexItem from './servers_index_item';
 
 export default class ServersIndex extends Component {
 
@@ -12,10 +13,12 @@ export default class ServersIndex extends Component {
 
     render() {
 
-        return (
-            <div>
+        const servers = this.props.servers.map(server => <ServersIndexItem key={server.id} server={server} />)
 
-            </div>
+        return (
+            <ul>
+                {servers}
+            </ul>
         )
     }
 }

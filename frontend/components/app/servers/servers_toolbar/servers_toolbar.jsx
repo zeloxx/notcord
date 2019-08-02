@@ -12,7 +12,7 @@ export default class ServersToolbar extends Component {
     render() {
 
         return (
-            <div>
+            <div className="servers-toolbar">
                 <ServersHome />
                 <ServersIndex
                     servers={this.props.servers}
