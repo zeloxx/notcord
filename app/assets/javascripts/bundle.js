@@ -135,7 +135,6 @@ var fetchCurrentUserServers = function fetchCurrentUserServers() {
     });
   };
 };
-window.fetchCurrentUserServers = fetchCurrentUserServers;
 var createServer = function createServer(serverName) {
   return function (dispatch) {
     return _util_server_api_util__WEBPACK_IMPORTED_MODULE_0__["createServer"](serverName).then(function (server) {
@@ -153,8 +152,7 @@ var joinServer = function joinServer(serverName) {
 var leaveServer = function leaveServer(id) {
   return function (dispatch) {
     return _util_server_api_util__WEBPACK_IMPORTED_MODULE_0__["leaveServer"](id).then(function (server) {
-      debugger;
-      dispatch(leaveServer(server));
+      return dispatch(leaveServer(server));
     });
   };
 };

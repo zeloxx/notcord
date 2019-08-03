@@ -29,8 +29,6 @@ export const fetchCurrentUserServers = () => dispatch => {
     return APIUtil.fetchCurrentUserServers().then(servers => dispatch(receiveServers(servers)))
 }
 
-window.fetchCurrentUserServers = fetchCurrentUserServers
-
 export const createServer = (serverName) => dispatch => {
     return APIUtil.createServer(serverName).then(server => dispatch(receiveServer(server)))
 }
@@ -40,8 +38,5 @@ export const joinServer = (serverName) => dispatch => {
 }
 
 export const leaveServer = (id) => dispatch => {
-    return APIUtil.leaveServer(id).then(server => {
-        debugger
-        dispatch(leaveServer(server))
-    })
+    return APIUtil.leaveServer(id).then(server => dispatch(leaveServer(server)))
 }
