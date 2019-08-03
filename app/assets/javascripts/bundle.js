@@ -90,22 +90,26 @@
 /*!********************************************!*\
   !*** ./frontend/actions/server_actions.js ***!
   \********************************************/
-/*! exports provided: RECEIVE_SERVERS, RECEIVE_SERVER, receiveServers, receiveServer, fetchCurrentUserServers, createServer, joinServer */
+/*! exports provided: RECEIVE_SERVERS, RECEIVE_SERVER, REMOVE_SERVER, receiveServers, receiveServer, removeServer, fetchCurrentUserServers, createServer, joinServer, leaveServer */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_SERVERS", function() { return RECEIVE_SERVERS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_SERVER", function() { return RECEIVE_SERVER; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_SERVER", function() { return REMOVE_SERVER; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveServers", function() { return receiveServers; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveServer", function() { return receiveServer; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeServer", function() { return removeServer; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchCurrentUserServers", function() { return fetchCurrentUserServers; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createServer", function() { return createServer; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "joinServer", function() { return joinServer; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "leaveServer", function() { return leaveServer; });
 /* harmony import */ var _util_server_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/server_api_util */ "./frontend/util/server_api_util.js");
 
 var RECEIVE_SERVERS = "RECEIVE_SERVERS";
 var RECEIVE_SERVER = "RECEIVE_SERVER";
+var REMOVE_SERVER = "REMOVE_SERVER";
 var receiveServers = function receiveServers(servers) {
   return {
     type: RECEIVE_SERVERS,
@@ -118,6 +122,12 @@ var receiveServer = function receiveServer(server) {
     server: server
   };
 };
+var removeServer = function removeServer(server) {
+  return {
+    type: REMOVE_SERVER,
+    server: server
+  };
+};
 var fetchCurrentUserServers = function fetchCurrentUserServers() {
   return function (dispatch) {
     return _util_server_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchCurrentUserServers"]().then(function (servers) {
@@ -125,6 +135,7 @@ var fetchCurrentUserServers = function fetchCurrentUserServers() {
     });
   };
 };
+window.fetchCurrentUserServers = fetchCurrentUserServers;
 var createServer = function createServer(serverName) {
   return function (dispatch) {
     return _util_server_api_util__WEBPACK_IMPORTED_MODULE_0__["createServer"](serverName).then(function (server) {
@@ -136,6 +147,14 @@ var joinServer = function joinServer(serverName) {
   return function (dispatch) {
     return _util_server_api_util__WEBPACK_IMPORTED_MODULE_0__["joinServer"](serverName).then(function (server) {
       return dispatch(receiveServer(server));
+    });
+  };
+};
+var leaveServer = function leaveServer(id) {
+  return function (dispatch) {
+    return _util_server_api_util__WEBPACK_IMPORTED_MODULE_0__["leaveServer"](id).then(function (server) {
+      debugger;
+      dispatch(leaveServer(server));
     });
   };
 };
@@ -279,7 +298,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/session_actions */ "./frontend/actions/session_actions.js");
 /* harmony import */ var _servers_servers_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./servers/servers_container */ "./frontend/components/app/servers/servers_container.js");
 /* harmony import */ var _modals_modals_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modals/modals_container */ "./frontend/components/app/modals/modals_container.js");
-/* harmony import */ var _navbar_navbar__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./navbar/navbar */ "./frontend/components/app/navbar/navbar.jsx");
+/* harmony import */ var _navbar_navbar_container__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./navbar/navbar_container */ "./frontend/components/app/navbar/navbar_container.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -305,6 +325,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
 var AppRoot =
 /*#__PURE__*/
 function (_Component) {
@@ -321,7 +342,11 @@ function (_Component) {
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: this.props.logout
-      }, "logout"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_modals_modals_container__WEBPACK_IMPORTED_MODULE_4__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_servers_servers_container__WEBPACK_IMPORTED_MODULE_3__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_navbar_navbar__WEBPACK_IMPORTED_MODULE_5__["default"], null));
+      }, "logout"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_modals_modals_container__WEBPACK_IMPORTED_MODULE_4__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_servers_servers_container__WEBPACK_IMPORTED_MODULE_3__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__["Route"], {
+        exact: true,
+        path: "/channels/:serverId",
+        component: _navbar_navbar_container__WEBPACK_IMPORTED_MODULE_5__["default"]
+      }));
     }
   }]);
 
@@ -592,14 +617,12 @@ function (_Component) {
   }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
-      debugger;
       e.preventDefault();
       this.props.joinServer(this.state.inviteCodeInput);
     }
   }, {
     key: "render",
     value: function render() {
-      debugger;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "modal-background"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -789,16 +812,21 @@ var Navbar =
 function (_Component) {
   _inherits(Navbar, _Component);
 
-  function Navbar() {
+  function Navbar(props) {
+    var _this;
+
     _classCallCheck(this, Navbar);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(Navbar).apply(this, arguments));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Navbar).call(this, props));
+    debugger;
+    return _this;
   }
 
   _createClass(Navbar, [{
     key: "render",
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_server_control_panel__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        serverId: this.props.match.params.serverId,
         server: this.props.server,
         leaveServer: this.props.leaveServer
       }));
@@ -809,6 +837,38 @@ function (_Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
 
+
+/***/ }),
+
+/***/ "./frontend/components/app/navbar/navbar_container.js":
+/*!************************************************************!*\
+  !*** ./frontend/components/app/navbar/navbar_container.js ***!
+  \************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _navbar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./navbar */ "./frontend/components/app/navbar/navbar.jsx");
+/* harmony import */ var _actions_server_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../actions/server_actions */ "./frontend/actions/server_actions.js");
+
+
+
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {};
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    leaveServer: function leaveServer(id) {
+      return dispatch(Object(_actions_server_actions__WEBPACK_IMPORTED_MODULE_2__["leaveServer"])(id));
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_navbar__WEBPACK_IMPORTED_MODULE_1__["default"]));
 
 /***/ }),
 
@@ -849,16 +909,22 @@ var ServerControlPanel =
 function (_Component) {
   _inherits(ServerControlPanel, _Component);
 
-  function ServerControlPanel() {
+  function ServerControlPanel(props) {
     _classCallCheck(this, ServerControlPanel);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(ServerControlPanel).apply(this, arguments));
+    return _possibleConstructorReturn(this, _getPrototypeOf(ServerControlPanel).call(this, props));
   }
 
   _createClass(ServerControlPanel, [{
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "SERVER CONTROL PANEL COMPONENT"));
+      var _this = this;
+
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: function onClick() {
+          return _this.props.leaveServer(_this.props.serverId);
+        }
+      }, "Leave Server"));
     }
   }]);
 
@@ -2079,9 +2145,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 var serversReducer = function serversReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
+  debugger;
 
   switch (action.type) {
     case _actions_server_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_SERVERS"]:
@@ -2089,6 +2157,11 @@ var serversReducer = function serversReducer() {
 
     case _actions_server_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_SERVER"]:
       return lodash_merge__WEBPACK_IMPORTED_MODULE_1___default()({}, state, action.server);
+
+    case _actions_server_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_SERVER"]:
+      copiedState = Object.assign({}, state);
+      delete copiedState[action.server];
+      return copiedState;
 
     default:
       return state;
@@ -2345,7 +2418,7 @@ var ProtectedRoute = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["withR
 /*!******************************************!*\
   !*** ./frontend/util/server_api_util.js ***!
   \******************************************/
-/*! exports provided: fetchCurrentUserServers, createServer, joinServer */
+/*! exports provided: fetchCurrentUserServers, createServer, joinServer, leaveServer */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2353,6 +2426,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchCurrentUserServers", function() { return fetchCurrentUserServers; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createServer", function() { return createServer; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "joinServer", function() { return joinServer; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "leaveServer", function() { return leaveServer; });
 var fetchCurrentUserServers = function fetchCurrentUserServers() {
   return $.ajax({
     method: "GET",
@@ -2377,6 +2451,18 @@ var joinServer = function joinServer(code) {
     data: {
       server_info: {
         code: code
+      }
+    }
+  });
+};
+var leaveServer = function leaveServer(server_id) {
+  debugger;
+  return $.ajax({
+    method: "DELETE",
+    url: "/api/servers/leave",
+    data: {
+      server_info: {
+        server_id: server_id
       }
     }
   });

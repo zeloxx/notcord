@@ -2,6 +2,7 @@ import * as APIUtil from '../util/server_api_util';
 
 export const RECEIVE_SERVERS = "RECEIVE_SERVERS";
 export const RECEIVE_SERVER = "RECEIVE_SERVER"
+export const REMOVE_SERVER = "REMOVE_SERVER";
 
 export const receiveServers = (servers) => {
     return {
@@ -17,9 +18,18 @@ export const receiveServer = (server) => {
     }
 }
 
+export const removeServer = (server) => {
+    return {
+        type: REMOVE_SERVER,
+        server
+    }
+}
+
 export const fetchCurrentUserServers = () => dispatch => {
     return APIUtil.fetchCurrentUserServers().then(servers => dispatch(receiveServers(servers)))
 }
+
+window.fetchCurrentUserServers = fetchCurrentUserServers
 
 export const createServer = (serverName) => dispatch => {
     return APIUtil.createServer(serverName).then(server => dispatch(receiveServer(server)))
@@ -27,4 +37,11 @@ export const createServer = (serverName) => dispatch => {
 
 export const joinServer = (serverName) => dispatch => {
     return APIUtil.joinServer(serverName).then(server => dispatch(receiveServer(server)))
+}
+
+export const leaveServer = (id) => dispatch => {
+    return APIUtil.leaveServer(id).then(server => {
+        debugger
+        dispatch(leaveServer(server))
+    })
 }

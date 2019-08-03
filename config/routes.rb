@@ -8,8 +8,13 @@ Rails.application.routes.draw do
     resources :direct_message_channel_users, only: [:create, :destroy]
     resources :messages, only: [:create, :destroy, :update]
     resources :servers, only: [:create, :index, :destroy] do
+
       collection do
         post 'join'
+      end
+
+      collection do 
+        delete 'leave'
       end
 
     end

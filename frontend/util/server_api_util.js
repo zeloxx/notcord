@@ -20,3 +20,12 @@ export const joinServer = (code) => {
         data: { server_info: { code } }
     })
 }
+
+export const leaveServer = (server_id) => {
+    debugger;
+    return $.ajax({
+        method: "DELETE",
+        url: "/api/servers/leave",
+        data: { server_info: { server_id } }
+    })
+}

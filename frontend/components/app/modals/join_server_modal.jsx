@@ -16,13 +16,11 @@ export default class JoinServerModal extends Component {
     }
 
     handleSubmit(e) {
-        debugger;
         e.preventDefault();
         this.props.joinServer(this.state.inviteCodeInput);
     }
 
     render() {
-        debugger;
         return (
             <div className="modal-background">
                 <div className="modal">
