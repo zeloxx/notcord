@@ -36,7 +36,7 @@ export default class Splash extends Component {
                     </p>
                         <div className="splash-main-hero__cta-container">
                             <a onClick={this.demoLogin} className="btn btn--green margin-right--xxxl">Try the demo</a>
-                            <Link to="/signup" className="btn">Signup</Link>
+                            <Link to="/signup" className="btn">{this.props.currentUserId ? "Open Discord" : "Signup"}</Link>
                         </div>
                     </section>
 

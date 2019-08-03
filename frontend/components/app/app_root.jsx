@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { logout } from '../../actions/session_actions';
 import Servers from './servers/servers_container';
 import Modals from './modals/modals_container';
+import Navbar from './navbar/navbar';
 
 class AppRoot extends Component {
     render() {
@@ -11,6 +12,7 @@ class AppRoot extends Component {
                 <button onClick={this.props.logout}>logout</button>
                 <Modals />
                 <Servers />
+                <Navbar />
             </div>
         )
     }
