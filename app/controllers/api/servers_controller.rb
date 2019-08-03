@@ -44,17 +44,6 @@ class Api::ServersController < ApplicationController
     end
 
     def leave
-        # debugger
-        # server_user = ServerUser.where(["server_id = ? and user_id = ?", params[:id], current_user.id]).first
-        # server_user.destroy
-        # if server_user   
-        #     render json: ["Failed to leave server"], status: 422
-        # else
-        #     @server = Server.find_by(id: server_user.server_id)
-        #     render :show
-        # end
-
-        debugger
         server_user = ServerUser.where(["server_id = ? and user_id = ?", server_params[:server_id], current_user.id]).first
         if server_user 
             server_user.destroy
