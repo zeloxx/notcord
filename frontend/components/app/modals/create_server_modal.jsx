@@ -22,15 +22,16 @@ export default class CreateServerModal extends Component {
 
     render() {
         return (
-            <div className="modal-background">
-                <div className="modal">
+            <div className="create-server">
+
+                <div className="create-server-container">
 
                     <div className="create-server-header">
                         <h1 className="create-server-header__heading">Create your server</h1>
                         <p className="create-server-header__text">By creating a server, you will have access to free text chat to use amongst your friends.</p>
                     </div>
 
-                    <form onSubmit={this.handleSubmit}>
+                    <form>
                         <div className="create-server-body">
                             <h1 className="create-server-body__heading">Server Name</h1>
                             < input
@@ -41,11 +42,12 @@ export default class CreateServerModal extends Component {
                                 className="create-server-body__input"
                             />
                         </div>
-                        <div className="create-server-footer">
-                            <button className="btn">Create</button>
-                        </div>
                     </form>
 
+                </div>
+
+                <div className="create-server-footer">
+                    <button onClick={this.handleSubmit} className="create-server-footer__btn">Create</button>
                 </div>
             </div>
         )

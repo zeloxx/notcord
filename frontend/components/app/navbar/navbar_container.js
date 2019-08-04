@@ -4,7 +4,7 @@ import { leaveServer } from '../../../actions/server_actions';
 
 const mapStateToProps = (state) => {
     return {
-
+        state
     }
 }
 

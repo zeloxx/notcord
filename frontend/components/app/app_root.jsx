@@ -9,11 +9,11 @@ import { Route } from 'react-router-dom';
 class AppRoot extends Component {
     render() {
         return (
-            <div>
-                <button onClick={this.props.logout}>logout</button>
+            <div id="app-root">
                 <Modals />
                 <Servers />
                 <Route exact path="/channels/:serverId" component={Navbar} />
+                <button onClick={this.props.logout}>logout</button>
             </div>
         )
     }

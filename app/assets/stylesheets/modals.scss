@@ -1,0 +1,215 @@
+.modal-background {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 10;
+}
+
+.modal-child {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.add-server-modal {
+  padding: 28px 40px 0px;
+  background: #fff;
+  width: 540px;
+  height: 420px;
+  overflow: hidden;
+  border-radius: 5px;
+  background-image: url(https://discordapp.com/assets/19494428f3a5649ffd64818fc75d0e76.png), url(https://discordapp.com/assets/6906eb345e3aeb89322c5167db31c1f6.png);
+  background-position: 0 100%,100% 100%;
+  background-size: 155px auto,75px auto;
+  background-repeat: no-repeat;
+}
+
+.modal__header {
+  color: #7289da;
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
+  text-transform: uppercase;
+  padding: 0;
+  margin-top: 6px;
+  margin-bottom: 40px;
+}
+
+.cards__container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  position: relative;
+}
+
+.card {
+    width: 220px;
+    border-radius: 3px;
+    overflow: hidden;
+    padding: 10px;
+    display: inline-block;
+    cursor: pointer;
+    text-align: center;
+    border: 1px solid rgba(0,0,0,.1);
+    background: hsla(0,0%,100%,.75);
+    -webkit-box-shadow: 0 2px 4px rgba(0,0,0,.08);
+    box-shadow: 0 2px 4px rgba(0,0,0,.08);
+}
+
+.card__header {
+  font-size: 18px;
+  font-weight: 500;
+  text-transform: uppercase;
+  margin-top: 20px;
+
+  &--green{
+    color: #3ca374;
+  }
+  
+  &--blue {
+    color: #7289da;
+  }
+}
+
+.card__text {
+  margin-top: 16px;
+  font-size: 13px;
+  padding: 0 15px;
+  font-weight: 400;
+  line-height: 20px;
+  color: #99aab5;
+}
+
+.card__icon {
+  height: 78px;
+  width: 100%;
+  margin: 26px 0;
+  background-position: 50%;
+  background-repeat: no-repeat;
+
+  &--join {
+    background-image: url(https://discordapp.com/assets/8fb52ec5260dfe6c5b93d211d3b6ecde.png);
+    background-size: 179px 78px;
+  }
+
+  &--create {
+    background-image: url(https://discordapp.com/assets/845d431ebfc24e13a0b31f7e64fc612b.png);
+    background-size: 112px 78px;
+  }
+}
+
+.modal__btn {
+  width: 100%;
+  padding: 14px 20px;
+  border-radius: 3px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 16px;
+  color: #fff;
+  cursor: pointer;
+  
+  &--blue {
+    background-color: #7289da;
+  }
+
+  &--green {
+    background-color: #3ca374
+  }
+}
+
+.create-server {
+  background: #fff;
+  width: 540px;
+  height: 420px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 5px;
+}
+
+.create-server-container {
+  padding: 28px 40px 0;
+  text-align: center;
+}
+
+.create-server-header__heading {
+  font-weight: 700;
+  line-height: 1.3;
+  text-transform: uppercase;
+  font-size: 18px;
+  text-align: center;
+  color: #7289da;
+}
+
+.create-server-header__text {
+  color: #99aab5;
+  margin-top: 0;
+  margin-bottom: 4px;
+  font-weight: 500;
+  line-height: 1.2;
+  margin: 0;
+  padding: 10px 0;
+  font-size: 18px;
+  text-align: center;
+}
+
+.create-server-body {
+  text-align: left;
+  margin-top: 57px;
+}
+
+.create-server-body__heading {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  display: block;
+  color: #87909c;
+}
+
+.create-server-body__input {
+    height: 40px;
+    margin-top: 12px;
+    padding-left: 4px;
+    padding-right: 4px;
+    border-radius: 0;
+    border-width: 0 0 2px;
+    border-bottom-style: solid;
+    font-size: 16px;
+    font-weight: 400;
+    width: 100%;
+    border-color: rgba(79,84,92,.3);
+    color: #2f3136;
+    border-bottom-color: #f0f0f0;
+}
+
+.create-server-footer {
+  display: flex;
+  align-items: stretch;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+  flex-direction: row-reverse;
+  padding: 18px 40px;
+  background-color: #f6f6f7;
+}
+
+.create-server-footer__btn {
+  height: 38px;
+  min-width: 96px;
+  min-height: 38px;
+  width: auto;
+  color: #fff;
+  background-color: #7289da;
+  position: relative;
+  border: none;
+  border-radius: 3px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 16px;
+  padding: 2px 16px;
+  cursor: pointer;
+}

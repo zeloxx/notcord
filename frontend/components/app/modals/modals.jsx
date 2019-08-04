@@ -1,27 +1,40 @@
-import React, { Component } from 'react'
+import React from 'react'
 import AddServerModal from './add_server_modal';
 import CreateServerModal from './create_server_modal';
 import JoinServerModal from './join_server_modal';
 
-export default class Modals extends Component {
+export default function Modals(props) {
 
-    constructor(props) {
-        super(props)
-
-        this.state = {
-            addServerModalOpen: false,
-            createServerModalOpen: false,
-            JoinServerModalOpen: false,
-        }
+    if (!props.modal) {
+        return null;
     }
 
-    render() {
-        return (
-            <div>
-                <AddServerModal />
-                <CreateServerModal createServer={this.props.createServer} />
-                <JoinServerModal joinServer={this.props.joinServer}/>
+    let component;
+    switch (props.modal) {
+        case 'addServer':
+            component = <AddServerModal
+                openModal={props.openModal}
+            />
+            break;
+        case 'createServer':
+            component = <CreateServerModal
+                createServer={props.createServer}
+            />
+            break;
+        case 'joinServer':
+            component = <JoinServerModal
+                joinServer={props.joinServer}
+            />
+            break;
+        default:
+            return null;
+    }
+
+    return (
+        <div className="modal-background" onClick={props.closeModal}>
+            <div className="modal-child" onClick={e => e.stopPropagation()}>
+                {component}
             </div>
-        )
-    }
+        </div>
+    )
 }

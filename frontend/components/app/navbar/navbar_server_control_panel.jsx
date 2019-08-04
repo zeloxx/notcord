@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-export default class ServerControlPanel extends Component {
+export default class NavbarServerControlPanel extends Component {
 
     constructor(props) {
         super(props)

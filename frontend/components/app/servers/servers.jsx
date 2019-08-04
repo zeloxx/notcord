@@ -13,7 +13,10 @@ export default class Servers extends Component {
             <ServersToolbar
                 servers={this.props.servers}
                 fetchCurrentUserServers={this.props.fetchCurrentUserServers}
+                closeModal={this.props.closeModal}
+                openModal={this.props.openModal}
             />
+            
         )
     }
 }
