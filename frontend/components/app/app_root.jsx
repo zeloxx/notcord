@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { logout } from '../../actions/session_actions';
 import Servers from './servers/servers_container';
+import Channels from './channels/channels'
 import Modals from './modals/modals_container';
-import Navbar from './navbar/navbar_container';
 import { Route } from 'react-router-dom';
 
 class AppRoot extends Component {
@@ -11,9 +11,8 @@ class AppRoot extends Component {
         return (
             <div id="app-root">
                 <Modals />
-                <Servers />
-                <Route exact path="/channels/:serverId" component={Navbar} />
-                <button onClick={this.props.logout}>logout</button>
+                <Route path="/channels/:serverId" component={Servers} />
+                <Route exact path="/channels/:serverId/:channelId" component={Channels} />
             </div>
         )
     }

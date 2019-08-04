@@ -324,8 +324,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/session_actions */ "./frontend/actions/session_actions.js");
 /* harmony import */ var _servers_servers_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./servers/servers_container */ "./frontend/components/app/servers/servers_container.js");
-/* harmony import */ var _modals_modals_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modals/modals_container */ "./frontend/components/app/modals/modals_container.js");
-/* harmony import */ var _navbar_navbar_container__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./navbar/navbar_container */ "./frontend/components/app/navbar/navbar_container.js");
+/* harmony import */ var _channels_channels__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./channels/channels */ "./frontend/components/app/channels/channels.jsx");
+/* harmony import */ var _modals_modals_container__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modals/modals_container */ "./frontend/components/app/modals/modals_container.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -369,13 +369,14 @@ function (_Component) {
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "app-root"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_modals_modals_container__WEBPACK_IMPORTED_MODULE_4__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_servers_servers_container__WEBPACK_IMPORTED_MODULE_3__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__["Route"], {
-        exact: true,
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_modals_modals_container__WEBPACK_IMPORTED_MODULE_5__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__["Route"], {
         path: "/channels/:serverId",
-        component: _navbar_navbar_container__WEBPACK_IMPORTED_MODULE_5__["default"]
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        onClick: this.props.logout
-      }, "logout"));
+        component: _servers_servers_container__WEBPACK_IMPORTED_MODULE_3__["default"]
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__["Route"], {
+        exact: true,
+        path: "/channels/:serverId/:channelId",
+        component: _channels_channels__WEBPACK_IMPORTED_MODULE_4__["default"]
+      }));
     }
   }]);
 
@@ -395,6 +396,106 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(AppRoot));
+
+/***/ }),
+
+/***/ "./frontend/components/app/channels/channels.jsx":
+/*!*******************************************************!*\
+  !*** ./frontend/components/app/channels/channels.jsx ***!
+  \*******************************************************/
+/*! exports provided: Channels, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Channels", function() { return Channels; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/react.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+var Channels =
+/*#__PURE__*/
+function (_Component) {
+  _inherits(Channels, _Component);
+
+  function Channels() {
+    _classCallCheck(this, Channels);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(Channels).apply(this, arguments));
+  }
+
+  _createClass(Channels, [{
+    key: "render",
+    value: function render() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "channels-panel"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
+        className: "channels-panel-nav"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+        className: "channels-panel-nav__channel-name"
+      }, "channel_name")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "chat-channel-users-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
+        className: "channels-panel-chat"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "chat-conversation"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "chat-conversation-message"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "chat-conversation-message__avatar"
+      }, "avatar_icon"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "message-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "username-timestamp-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "chat-conversation-message__username"
+      }, "username"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "chat-conversation-message__timestamp"
+      }, "timestamp")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "chat-conversation-message__body"
+      }, "message_body_goes_here"))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
+        className: "channels-panel-channel-users"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "channel-users-user"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "channel-users-user__avatar"
+      }, "user_avatar"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "channel-users-user__username"
+      }, "username")))));
+    }
+  }]);
+
+  return Channels;
+}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {};
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {};
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(Channels));
 
 /***/ }),
 
@@ -808,19 +909,20 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 
 /***/ }),
 
-/***/ "./frontend/components/app/navbar/navbar.jsx":
-/*!***************************************************!*\
-  !*** ./frontend/components/app/navbar/navbar.jsx ***!
-  \***************************************************/
-/*! exports provided: default */
+/***/ "./frontend/components/app/servers/server_panel/server_panel.jsx":
+/*!***********************************************************************!*\
+  !*** ./frontend/components/app/servers/server_panel/server_panel.jsx ***!
+  \***********************************************************************/
+/*! exports provided: ServerPanel, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Navbar; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ServerPanel", function() { return ServerPanel; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/react.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _navbar_server_control_panel__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./navbar_server_control_panel */ "./frontend/components/app/navbar/navbar_server_control_panel.jsx");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../actions/session_actions */ "./frontend/actions/session_actions.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -842,160 +944,75 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
-var Navbar =
+var ServerPanel =
 /*#__PURE__*/
 function (_Component) {
-  _inherits(Navbar, _Component);
+  _inherits(ServerPanel, _Component);
 
-  function Navbar(props) {
-    var _this;
+  function ServerPanel() {
+    _classCallCheck(this, ServerPanel);
 
-    _classCallCheck(this, Navbar);
-
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(Navbar).call(this, props));
-    debugger;
-    return _this;
+    return _possibleConstructorReturn(this, _getPrototypeOf(ServerPanel).apply(this, arguments));
   }
 
-  _createClass(Navbar, [{
+  _createClass(ServerPanel, [{
     key: "render",
     value: function render() {
-      return (// <div>
-        //     <NavbarServerControlPanel
-        //         serverId={this.props.match.params.serverId}
-        //         server={this.props.server}
-        //         leaveServer={this.props.leaveServer
-        //         } />
-        // </div>
-        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "navbar"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "navbar-container"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "server-control-panel"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "server-control-panel-container"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
-          className: "server-control-panel__name"
-        }, "this.props.server.name"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-          className: "server-control-panel__logout",
-          onClick: this.props.leaveServer(this.props.serverId)
-        }, "icon"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "channel-control-panel"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "channel-control-panel-container"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "channel-control-panel-info"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-          className: "channel-control-panel-info__hashtag"
-        }, "icon"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
-          className: "channel-control-panel-info__name"
-        }, "this.props.channel.name"))))))
-      );
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "server-panel"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
+        className: "server-panel-nav"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+        className: "server-panel-nav__name"
+      }, "server_name"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        className: "server-panel-nav__leave-server-btn"
+      }, "x")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
+        className: "server-panel-channels"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "server-panel-text-channels"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "text-channels-options"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+        className: "text-channels-options__title"
+      }, "text channels"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        className: "text-channels-options__create-channel-btn"
+      }, "+")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "server-panel-text-channel"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+        className: "server-panel-text-channel__name"
+      }, "# channel_name"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "text-channel-options"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        className: "text-channel-options__invite-btn"
+      }, "+"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        className: "text-channel-options__delete-channel-btn"
+      }, "-"))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("footer", {
+        className: "server-panel-user-controls"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+        className: "server-panel-user-controls__username"
+      }, "Username"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.props.logout,
+        className: "server-panel-user-controls__logout-btn"
+      }, "Log Out")));
     }
   }]);
 
-  return Navbar;
+  return ServerPanel;
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
-
-
-/***/ }),
-
-/***/ "./frontend/components/app/navbar/navbar_container.js":
-/*!************************************************************!*\
-  !*** ./frontend/components/app/navbar/navbar_container.js ***!
-  \************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _navbar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./navbar */ "./frontend/components/app/navbar/navbar.jsx");
-/* harmony import */ var _actions_server_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../actions/server_actions */ "./frontend/actions/server_actions.js");
-
-
-
-
 var mapStateToProps = function mapStateToProps(state) {
-  return {
-    state: state
-  };
+  return {};
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
-    leaveServer: function leaveServer(id) {
-      return dispatch(Object(_actions_server_actions__WEBPACK_IMPORTED_MODULE_2__["leaveServer"])(id));
+    logout: function logout() {
+      return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_2__["logout"])());
     }
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_navbar__WEBPACK_IMPORTED_MODULE_1__["default"]));
-
-/***/ }),
-
-/***/ "./frontend/components/app/navbar/navbar_server_control_panel.jsx":
-/*!************************************************************************!*\
-  !*** ./frontend/components/app/navbar/navbar_server_control_panel.jsx ***!
-  \************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return NavbarServerControlPanel; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/react.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-
-
-var NavbarServerControlPanel =
-/*#__PURE__*/
-function (_Component) {
-  _inherits(NavbarServerControlPanel, _Component);
-
-  function NavbarServerControlPanel(props) {
-    _classCallCheck(this, NavbarServerControlPanel);
-
-    return _possibleConstructorReturn(this, _getPrototypeOf(NavbarServerControlPanel).call(this, props));
-  }
-
-  _createClass(NavbarServerControlPanel, [{
-    key: "render",
-    value: function render() {
-      var _this = this;
-
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        onClick: function onClick() {
-          return _this.props.leaveServer(_this.props.serverId);
-        }
-      }, "Leave Server"));
-    }
-  }]);
-
-  return NavbarServerControlPanel;
-}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
-
-
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(ServerPanel));
 
 /***/ }),
 
@@ -1012,6 +1029,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/react.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _servers_toolbar_servers_toolbar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./servers_toolbar/servers_toolbar */ "./frontend/components/app/servers/servers_toolbar/servers_toolbar.jsx");
+/* harmony import */ var _server_panel_server_panel__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./server_panel/server_panel */ "./frontend/components/app/servers/server_panel/server_panel.jsx");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1029,6 +1047,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -1047,12 +1066,14 @@ function (_Component) {
   _createClass(Servers, [{
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_servers_toolbar_servers_toolbar__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "servers"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_servers_toolbar_servers_toolbar__WEBPACK_IMPORTED_MODULE_1__["default"], {
         servers: this.props.servers,
         fetchCurrentUserServers: this.props.fetchCurrentUserServers,
         closeModal: this.props.closeModal,
         openModal: this.props.openModal
-      });
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_server_panel_server_panel__WEBPACK_IMPORTED_MODULE_2__["default"], null));
     }
   }]);
 
