@@ -213,3 +213,157 @@
   padding: 2px 16px;
   cursor: pointer;
 }
+
+.join-server-modal {
+  background: #fff;
+  width: 540px;
+  height: 420px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.join-server-header-body-container {
+  padding: 28px 40px 0;
+}
+
+.join-server-header {
+
+}
+
+.join-server-header__heading {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.3;
+  text-align: center;
+  text-transform: uppercase;
+  color: #43b581;
+}
+
+.join-server-header__text {
+  font-size: 18px;
+  margin: 0;
+  padding: 22px 0;
+  font-weight: 500;
+  line-height: 1.2;
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 4px;
+  color: #99aab5;
+}
+
+.join-server-body {
+  margin-top: 69px;
+  margin-bottom: 8px;
+}
+
+.join-server-body__heading {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  display: block;
+  color: #87909c;
+  text-align: left
+}
+
+.join-server-body__input {
+  outline: 0;
+  border-style: solid;
+  padding: 10px;
+  height: 40px;
+  padding-left: 4px;
+  padding-right: 4px;
+  border-radius: 0;
+  border-width: 0 0 2px;
+  border-bottom-style: solid;
+  font-size: 16px;
+  font-weight: 400;
+  width: 100%;
+  color: #2f3136;
+  background: transparent;
+  border-bottom-color: #f0f0f0;
+}
+
+.join-server-footer {
+  display: flex;
+  align-items: stretch;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+  flex-direction: row-reverse;
+  padding: 18px 40px;
+  background-color: #f6f6f7;
+}
+
+.join-server-footer__btn {
+  height: 38px;
+  min-width: 96px;
+  min-height: 38px;
+  width: auto;
+  color: #fff;
+  background-color: #43b581;
+  position: relative;
+  border: none;
+  border-radius: 3px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 16px;
+  padding: 2px 16px;
+  cursor: pointer;
+}
+
+.session-logout-modal {
+  background: #36393F;
+  width: 440px;
+  height: 200px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.session-logout-modal-heading-body-container {
+  text-align: left;
+  padding: 20px;
+}
+
+.session-logout-modal__heading {
+  text-transform: uppercase;
+  font-weight: 900;
+  margin-bottom: 20px;
+}
+
+.session-logout-modal__body {
+
+}
+
+.session-logout-modal-logout-button-container {
+  display: flex;
+  align-items: stretch;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+  flex-direction: row-reverse;
+  padding: 18px 40px;
+  background-color: #2F3136;
+}
+
+.session-logout-modal__logout-button {
+  height: 38px;
+  min-width: 96px;
+  min-height: 38px;
+  width: auto;
+  color: #fff;
+  background-color: #f04747;
+  position: relative;
+  border: none;
+  border-radius: 3px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 16px;
+  padding: 2px 16px;
+  cursor: pointer;
+}

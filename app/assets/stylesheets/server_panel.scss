@@ -18,9 +18,18 @@
     height: 100%;
 }
 
-.server-panel-nav__leave-server-btn {
+.nav-options {
 
 }
+
+.nav-options__invite-btn {
+    margin-right: 10px;
+}
+
+.nav-options__leave-server-btn {
+
+}
+
 
 .server-panel-channels {
     display: flex;
@@ -62,10 +71,6 @@
 }
 
 .text-channel-options {
-
-}
-
-.text-channel-options__invite-btn {
 
 }
 

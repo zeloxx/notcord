@@ -4,7 +4,7 @@ import { REMOVE_SERVER } from '../../actions/server_actions'
 import merge from 'lodash/merge';
 
 const serversReducer = (state = {}, action) => {
-    debugger;
+    Object.freeze(state);
     switch (action.type) {
         case RECEIVE_SERVERS:
             return action.servers

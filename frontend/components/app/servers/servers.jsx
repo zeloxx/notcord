@@ -9,7 +9,6 @@ export default class Servers extends Component {
     }
 
     render() {
-
         return (
             <div className="servers">
                 <ServersToolbar
@@ -19,7 +18,7 @@ export default class Servers extends Component {
                     openModal={this.props.openModal}
                 />
 
-                <ServerPanel />
+                <ServerPanel {...this.props} />
             </div>
         )
     }

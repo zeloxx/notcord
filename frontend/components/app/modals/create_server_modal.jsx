@@ -11,16 +11,26 @@ export default class CreateServerModal extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    componentDidMount() {
+        this.props.removeServerErrors();
+    }
+
     update(property) {
         return e => this.setState({ [property]: e.target.value });
     }
 
     handleSubmit(e) {
         e.preventDefault();
-        this.props.createServer(this.state.serverNameInput);
+        this.props.removeServerErrors;
+        if (this.state.inputError == null) {
+            this.props.createServer(this.state.serverNameInput).then(() => this.props.closeModal());
+        }
     }
 
     render() {
+
+        debugger;
+
         return (
             <div className="create-server">
 
@@ -33,7 +43,8 @@ export default class CreateServerModal extends Component {
 
                     <form>
                         <div className="create-server-body">
-                            <h1 className="create-server-body__heading">Server Name</h1>
+                            <span className={`session-form__label ${this.props.serverErrors.length > 0 ? 'session-form__label--error' : ''}`}>Server Name</span>
+                            <span className="session-form__error-description">{this.props.serverErrors.length > 0 ? ` - ${this.props.serverErrors}` : ''}</span>
                             < input
                                 type="text"
                                 value={this.state.serverNameInput}

@@ -1,21 +1,24 @@
 import { connect } from 'react-redux'
 import Modals from './modals';
-import { createServer, joinServer } from '../../../actions/server_actions';
+import { createServer, joinServer, removeServerErrors } from '../../../actions/server_actions';
 import { closeModal, openModal } from '../../../actions/ui_actions';
+import { logout } from '../../../actions/session_actions';
 
 const mapStateToProps = (state) => {
-    debugger
     return {
-        modal: state.ui.modal
+        state
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
+        removeServerErrors: () => dispatch(removeServerErrors()),
         joinServer: (inviteCode) => dispatch(joinServer(inviteCode)),
         createServer: (serverName) => dispatch(createServer(serverName)),
-        closeModal: () => dispatch(closeModal()),
+        serverLeave: (serverId) => dispatch(serverLeave(serverId)),
         openModal: (modal) => dispatch(openModal(modal)),
+        closeModal: () => dispatch(closeModal()),
+        logout: () => dispatch(logout()),
     }
 }
 

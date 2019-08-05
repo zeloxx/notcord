@@ -22,7 +22,6 @@ export const joinServer = (code) => {
 }
 
 export const leaveServer = (server_id) => {
-    debugger;
     return $.ajax({
         method: "DELETE",
         url: "/api/servers/leave",
