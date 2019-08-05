@@ -3,9 +3,12 @@ import ServersToolbar from './servers_toolbar/servers_toolbar';
 import ServerPanel from './server_panel/server_panel';
 
 export default class Servers extends Component {
-
     constructor(props) {
         super(props);
+    }
+
+    componentDidUpdate() {
+        
     }
 
     render() {

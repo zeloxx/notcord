@@ -688,17 +688,13 @@ function (_Component) {
 
       e.preventDefault();
       this.props.removeServerErrors;
-
-      if (this.state.inputError == null) {
-        this.props.createServer(this.state.serverNameInput).then(function () {
-          return _this3.props.closeModal();
-        });
-      }
+      this.props.createServer(this.state.serverNameInput).then(function () {
+        return _this3.props.closeModal();
+      });
     }
   }, {
     key: "render",
     value: function render() {
-      debugger;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "create-server"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -806,9 +802,13 @@ function (_Component) {
   }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
+      var _this3 = this;
+
       e.preventDefault();
       this.props.removeServerErrors();
-      this.props.joinServer(this.state.inviteCodeInput);
+      this.props.joinServer(this.state.inviteCodeInput).then(function () {
+        return _this3.props.closeModal();
+      });
     }
   }, {
     key: "render",
@@ -877,8 +877,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function Modals(props) {
-  debugger;
-
   if (!props.state.ui.modal) {
     return null;
   }
@@ -979,19 +977,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     createServer: function createServer(serverName) {
       return dispatch(Object(_actions_server_actions__WEBPACK_IMPORTED_MODULE_2__["createServer"])(serverName));
     },
-    serverLeave: function (_serverLeave) {
-      function serverLeave(_x) {
-        return _serverLeave.apply(this, arguments);
-      }
-
-      serverLeave.toString = function () {
-        return _serverLeave.toString();
-      };
-
-      return serverLeave;
-    }(function (serverId) {
-      return dispatch(serverLeave(serverId));
-    }),
+    leaveServer: function leaveServer(serverId) {
+      return dispatch(Object(_actions_server_actions__WEBPACK_IMPORTED_MODULE_2__["leaveServer"])(serverId));
+    },
     openModal: function openModal(modal) {
       return dispatch(Object(_actions_ui_actions__WEBPACK_IMPORTED_MODULE_3__["openModal"])(modal));
     },
@@ -1053,12 +1041,26 @@ function (_Component) {
   }
 
   _createClass(ServerInviteModal, [{
+    key: "serverId",
+    value: function serverId() {
+      var splitPath = this.props.location.pathname.split('/');
+      var serverIdIndex = splitPath.indexOf("channels") + 1;
+      var serverId = splitPath[serverIdIndex];
+      return serverId;
+    }
+  }, {
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Invite friends to **server_name**"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      var currentServer = this.props.state.entities.servers[this.serverId()];
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "server-invite-modal"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+        className: "server-invite-heading"
+      }, "Invite friends to ", currentServer.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
-        spellcheck: "false",
-        value: "**invite_code**"
+        value: currentServer.invite_code,
+        readOnly: true,
+        className: "server-invite-input"
       }));
     }
   }]);
@@ -1079,9 +1081,9 @@ function (_Component) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ServerLeaveModal; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/react.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router */ "./node_modules/react-router/es/index.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1092,13 +1094,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -1107,36 +1110,65 @@ var ServerLeaveModal =
 function (_Component) {
   _inherits(ServerLeaveModal, _Component);
 
-  function ServerLeaveModal() {
+  function ServerLeaveModal(props) {
+    var _this;
+
     _classCallCheck(this, ServerLeaveModal);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(ServerLeaveModal).apply(this, arguments));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(ServerLeaveModal).call(this, props));
+    _this.handleLeaveServer = _this.handleLeaveServer.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
   _createClass(ServerLeaveModal, [{
+    key: "serverId",
+    value: function serverId() {
+      var splitPath = this.props.location.pathname.split('/');
+      var serverIdIndex = splitPath.indexOf("channels") + 1;
+      var serverId = splitPath[serverIdIndex];
+      return serverId;
+    }
+  }, {
+    key: "handleLeaveServer",
+    value: function handleLeaveServer(e) {
+      var _this2 = this;
+
+      e.preventDefault();
+      this.props.leaveServer(this.serverId()).then(function () {
+        return _this2.props.closeModal();
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        classnName: "server-leave-modal"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "server-leave-heading-body-container"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
-        classnName: "server-leave-modal__heading"
-      }, "LEAVE '**SERVER_NAME**'"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-        classnName: "server-leave-modal__body"
-      }, "Are you sure you want to leave **server_name**? You won't be able to rejoin this server unless you are re-invited.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "server-leave-modal-leave-container"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "server-leave-modal__leave"
-      }, "Leave server")));
+      var currentServer = this.props.state.entities.servers[this.serverId()];
+      debugger;
+
+      if (currentServer) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "server-leave-modal"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "server-leave-heading-body-container"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+          className: "server-leave-modal__heading"
+        }, "Leave '", currentServer.name, "'"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          className: "server-leave-modal__body"
+        }, "Are you sure you want to leave ", currentServer.name, "? You won't be able to rejoin this server unless you are re-invited.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "server-leave-modal-leave-container"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          onClick: this.handleLeaveServer,
+          className: "server-leave-modal__leave"
+        }, "Leave server")));
+      } else {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null);
+      }
     }
   }]);
 
   return ServerLeaveModal;
-}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]); // ***onClick(() => this.props.serverLeave(id))
+}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
-
-
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(ServerLeaveModal));
 
 /***/ }),
 
@@ -1317,7 +1349,7 @@ function (_Component) {
         className: "nav-options__invite-btn"
       }, "+"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         onClick: function onClick() {
-          return Object(_actions_ui_actions__WEBPACK_IMPORTED_MODULE_3__["openModal"])("leaveServer");
+          return _this2.props.openModal("serverLeave");
         },
         className: "nav-options__leave-server-btn"
       }, "x"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
@@ -1420,6 +1452,9 @@ function (_Component) {
   }
 
   _createClass(Servers, [{
+    key: "componentDidUpdate",
+    value: function componentDidUpdate() {}
+  }, {
     key: "render",
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2604,8 +2639,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-
 var serversReducer = function serversReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
@@ -2619,8 +2652,8 @@ var serversReducer = function serversReducer() {
       return lodash_merge__WEBPACK_IMPORTED_MODULE_1___default()({}, state, action.server);
 
     case _actions_server_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_SERVER"]:
-      copiedState = Object.assign({}, state);
-      delete copiedState[action.server];
+      var copiedState = Object.assign({}, state);
+      delete copiedState[Object.values(action.server)[0].id];
       return copiedState;
 
     default:
@@ -2704,7 +2737,6 @@ __webpack_require__.r(__webpack_exports__);
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
   var action = arguments.length > 1 ? arguments[1] : undefined;
   Object.freeze(state);
-  debugger;
 
   switch (action.type) {
     case _actions_server_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_SERVER_ERRORS"]:

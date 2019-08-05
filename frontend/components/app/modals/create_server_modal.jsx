@@ -22,14 +22,10 @@ export default class CreateServerModal extends Component {
     handleSubmit(e) {
         e.preventDefault();
         this.props.removeServerErrors;
-        if (this.state.inputError == null) {
-            this.props.createServer(this.state.serverNameInput).then(() => this.props.closeModal());
-        }
+        this.props.createServer(this.state.serverNameInput).then(() => this.props.closeModal());
     }
 
     render() {
-
-        debugger;
 
         return (
             <div className="create-server">

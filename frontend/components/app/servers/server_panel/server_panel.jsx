@@ -31,7 +31,7 @@ export class ServerPanel extends Component {
                     <h1 className="server-panel-nav__name">server_name</h1>
                     <div className="nav-options">
                         <i onClick={() => this.props.openModal("serverInvite")} className="nav-options__invite-btn">+</i>
-                        <i onClick={() => openModal("leaveServer")} className="nav-options__leave-server-btn">x</i>
+                        <i onClick={() => this.props.openModal("serverLeave")} className="nav-options__leave-server-btn">x</i>
                     </div>
                 </nav>
 

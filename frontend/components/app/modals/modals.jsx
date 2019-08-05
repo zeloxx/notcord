@@ -8,8 +8,6 @@ import SessionLogout from './session_logout';
 
 export default function Modals(props) {
 
-    debugger;
-
     if (!props.state.ui.modal) {
         return null;
     }

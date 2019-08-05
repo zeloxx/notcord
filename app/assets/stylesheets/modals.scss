@@ -367,3 +367,86 @@
   padding: 2px 16px;
   cursor: pointer;
 }
+
+.server-leave-modal {
+  background: #36393F;
+  width: 440px;
+  height: 200px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.server-leave-heading-body-container {
+  text-align: left;
+  padding: 20px;
+}
+
+.server-leave-modal__heading {
+  text-transform: uppercase;
+  font-weight: 900;
+  margin-bottom: 20px;
+}
+
+.server-leave-modal__body {
+
+}
+
+.server-leave-modal-leave-container {
+  display: flex;
+  align-items: stretch;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+  flex-direction: row-reverse;
+  padding: 18px 40px;
+  background-color: #2F3136;
+}
+
+.server-leave-modal__leave {
+  height: 38px;
+  min-width: 96px;
+  min-height: 38px;
+  width: auto;
+  color: #fff;
+  background-color: #f04747;
+  position: relative;
+  border: none;
+  border-radius: 3px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 16px;
+  padding: 2px 16px;
+  cursor: pointer;
+}
+
+.server-invite-modal {
+  background: #36393F;
+  width: 440px;
+  height: 150px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 5px;
+  text-align: left;
+  padding: 20px;
+}
+
+.server-invite-heading {
+  text-transform: uppercase;
+  font-weight: 900;
+  margin-bottom: 20px;
+  padding: 0;
+}
+
+.server-invite-input {
+  padding: 10px;
+  height: 40px;
+  border-radius: 3px;
+  color: #f6f6f7;
+  background-color: rgba(0,0,0,.1);
+  border-color: rgba(0,0,0,.3);
+}

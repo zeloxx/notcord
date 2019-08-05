@@ -6,6 +6,7 @@ export const REMOVE_SERVER = "REMOVE_SERVER";
 export const RECEIVE_SERVER_ERRORS = "RECEIVE_SERVER_ERRORS"
 export const REMOVE_SERVER_ERRORS = "REMOVE_SERVER_ERRORS"
 
+
 export const receiveServers = (servers) => {
     return {
         type: RECEIVE_SERVERS,

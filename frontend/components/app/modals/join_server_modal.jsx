@@ -22,7 +22,7 @@ export default class JoinServerModal extends Component {
     handleSubmit(e) {
         e.preventDefault();
         this.props.removeServerErrors();
-        this.props.joinServer(this.state.inviteCodeInput);
+        this.props.joinServer(this.state.inviteCodeInput).then(() => this.props.closeModal());
     }
 
     render() {

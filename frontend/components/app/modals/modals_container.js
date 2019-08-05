@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import Modals from './modals';
-import { createServer, joinServer, removeServerErrors } from '../../../actions/server_actions';
+import { createServer, joinServer, leaveServer, removeServerErrors } from '../../../actions/server_actions';
 import { closeModal, openModal } from '../../../actions/ui_actions';
 import { logout } from '../../../actions/session_actions';
 
@@ -15,7 +15,7 @@ const mapDispatchToProps = (dispatch) => {
         removeServerErrors: () => dispatch(removeServerErrors()),
         joinServer: (inviteCode) => dispatch(joinServer(inviteCode)),
         createServer: (serverName) => dispatch(createServer(serverName)),
-        serverLeave: (serverId) => dispatch(serverLeave(serverId)),
+        leaveServer: (serverId) => dispatch(leaveServer(serverId)),
         openModal: (modal) => dispatch(openModal(modal)),
         closeModal: () => dispatch(closeModal()),
         logout: () => dispatch(logout()),

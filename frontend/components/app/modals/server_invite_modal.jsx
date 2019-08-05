@@ -2,14 +2,24 @@ import React, { Component } from 'react'
 import { withRouter } from "react-router";
 
 class ServerInviteModal extends Component {
+
+    serverId() {
+        const splitPath = this.props.location.pathname.split('/');
+        const serverIdIndex = splitPath.indexOf("channels") + 1;
+        const serverId = splitPath[serverIdIndex];
+        return serverId;
+    }
+
     render() {
+        const currentServer = this.props.state.entities.servers[this.serverId()];
         return (
-            <div>
-                <h1>Invite friends to **server_name**</h1>
+            <div className="server-invite-modal">
+                <h1 className="server-invite-heading">Invite friends to {currentServer.name}</h1>
                 <input
                     type="text"
-                    spellcheck="false"
-                    value="**invite_code**"
+                    value={currentServer.invite_code}
+                    readOnly
+                    className="server-invite-input"
                 />
             </div>
         )
