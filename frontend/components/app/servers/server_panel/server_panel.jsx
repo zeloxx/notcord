@@ -71,7 +71,7 @@ class ServerPanel extends Component {
                 </section>
 
                 <footer className="server-panel-user-controls">
-                    <h1 className="server-panel-user-controls__username">Username</h1>
+                    <h1 className="server-panel-user-controls__username">{this.props.user.username}</h1>
                     <button onClick={() => this.props.openModal("sessionLogout")} className="server-panel-user-controls__logout-btn">Log Out</button>
                 </footer>
             </div>
@@ -80,10 +80,9 @@ class ServerPanel extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-    let server = state.entities.servers[ownProps.match.params.serverId]
     return {
-        state,
-        server
+        server: state.entities.servers[ownProps.match.params.serverId],
+        user: state.entities.users[state.session.id]
     }
 };
 

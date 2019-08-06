@@ -1527,7 +1527,7 @@ function (_Component) {
         className: "server-panel-user-controls"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
         className: "server-panel-user-controls__username"
-      }, "Username"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }, this.props.user.username), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: function onClick() {
           return _this.props.openModal("sessionLogout");
         },
@@ -1540,10 +1540,9 @@ function (_Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
-  var server = state.entities.servers[ownProps.match.params.serverId];
   return {
-    state: state,
-    server: server
+    server: state.entities.servers[ownProps.match.params.serverId],
+    user: state.entities.users[state.session.id]
   };
 };
 
@@ -1645,7 +1644,7 @@ function (_Component) {
         className: "server-panel-user-controls"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
         className: "server-panel-user-controls__username"
-      }, "Username"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }, this.props.user.username), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: function onClick() {
           return _this.props.openModal("sessionLogout");
         },
@@ -1657,9 +1656,9 @@ function (_Component) {
   return ServerPanelHome;
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
-var mapStateToProps = function mapStateToProps(state) {
+var mapStateToProps = function mapStateToProps(state, ownProps) {
   return {
-    state: state
+    user: state.entities.users[state.session.id]
   };
 };
 
