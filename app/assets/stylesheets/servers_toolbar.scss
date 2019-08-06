@@ -24,65 +24,74 @@
 
 .server-toolbar-icon {
     margin-bottom: 10px;
-    
-    &:active {
-            border-radius: 15px;
-    }
+    width: 48px;
+    height: 48px;
+    background-color: #2F3136;
+    border-radius: 24px;
 
-    &__img {
+    &__link {
         border-radius: 24px;
-        transition: border-radius 0.1s;
-        width: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        color: #fff;
+        text-transform: uppercase;
+        cursor: pointer;
+
+        transition: border-radius .2s , background-color .2s;
 
         &:hover {
             border-radius: 15px;
-            cursor: pointer;
+            background-color: #7289DA;
         }
 
         &--active {
             border-radius: 15px;
+            background-color: #7289DA;
         }
     }
 
     &__home {
         border-radius: 24px;
-        transition: border-radius 0.1s;
         width: 48px;
         height: 48px;
         background-color: #2F3136;
         display: flex;
         justify-content: center;
         align-items: center;
+        cursor: pointer;
+
+        transition: border-radius 0.2s, background-color 0.2s;
 
         &:hover {
             border-radius: 15px;
-            cursor: pointer;
+            background-color: #7289DA; 
         }
 
         &--active {
             border-radius: 15px;
+            background-color: #7289DA;
         }
     }
 
 }
 
 .server-add {
-    background-color: #2F3136;
     margin-bottom: 10px;
     border-radius: 24px;
-    transition: border-radius 0.1s;
     width: 48px;
     height: 48px;
     justify-content: center;
     display: flex;
     align-items: center;
-    color: #5AB682;
     font-size: 21px;
     flex-shrink: 0;
 
-    &:active {
-            border-radius: 15px;
-    }
+    background-color: #2F3136;
+    color: #5AB682;
+
+    transition: border-radius 0.2s, background-color 0.2s, color 0.2s;
 
     &:hover {
             border-radius: 15px;

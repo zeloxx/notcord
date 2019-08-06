@@ -53,6 +53,10 @@ button {
   border-image: initial;
 }
 
+a {
+  outline:none !important; 
+}
+
 .input {
     -webkit-writing-mode: horizontal-tb !important;
     text-rendering: auto;
