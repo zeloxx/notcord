@@ -2,21 +2,28 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { logout } from '../../actions/session_actions';
 import Servers from './servers/servers_container';
+import Channels from './channels/channels'
 import Modals from './modals/modals_container';
+import { Route, withRouter } from 'react-router-dom';
 
 class AppRoot extends Component {
+
+    
+
     render() {
+
         return (
-            <div>
-                <Servers />
+            <div id="app-root">
                 <Modals />
-                <button onClick={this.props.logout}>logout</button>
+                <Servers />
+                <Channels />
             </div>
         )
     }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
+    debugger;
     return {
 
     }
@@ -28,4 +35,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AppRoot);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AppRoot));

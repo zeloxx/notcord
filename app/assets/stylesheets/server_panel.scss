@@ -1,0 +1,98 @@
+.server-panel {
+    display: flex;
+    flex-direction: column;
+    background-color: #2F3136;
+    width: 240px;
+}
+
+.server-panel-nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 16px;
+    border-bottom: 1px solid #222;
+}
+
+.server-panel-nav__name {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.nav-options {
+
+}
+
+.nav-options__invite-btn {
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.nav-options__leave-server-btn {
+    cursor: pointer;
+}
+
+
+.server-panel-channels {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.server-panel-text-channels {
+
+}
+
+.text-channels-options {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 16px;
+    color: #8E9297;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.text-channels-options__title {
+
+}
+
+.text-channels-options__create-channel-btn {
+    cursor: pointer;
+}
+
+.server-panel-text-channel {
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 16px;
+    color: #8E9297;
+}
+
+.server-panel-text-channel__name {
+
+}
+
+.text-channel-options {
+
+}
+
+.server-panel-user-controls {
+    display: flex;
+    justify-content: space-between;
+    padding: 16px 16px;
+    background-color: #2B2C31;
+    align-items: center;
+}
+
+.server-panel-user-controls__username {
+
+}
+
+.server-panel-user-controls__logout-btn {
+    padding: 8px 14px;
+    border-radius: 5px;
+    background-color: #454545;
+    color: #fff;
+    border-style: none;
+    font-size: 12px;
+    cursor: pointer;
+}

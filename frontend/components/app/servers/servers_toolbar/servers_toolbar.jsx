@@ -13,12 +13,17 @@ export default class ServersToolbar extends Component {
 
         return (
             <div className="servers-toolbar">
-                <ServersHome />
-                <ServersIndex
-                    servers={this.props.servers}
-                    fetchCurrentUserServers={this.props.fetchCurrentUserServers}
-                />
-                <ServersAdd />
+                <div className="servers-toolbar-container">
+                    <ServersHome />
+                    <ServersIndex
+                        servers={this.props.servers}
+                        fetchCurrentUserServers={this.props.fetchCurrentUserServers}
+                    />
+                    <ServersAdd
+                        closeModal={this.props.closeModal}
+                        openModal={this.props.openModal}
+                    />
+                </div>
             </div>
         )
     }

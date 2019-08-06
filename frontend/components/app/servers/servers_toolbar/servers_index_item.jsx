@@ -4,14 +4,13 @@ import { NavLink } from 'react-router-dom';
 export default class ServersIndexItem extends Component {
     render() {
         return (
-            <li className="server-toolbar-icon">
-                <NavLink to={`/channels/${this.props.server.id}`}>
-                    <img
-                        className="server-toolbar-icon__img"
-                        // activeClassName="server-toolbar-icon__img--active"
-                        src={this.props.server.icon_url}
-                        alt="server icon"
-                    />
+            <li>
+                <NavLink
+                    to={`/channels/${this.props.server.id}`}
+                    className="server-toolbar-icon server-toolbar-icon__link"
+                    activeClassName="server-toolbar-icon__link--active"
+                >
+                    <div>{this.props.server.name[0]}</div>
                 </NavLink>
             </li>
         )

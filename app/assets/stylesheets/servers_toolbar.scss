@@ -1,0 +1,108 @@
+.servers-toolbar {
+    padding-top: 14px;
+    width: 72px;
+    background-color: #1F2225;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+.servers-toolbar-container {
+  flex: 1;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  user-select: none;
+}
+
+.server-toolbar-icon {
+    margin-bottom: 10px;
+    width: 48px;
+    height: 48px;
+    background-color: #2F3136;
+    border-radius: 24px;
+
+    &__link {
+        border-radius: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        color: #fff;
+        text-transform: uppercase;
+        cursor: pointer;
+
+        transition: border-radius .2s , background-color .2s;
+
+        &:hover {
+            border-radius: 15px;
+            background-color: #7289DA;
+        }
+
+        &--active {
+            border-radius: 15px;
+            background-color: #7289DA;
+        }
+    }
+
+    &__home {
+        border-radius: 24px;
+        width: 48px;
+        height: 48px;
+        background-color: #2F3136;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+
+        transition: border-radius 0.2s, background-color 0.2s;
+
+        &:hover {
+            border-radius: 15px;
+            background-color: #7289DA; 
+        }
+
+        &--active {
+            border-radius: 15px;
+            background-color: #7289DA;
+        }
+    }
+
+}
+
+.server-add {
+    margin-bottom: 10px;
+    border-radius: 24px;
+    width: 48px;
+    height: 48px;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    font-size: 21px;
+    flex-shrink: 0;
+
+    background-color: #2F3136;
+    color: #5AB682;
+
+    transition: border-radius 0.2s, background-color 0.2s, color 0.2s;
+
+    &:hover {
+            border-radius: 15px;
+            background-color: #5AB682;
+            color: #fff;
+            cursor: pointer;
+    }
+
+}
+
+#icon {
+    font-size: 19px;
+    color: white;
+}

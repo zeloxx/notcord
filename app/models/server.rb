@@ -24,6 +24,6 @@ class Server < ApplicationRecord
     end
 
     def ensure_invite_code
-        self.invite_code = SecureRandom::urlsafe_base64(8);
+        self.invite_code ||= SecureRandom::urlsafe_base64(8);
     end
 end
