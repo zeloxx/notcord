@@ -1490,7 +1490,7 @@ function (_Component) {
         className: "server-panel-nav"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
         className: "server-panel-nav__name"
-      }, "server_name"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, server.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "nav-options"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         onClick: function onClick() {

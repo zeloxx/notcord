@@ -47,7 +47,7 @@ class ServerPanel extends Component {
         return (
             <div className="server-panel">
                 <nav className="server-panel-nav">
-                    <h1 className="server-panel-nav__name">server_name</h1>
+                    <h1 className="server-panel-nav__name">{server.name}</h1>
                     <div className="nav-options">
                         <i onClick={() => this.props.openModal("serverInvite")} className="nav-options__invite-btn">+</i>
                         <i onClick={() => this.props.openModal("serverLeave")} className="nav-options__leave-server-btn">x</i>
