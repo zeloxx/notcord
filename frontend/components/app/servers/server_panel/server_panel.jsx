@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { NavLink, withRouter, Redirect } from 'react-router-dom';
 import { openModal } from '../../../../actions/ui_actions';
-import { fetchCurrentUserServers } from '../../../../actions/server_actions';
+import { fetchServerChannels } from '../../../../actions/channel_actions';
 
 class ServerPanel extends Component {
 
@@ -11,29 +11,30 @@ class ServerPanel extends Component {
     }
 
     componentDidMount() {
-        // this.props.fetchCurrentUserServers();
+        this.props.fetchServerChannels(this.props.match.params.serverId)
     }
 
     componentDidUpdate(prevProps) {
         if (prevProps.match.params.serverId !== this.props.match.params.serverId) {
-            // this.props.requestSingleserver(this.props.match.params.serverId);
+            this.props.fetchServerChannels(this.props.match.params.serverId)
         }
     }
 
-    // channelList() {
-    //     return this.props.channels.map(channel => {
-    //         return (
-    //             <NavLink to={`/channels/${this.props.server.id}`}>
-    //                 <li className="server-panel-text-channel">
-    //                     <h1 className="server-panel-text-channel__name"># {channel.name}</h1>
-    //                     <div className="text-channel-options">
-    //                         <i onClick={() => this.props.openModal("channelDelete")} className="text-channel-options__delete-channel-btn">-</i>
-    //                     </div>
-    //                 </li>
-    //             </NavLink >
-    //         )
-    //     })
-    // }
+    channelList() {
+        debugger;
+        return Object.values(this.props.channels).map(channel => {
+            return (
+                <NavLink to={`/channels/${this.props.server.id}`}>
+                    <li className="server-panel-text-channel">
+                        <h1 className="server-panel-text-channel__name"># {channel.name}</h1>
+                        <div className="text-channel-options">
+                            <i onClick={() => this.props.openModal("channelDelete")} className="text-channel-options__delete-channel-btn">-</i>
+                        </div>
+                    </li>
+                </NavLink >
+            )
+        })
+    }
 
     render() {
         const server = this.props.server;
@@ -56,12 +57,13 @@ class ServerPanel extends Component {
                             <i onClick={() => this.props.openModal("channelCreate")} className="text-channels-options__create-channel-btn">create</i>
                         </div>
                         <ul>
-                            <li className="server-panel-text-channel">
+                            {/* <li className="server-panel-text-channel">
                                 <h1 className="server-panel-text-channel__name"># channel_name</h1>
                                 <div className="text-channel-options">
                                     <i className="text-channel-options__delete-channel-btn">x</i>
                                 </div>
-                            </li>
+                            </li> */}
+                            {this.channelList()}
                         </ul>
                     </div>
                 </section>
@@ -86,7 +88,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => ({
     openModal: (modal) => dispatch(openModal(modal)),
-    fetchCurrentUserServers: () => dispatch(fetchCurrentUserServers()),
+    fetchServerChannels: (server_id) => dispatch(fetchServerChannels(server_id)),
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ServerPanel));

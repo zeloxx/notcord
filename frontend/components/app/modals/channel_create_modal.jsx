@@ -13,7 +13,6 @@ class ChannelCreate extends Component {
     }
 
     serverId() {
-        debugger;
         const splitPath = this.props.location.pathname.split('/');
         const serverIdIndex = splitPath.indexOf("channels") + 1;
         const serverId = splitPath[serverIdIndex];

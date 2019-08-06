@@ -32,5 +32,13 @@ export const removeChannelErrors = () => {
 }
 
 export const channelCreate = data => dispatch => {
-    return APIUtil.channelCreate(data).then(channel => dispatch(receiveServerChannel(channel)), err => dispatch(receiveChannelErrors()));
+    return APIUtil.channelCreate(data)
+        .then(channel => dispatch(receiveServerChannel(channel)),
+            err => dispatch(receiveChannelErrors(err)));
+}
+
+export const fetchServerChannels = server_id => dispatch => {
+    return APIUtil.fetchServerChannels(server_id)
+        .then(channels => dispatch(receiveServerChannels(channels)),
+            err => dispatch(receiveChannelErrors(err)))
 }

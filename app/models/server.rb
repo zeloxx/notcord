@@ -17,7 +17,8 @@ class Server < ApplicationRecord
     after_initialize :ensure_icon_url
     after_initialize :ensure_invite_code
 
-    has_many :users    
+    has_many :users
+    has_many :channels  
 
     def ensure_icon_url
         self.icon_url ||= "https://discordapp.com/assets/dd4dbc0016779df1378e7812eabaa04d.png"
