@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
+import { withRouter } from 'react-router-dom'
 
-export default class ChannelCreate extends Component {
+class ChannelCreate extends Component {
 
     constructor() {
         super()
@@ -12,6 +13,7 @@ export default class ChannelCreate extends Component {
     }
 
     serverId() {
+        debugger;
         const splitPath = this.props.location.pathname.split('/');
         const serverIdIndex = splitPath.indexOf("channels") + 1;
         const serverId = splitPath[serverIdIndex];
@@ -19,7 +21,7 @@ export default class ChannelCreate extends Component {
     }
 
     componentDidMount() {
-        this.props.removeChannelErrors();
+        // this.props.removeChannelErrors();
     }
 
     update(property) {
@@ -28,16 +30,16 @@ export default class ChannelCreate extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        this.props.removeChannelErrors;
-        this.props.createServer({ name: this.state.channelNameInput, serverId: this.serverId() }).then(() => this.props.closeModal());
+        // this.props.removeChannelErrors();
+        this.props.channelCreate({ name: this.state.channelNameInput, server_id: this.serverId() }).then(() => this.props.closeModal());
     }
 
     render() {
         return (
             <div>
                 <form>
-                    <span className={`session-form__label ${this.props.state.errors.channelErrors.length > 0 ? 'session-form__label--error' : ''}`}>Server Name</span>
-                    <span className="session-form__error-description">{this.props.state.errors.channelErrors.length > 0 ? ` - ${this.props.state.channelErrors}` : ''}</span>
+                    {/* <span className={`session-form__label ${this.props.state.errors.channelErrors.length > 0 ? 'session-form__label--error' : ''}`}>Server Name</span>
+                    <span className="session-form__error-description">{this.props.state.errors.channelErrors.length > 0 ? ` - ${this.props.state.channelErrors}` : ''}</span> */}
                     < input
                         type="text"
                         value={this.state.channelNameInput}
@@ -50,3 +52,6 @@ export default class ChannelCreate extends Component {
         )
     }
 }
+
+
+export default withRouter(ChannelCreate);

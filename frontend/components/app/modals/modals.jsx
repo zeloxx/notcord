@@ -59,9 +59,9 @@ export default function Modals(props) {
 
         case 'channelCreate':
             component = <ChannelCreateModal
-                createChannel={props.createChannel}
+                channelCreate={props.channelCreate}
                 closeModal={props.closeModal}
-                channelErrors={props.state.errors.channel}
+                // channelErrors={props.state.errors.channel}
                 removeChannelErrors={props.removeChannelErrors}
             />
             break;

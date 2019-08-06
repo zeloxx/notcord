@@ -23,7 +23,6 @@ class AppRoot extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-    debugger;
     return {
 
     }

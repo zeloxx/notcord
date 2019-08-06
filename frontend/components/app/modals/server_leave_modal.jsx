@@ -23,9 +23,7 @@ class ServerLeaveModal extends Component {
     }
 
     render() {
-        debugger;
         const currentServer = this.props.state.entities.servers[this.serverId()];
-        // debugger;
         if (currentServer) {
             return (
                 <div className="server-leave-modal">

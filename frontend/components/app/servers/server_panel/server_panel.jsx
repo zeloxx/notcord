@@ -10,10 +10,6 @@ class ServerPanel extends Component {
         super(props);
     }
 
-    // shouldComponentUpdate(nextProps, nextState) {
-    //     debugger;
-    // }
-
     componentDidMount() {
         // this.props.fetchCurrentUserServers();
     }
@@ -57,7 +53,7 @@ class ServerPanel extends Component {
                     <div className="server-panel-text-channels">
                         <div className="text-channels-options">
                             <h1 className="text-channels-options__title">text channels</h1>
-                            <i onClick={() => this.props.openModal("channelCreate")} className="text-channels-options__create-channel-btn">+</i>
+                            <i onClick={() => this.props.openModal("channelCreate")} className="text-channels-options__create-channel-btn">create</i>
                         </div>
                         <ul>
                             <li className="server-panel-text-channel">
@@ -80,9 +76,11 @@ class ServerPanel extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
+    debugger;
     return {
         server: state.entities.servers[ownProps.match.params.serverId],
-        user: state.entities.users[state.session.id]
+        user: state.entities.users[state.session.id],
+        channels: state.entities.channels,
     }
 };
 

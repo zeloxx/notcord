@@ -86,6 +86,65 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./frontend/actions/channel_actions.js":
+/*!*********************************************!*\
+  !*** ./frontend/actions/channel_actions.js ***!
+  \*********************************************/
+/*! exports provided: RECEIVE_SERVER_CHANNELS, RECEIVE_SERVER_CHANNEL, RECEIVE_CHANNEL_ERRORS, REMOVE_CHANNEL_ERRORS, receiveServerChannels, receiveServerChannel, receiveChannelErrors, removeChannelErrors, channelCreate */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_SERVER_CHANNELS", function() { return RECEIVE_SERVER_CHANNELS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_SERVER_CHANNEL", function() { return RECEIVE_SERVER_CHANNEL; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_CHANNEL_ERRORS", function() { return RECEIVE_CHANNEL_ERRORS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_CHANNEL_ERRORS", function() { return REMOVE_CHANNEL_ERRORS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveServerChannels", function() { return receiveServerChannels; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveServerChannel", function() { return receiveServerChannel; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveChannelErrors", function() { return receiveChannelErrors; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeChannelErrors", function() { return removeChannelErrors; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "channelCreate", function() { return channelCreate; });
+/* harmony import */ var _util_channel_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/channel_api_util */ "./frontend/util/channel_api_util.js");
+
+var RECEIVE_SERVER_CHANNELS = "RECEIVE_SERVER_CHANNELS";
+var RECEIVE_SERVER_CHANNEL = "RECEIVE_SERVER_CHANNEL";
+var RECEIVE_CHANNEL_ERRORS = "RECEIVE_CHANNEL_ERRORS";
+var REMOVE_CHANNEL_ERRORS = "REMOVE_CHANNEL_ERRORS";
+var receiveServerChannels = function receiveServerChannels(channels) {
+  return {
+    type: RECEIVE_SERVER_CHANNELS,
+    channels: channels
+  };
+};
+var receiveServerChannel = function receiveServerChannel(channel) {
+  return {
+    type: RECEIVE_SERVER_CHANNEL,
+    channel: channel
+  };
+};
+var receiveChannelErrors = function receiveChannelErrors(errors) {
+  return {
+    type: RECEIVE_CHANNEL_ERRORS,
+    errors: errors
+  };
+};
+var removeChannelErrors = function removeChannelErrors() {
+  return {
+    type: REMOVE_CHANNEL_ERRORS
+  };
+};
+var channelCreate = function channelCreate(data) {
+  return function (dispatch) {
+    return _util_channel_api_util__WEBPACK_IMPORTED_MODULE_0__["channelCreate"](data).then(function (channel) {
+      return dispatch(receiveServerChannel(channel));
+    }, function (err) {
+      return dispatch(receiveChannelErrors());
+    });
+  };
+};
+
+/***/ }),
+
 /***/ "./frontend/actions/server_actions.js":
 /*!********************************************!*\
   !*** ./frontend/actions/server_actions.js ***!
@@ -402,7 +461,6 @@ function (_Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
-  debugger;
   return {};
 };
 
@@ -618,9 +676,9 @@ function (_Component) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ChannelCreate; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/react.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -640,6 +698,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -664,6 +723,7 @@ function (_Component) {
   _createClass(ChannelCreate, [{
     key: "serverId",
     value: function serverId() {
+      debugger;
       var splitPath = this.props.location.pathname.split('/');
       var serverIdIndex = splitPath.indexOf("channels") + 1;
       var serverId = splitPath[serverIdIndex];
@@ -671,8 +731,7 @@ function (_Component) {
     }
   }, {
     key: "componentDidMount",
-    value: function componentDidMount() {
-      this.props.removeChannelErrors();
+    value: function componentDidMount() {// this.props.removeChannelErrors();
     }
   }, {
     key: "update",
@@ -688,11 +747,11 @@ function (_Component) {
     value: function handleSubmit(e) {
       var _this3 = this;
 
-      e.preventDefault();
-      this.props.removeChannelErrors;
-      this.props.createServer({
+      e.preventDefault(); // this.props.removeChannelErrors();
+
+      this.props.channelCreate({
         name: this.state.channelNameInput,
-        serverId: this.serverId()
+        server_id: this.serverId()
       }).then(function () {
         return _this3.props.closeModal();
       });
@@ -700,11 +759,7 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: "session-form__label ".concat(this.props.state.errors.channelErrors.length > 0 ? 'session-form__label--error' : '')
-      }, "Server Name"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: "session-form__error-description"
-      }, this.props.state.errors.channelErrors.length > 0 ? " - ".concat(this.props.state.channelErrors) : ''), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         value: this.state.channelNameInput,
         placeholder: "Enter a channel name",
@@ -718,7 +773,7 @@ function (_Component) {
   return ChannelCreate;
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
-
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(ChannelCreate));
 
 /***/ }),
 
@@ -1036,9 +1091,9 @@ function Modals(props) {
 
     case 'channelCreate':
       component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_channel_create_modal__WEBPACK_IMPORTED_MODULE_8__["default"], {
-        createChannel: props.createChannel,
-        closeModal: props.closeModal,
-        channelErrors: props.state.errors.channel,
+        channelCreate: props.channelCreate,
+        closeModal: props.closeModal // channelErrors={props.state.errors.channel}
+        ,
         removeChannelErrors: props.removeChannelErrors
       });
       break;
@@ -1075,6 +1130,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_ui_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../actions/ui_actions */ "./frontend/actions/ui_actions.js");
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../actions/session_actions */ "./frontend/actions/session_actions.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
+/* harmony import */ var _actions_channel_actions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../actions/channel_actions */ "./frontend/actions/channel_actions.js");
+
 
 
 
@@ -1112,21 +1169,11 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
       return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_4__["logout"])());
     },
     channelCreate: function channelCreate(data) {
-      return dispatch(createChannel(data));
+      return dispatch(Object(_actions_channel_actions__WEBPACK_IMPORTED_MODULE_6__["channelCreate"])(data));
     },
-    removeChannelErrors: function (_removeChannelErrors) {
-      function removeChannelErrors() {
-        return _removeChannelErrors.apply(this, arguments);
-      }
-
-      removeChannelErrors.toString = function () {
-        return _removeChannelErrors.toString();
-      };
-
-      return removeChannelErrors;
-    }(function () {
-      return dispatch(removeChannelErrors());
-    })
+    removeChannelErrors: function removeChannelErrors() {
+      return dispatch(Object(_actions_channel_actions__WEBPACK_IMPORTED_MODULE_6__["removeChannelErrors"])());
+    }
   };
 };
 
@@ -1280,8 +1327,7 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      debugger;
-      var currentServer = this.props.state.entities.servers[this.serverId()]; // debugger;
+      var currentServer = this.props.state.entities.servers[this.serverId()];
 
       if (currentServer) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1442,10 +1488,7 @@ function (_Component) {
     _classCallCheck(this, ServerPanel);
 
     return _possibleConstructorReturn(this, _getPrototypeOf(ServerPanel).call(this, props));
-  } // shouldComponentUpdate(nextProps, nextState) {
-  //     debugger;
-  // }
-
+  }
 
   _createClass(ServerPanel, [{
     key: "componentDidMount",
@@ -1515,7 +1558,7 @@ function (_Component) {
           return _this.props.openModal("channelCreate");
         },
         className: "text-channels-options__create-channel-btn"
-      }, "+")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+      }, "create")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "server-panel-text-channel"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
         className: "server-panel-text-channel__name"
@@ -1540,9 +1583,11 @@ function (_Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
+  debugger;
   return {
     server: state.entities.servers[ownProps.match.params.serverId],
-    user: state.entities.users[state.session.id]
+    user: state.entities.users[state.session.id],
+    channels: state.entities.channels
   };
 };
 
@@ -2917,6 +2962,39 @@ document.addEventListener('DOMContentLoaded', function () {
 
 /***/ }),
 
+/***/ "./frontend/reducers/entities/channels_reducer.js":
+/*!********************************************************!*\
+  !*** ./frontend/reducers/entities/channels_reducer.js ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_channel_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../actions/channel_actions */ "./frontend/actions/channel_actions.js");
+/* harmony import */ var lodash_merge__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lodash/merge */ "./node_modules/lodash/merge.js");
+/* harmony import */ var lodash_merge__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lodash_merge__WEBPACK_IMPORTED_MODULE_1__);
+
+
+/* harmony default export */ __webpack_exports__["default"] = (function () {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+
+  switch (action.type) {
+    case _actions_channel_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_SERVER_CHANNELS"]:
+      return action.channels;
+
+    case _actions_channel_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_SERVER_CHANNEL"]:
+      debugger;
+      return lodash_merge__WEBPACK_IMPORTED_MODULE_1___default()({}, state, action.channel);
+
+    default:
+      return state;
+  }
+});
+
+/***/ }),
+
 /***/ "./frontend/reducers/entities/entities_reducer.js":
 /*!********************************************************!*\
   !*** ./frontend/reducers/entities/entities_reducer.js ***!
@@ -2929,12 +3007,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/index.js");
 /* harmony import */ var _users_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./users_reducer */ "./frontend/reducers/entities/users_reducer.js");
 /* harmony import */ var _servers_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./servers_reducer */ "./frontend/reducers/entities/servers_reducer.js");
+/* harmony import */ var _channels_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./channels_reducer */ "./frontend/reducers/entities/channels_reducer.js");
+
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
   users: _users_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
-  servers: _servers_reducer__WEBPACK_IMPORTED_MODULE_2__["default"]
+  servers: _servers_reducer__WEBPACK_IMPORTED_MODULE_2__["default"],
+  channels: _channels_reducer__WEBPACK_IMPORTED_MODULE_3__["default"]
 }));
 
 /***/ }),
@@ -3015,6 +3096,35 @@ var usersReducer = function usersReducer() {
 
 /***/ }),
 
+/***/ "./frontend/reducers/errors/channel_errors_reducer.js":
+/*!************************************************************!*\
+  !*** ./frontend/reducers/errors/channel_errors_reducer.js ***!
+  \************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_channel_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../actions/channel_actions */ "./frontend/actions/channel_actions.js");
+
+/* harmony default export */ __webpack_exports__["default"] = (function () {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+
+  switch (action.type) {
+    case _actions_channel_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CHANNEL_ERRORS"]:
+      return action.errors;
+
+    case _actions_channel_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_CHANNEL_ERRORS"]:
+      return [];
+
+    default:
+      return state;
+  }
+});
+
+/***/ }),
+
 /***/ "./frontend/reducers/errors/errors_reducer.js":
 /*!****************************************************!*\
   !*** ./frontend/reducers/errors/errors_reducer.js ***!
@@ -3027,12 +3137,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/index.js");
 /* harmony import */ var _session_errors_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./session_errors_reducer */ "./frontend/reducers/errors/session_errors_reducer.js");
 /* harmony import */ var _server_errors_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./server_errors_reducer */ "./frontend/reducers/errors/server_errors_reducer.js");
+/* harmony import */ var _channel_errors_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./channel_errors_reducer */ "./frontend/reducers/errors/channel_errors_reducer.js");
+
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
   session: _session_errors_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
-  server: _server_errors_reducer__WEBPACK_IMPORTED_MODULE_2__["default"]
+  server: _server_errors_reducer__WEBPACK_IMPORTED_MODULE_2__["default"],
+  channel: _channel_errors_reducer__WEBPACK_IMPORTED_MODULE_3__["default"]
 }));
 
 /***/ }),
@@ -3242,6 +3355,28 @@ var configureStore = function configureStore() {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (configureStore);
+
+/***/ }),
+
+/***/ "./frontend/util/channel_api_util.js":
+/*!*******************************************!*\
+  !*** ./frontend/util/channel_api_util.js ***!
+  \*******************************************/
+/*! exports provided: channelCreate */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "channelCreate", function() { return channelCreate; });
+var channelCreate = function channelCreate(data) {
+  return $.ajax({
+    method: "POST",
+    url: "/api/channels",
+    data: {
+      channel_info: data
+    }
+  });
+};
 
 /***/ }),
 
