@@ -6,6 +6,7 @@ class ServerLeaveModal extends Component {
     constructor(props) {
         super(props)
         this.handleLeaveServer = this.handleLeaveServer.bind(this);
+        
     }
 
     serverId() {
@@ -18,11 +19,13 @@ class ServerLeaveModal extends Component {
     handleLeaveServer(e) {
         e.preventDefault();
         this.props.leaveServer(this.serverId()).then(() => this.props.closeModal());
+        this.props.history.push('/channels/@me');
     }
 
     render() {
-        const currentServer = this.props.state.entities.servers[this.serverId()];
         debugger;
+        const currentServer = this.props.state.entities.servers[this.serverId()];
+        // debugger;
         if (currentServer) {
             return (
                 <div className="server-leave-modal">

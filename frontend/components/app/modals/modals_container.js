@@ -3,6 +3,7 @@ import Modals from './modals';
 import { createServer, joinServer, leaveServer, removeServerErrors } from '../../../actions/server_actions';
 import { closeModal, openModal } from '../../../actions/ui_actions';
 import { logout } from '../../../actions/session_actions';
+import { withRouter } from 'react-router-dom';
 
 const mapStateToProps = (state) => {
     return {
@@ -19,7 +20,9 @@ const mapDispatchToProps = (dispatch) => {
         openModal: (modal) => dispatch(openModal(modal)),
         closeModal: () => dispatch(closeModal()),
         logout: () => dispatch(logout()),
+        channelCreate: (data) => dispatch(createChannel(data)),
+        removeChannelErrors: () => dispatch(removeChannelErrors()),
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Modals);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Modals));

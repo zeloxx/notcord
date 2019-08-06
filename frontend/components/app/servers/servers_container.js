@@ -2,12 +2,14 @@ import { connect } from 'react-redux';
 import Servers from './servers';
 import { fetchCurrentUserServers } from '../../../actions/server_actions';
 import { closeModal, openModal } from '../../../actions/ui_actions';
+import { withRouter } from 'react-router-dom';
 
-const mapStateToProps = ({ entities }) => {
+const mapStateToProps = ({ entities }, ownProps) => {
+    console.log(ownProps.match)
     return {
         servers: Object.values(entities.servers),
     }
-}
+};
 
 const mapDispatchToProps = (dispatch) => {
     return {
@@ -15,6 +17,6 @@ const mapDispatchToProps = (dispatch) => {
         closeModal: () => dispatch(closeModal()),
         openModal: (modal) => dispatch(openModal(modal)),
     }
-}
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(Servers)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Servers));

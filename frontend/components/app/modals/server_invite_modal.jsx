@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { withRouter } from "react-router";
+import { withRouter } from "react-router"; // REACT ROUTER DOM
 
 class ServerInviteModal extends Component {
 

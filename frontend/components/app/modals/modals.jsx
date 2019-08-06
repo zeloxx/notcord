@@ -5,6 +5,8 @@ import JoinServerModal from './join_server_modal';
 import ServerInviteModal from './server_invite_modal';
 import ServerLeaveModal from './server_leave_modal';
 import SessionLogout from './session_logout';
+import { Route, Switch } from 'react-router-dom';
+import ChannelCreateModal from './channel_create_modal';
 
 export default function Modals(props) {
 
@@ -52,6 +54,15 @@ export default function Modals(props) {
         case 'serverLeave':
             component = <ServerLeaveModal
                 {...props}
+            />
+            break;
+
+        case 'channelCreate':
+            component = <ChannelCreateModal
+                createChannel={props.createChannel}
+                closeModal={props.closeModal}
+                channelErrors={props.state.errors.channel}
+                removeChannelErrors={props.removeChannelErrors}
             />
             break;
         default:
