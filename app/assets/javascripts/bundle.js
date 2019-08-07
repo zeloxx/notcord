@@ -512,6 +512,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -535,15 +537,32 @@ var Channels =
 function (_Component) {
   _inherits(Channels, _Component);
 
-  function Channels() {
+  function Channels(props) {
+    var _this;
+
     _classCallCheck(this, Channels);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(Channels).apply(this, arguments));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Channels).call(this, props));
+    _this.state = {
+      message: ''
+    };
+    return _this;
   }
 
   _createClass(Channels, [{
+    key: "update",
+    value: function update(property) {
+      var _this2 = this;
+
+      return function (e) {
+        return _this2.setState(_defineProperty({}, property, e.target.value));
+      };
+    }
+  }, {
     key: "render",
     value: function render() {
+      debugger;
+
       if (this.props.channel) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "channels-panel"
@@ -571,7 +590,17 @@ function (_Component) {
           className: "chat-conversation-message__timestamp"
         }, "timestamp")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "chat-conversation-message__body"
-        }, "message_body_goes_here"))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
+        }, "message_body_goes_here")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+          className: "message-form"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "message-form__input-container"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          type: "text",
+          value: this.state.channelNameInput,
+          placeholder: "Send a message to ".concat(this.props.channel.name),
+          onChange: this.update('message'),
+          className: "message-form__input"
+        })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
           className: "channels-panel-channel-users"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "channel-users-user"

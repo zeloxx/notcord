@@ -22,6 +22,9 @@
 .channels-panel-chat{
     flex-grow: 1;
     background-color: #36393F;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .chat-conversation{
@@ -80,4 +83,22 @@
 
 .channel-users-user__username{
     color: #A9ABAF;
+}
+
+.message-form {
+    padding: 35px 20px;
+}
+
+.message-form__input-container {
+
+}
+
+.message-form__input {
+    width: 100%;
+    padding: 14px 14px;
+    color: #ccc;
+    background-color: #494C52;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
 }

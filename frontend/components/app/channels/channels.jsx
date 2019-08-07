@@ -2,9 +2,21 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 export class Channels extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            message: '',
+        }
+
+    }
+    update(property) {
+        return e => this.setState({ [property]: e.target.value });
+    }
+
 
     render() {
 
+        debugger;
         if (this.props.channel) {
             return (
                 <div className="channels-panel">
@@ -27,9 +39,18 @@ export class Channels extends Component {
                                     </div>
                                 </div>
                             </div>
-                            
+                            <form className="message-form">
+                                <div className="message-form__input-container">
+                                    < input
+                                        type="text"
+                                        value={this.state.channelNameInput}
+                                        placeholder={`Send a message to ${this.props.channel.name}`}
+                                        onChange={this.update('message')}
+                                        className="message-form__input"
+                                    />
+                                </div>
+                            </form>
                         </section>
-
                         <section className="channels-panel-channel-users">
                             <div className="channel-users-user">
                                 <div className="channel-users-user__avatar">user_avatar</div>
