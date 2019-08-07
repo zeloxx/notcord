@@ -1,0 +1,50 @@
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+
+.form__label {
+  color: #b9bbbe;
+  font-size: 12px;
+  line-height: 16px;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-bottom: 7px;
+  display: inline-block;
+}
+
+.form__label--error {
+  transition: color 0.1s ease;
+  color: #EA4546;
+}
+
+.form__error-description {
+  transition: color 0.1s ease;
+  font-style: italic;
+  color: #EA4546;
+  font-weight: 400;
+  font-size: 12px;
+}
+
+.form__input {
+  width: 100%;
+  padding: 10px;
+  color: #f6f6f7;
+  background-color: #303339;
+  font-size: 16px;
+  border-color: rgba(0, 0, 0, 0.3);
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 3px;
+  transition: border-color 0.2s;
+}
+
+.form__input:hover {
+   border-color: rgba(0, 0, 0, 1);
+}
+
+.form__input:focus {
+   border-color: #7289da;
+}

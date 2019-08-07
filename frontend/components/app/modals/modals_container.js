@@ -4,7 +4,7 @@ import { createServer, joinServer, leaveServer, removeServerErrors } from '../..
 import { closeModal, openModal } from '../../../actions/ui_actions';
 import { logout } from '../../../actions/session_actions';
 import { withRouter } from 'react-router-dom';
-import { removeChannelErrors, channelCreate } from '../../../actions/channel_actions';
+import { removeChannelErrors, channelCreate, channelDelete } from '../../../actions/channel_actions';
 
 const mapStateToProps = (state) => {
     return {
@@ -23,6 +23,7 @@ const mapDispatchToProps = (dispatch) => {
         logout: () => dispatch(logout()),
         channelCreate: (data) => dispatch(channelCreate(data)),
         removeChannelErrors: () => dispatch(removeChannelErrors()),
+        channelDelete: (id) => dispatch(channelDelete(id)),
     }
 }
 

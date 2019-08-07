@@ -1,14 +1,15 @@
 import { RECEIVE_CHANNEL_ERRORS, REMOVE_CHANNEL_ERRORS } from "../../actions/channel_actions";
 
 export default (state = [], action) => {
+    Object.freeze(state);
     switch (action.type) {
         case RECEIVE_CHANNEL_ERRORS:
-            return action.errorsa
+            return action.errors;
 
         case REMOVE_CHANNEL_ERRORS:
-            return []
+            return [];
 
         default:
-            return state
+            return state;
     }
 }

@@ -34,7 +34,7 @@ class ServerPanelHome extends Component {
 
                 <footer className="server-panel-user-controls">
                     <h1 className="server-panel-user-controls__username">{this.props.user.username}</h1>
-                    <button onClick={() => this.props.openModal("sessionLogout")} className="server-panel-user-controls__logout-btn">Log Out</button>
+                    <button onClick={() => this.props.openModal({ name: "sessionLogout" })} className="server-panel-user-controls__logout-btn">Log Out</button>
                 </footer>
             </div>
         )

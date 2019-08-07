@@ -90,7 +90,7 @@
 /*!*********************************************!*\
   !*** ./frontend/actions/channel_actions.js ***!
   \*********************************************/
-/*! exports provided: RECEIVE_SERVER_CHANNELS, RECEIVE_SERVER_CHANNEL, RECEIVE_CHANNEL_ERRORS, REMOVE_CHANNEL_ERRORS, receiveServerChannels, receiveServerChannel, receiveChannelErrors, removeChannelErrors, channelCreate, fetchServerChannels */
+/*! exports provided: RECEIVE_SERVER_CHANNELS, RECEIVE_SERVER_CHANNEL, RECEIVE_CHANNEL_ERRORS, REMOVE_CHANNEL_ERRORS, REMOVE_CHANNEL, receiveServerChannels, receiveServerChannel, receiveChannelErrors, removeChannelErrors, removeChannel, channelCreate, fetchServerChannels, channelDelete */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -99,18 +99,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_SERVER_CHANNEL", function() { return RECEIVE_SERVER_CHANNEL; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_CHANNEL_ERRORS", function() { return RECEIVE_CHANNEL_ERRORS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_CHANNEL_ERRORS", function() { return REMOVE_CHANNEL_ERRORS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_CHANNEL", function() { return REMOVE_CHANNEL; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveServerChannels", function() { return receiveServerChannels; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveServerChannel", function() { return receiveServerChannel; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveChannelErrors", function() { return receiveChannelErrors; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeChannelErrors", function() { return removeChannelErrors; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeChannel", function() { return removeChannel; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "channelCreate", function() { return channelCreate; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchServerChannels", function() { return fetchServerChannels; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "channelDelete", function() { return channelDelete; });
 /* harmony import */ var _util_channel_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/channel_api_util */ "./frontend/util/channel_api_util.js");
 
 var RECEIVE_SERVER_CHANNELS = "RECEIVE_SERVER_CHANNELS";
 var RECEIVE_SERVER_CHANNEL = "RECEIVE_SERVER_CHANNEL";
 var RECEIVE_CHANNEL_ERRORS = "RECEIVE_CHANNEL_ERRORS";
 var REMOVE_CHANNEL_ERRORS = "REMOVE_CHANNEL_ERRORS";
+var REMOVE_CHANNEL = "REMOVE_CHANNEL";
 var receiveServerChannels = function receiveServerChannels(channels) {
   return {
     type: RECEIVE_SERVER_CHANNELS,
@@ -134,12 +138,18 @@ var removeChannelErrors = function removeChannelErrors() {
     type: REMOVE_CHANNEL_ERRORS
   };
 };
+var removeChannel = function removeChannel(channel) {
+  return {
+    type: REMOVE_CHANNEL,
+    channel: channel
+  };
+};
 var channelCreate = function channelCreate(data) {
   return function (dispatch) {
     return _util_channel_api_util__WEBPACK_IMPORTED_MODULE_0__["channelCreate"](data).then(function (channel) {
       return dispatch(receiveServerChannel(channel));
     }, function (err) {
-      return dispatch(receiveChannelErrors(err));
+      return dispatch(receiveChannelErrors(err.responseJSON));
     });
   };
 };
@@ -148,7 +158,16 @@ var fetchServerChannels = function fetchServerChannels(server_id) {
     return _util_channel_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchServerChannels"](server_id).then(function (channels) {
       return dispatch(receiveServerChannels(channels));
     }, function (err) {
-      return dispatch(receiveChannelErrors(err));
+      return dispatch(receiveChannelErrors(err.responseJSON));
+    });
+  };
+};
+var channelDelete = function channelDelete(id) {
+  return function (dispatch) {
+    return _util_channel_api_util__WEBPACK_IMPORTED_MODULE_0__["channelDelete"](id).then(function (channel) {
+      return dispatch(removeChannel(channel));
+    }, function (err) {
+      return dispatch(receiveChannelErrors(err.responseJSON));
     });
   };
 };
@@ -463,26 +482,18 @@ function (_Component) {
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "app-root"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_modals_modals_container__WEBPACK_IMPORTED_MODULE_5__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_servers_servers_container__WEBPACK_IMPORTED_MODULE_3__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_channels_channels__WEBPACK_IMPORTED_MODULE_4__["default"], null));
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_modals_modals_container__WEBPACK_IMPORTED_MODULE_5__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_servers_servers_container__WEBPACK_IMPORTED_MODULE_3__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__["Route"], {
+        exact: true,
+        path: "/channels/:serverId/:channelId",
+        component: _channels_channels__WEBPACK_IMPORTED_MODULE_4__["default"]
+      }));
     }
   }]);
 
   return AppRoot;
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
-var mapStateToProps = function mapStateToProps(state, ownProps) {
-  return {};
-};
-
-var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return {
-    logout: function logout() {
-      return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_2__["logout"])());
-    }
-  };
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_6__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(AppRoot)));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_6__["withRouter"])(AppRoot));
 
 /***/ }),
 
@@ -533,49 +544,57 @@ function (_Component) {
   _createClass(Channels, [{
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "channels-panel"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
-        className: "channels-panel-nav"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
-        className: "channels-panel-nav__channel-name"
-      }, "channel_name")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "chat-channel-users-container"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
-        className: "channels-panel-chat"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "chat-conversation"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "chat-conversation-message"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "chat-conversation-message__avatar"
-      }, "avatar_icon"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "message-container"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "username-timestamp-container"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "chat-conversation-message__username"
-      }, "username"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "chat-conversation-message__timestamp"
-      }, "timestamp")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "chat-conversation-message__body"
-      }, "message_body_goes_here"))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
-        className: "channels-panel-channel-users"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "channel-users-user"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "channel-users-user__avatar"
-      }, "user_avatar"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "channel-users-user__username"
-      }, "username")))));
+      if (this.props.channel) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "channels-panel"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
+          className: "channels-panel-nav"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+          className: "channels-panel-nav__channel-name"
+        }, this.props.channel.name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "chat-channel-users-container"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
+          className: "channels-panel-chat"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "chat-conversation"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "chat-conversation-message"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "chat-conversation-message__avatar"
+        }, "avatar_icon"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "message-container"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "username-timestamp-container"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "chat-conversation-message__username"
+        }, "username"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "chat-conversation-message__timestamp"
+        }, "timestamp")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "chat-conversation-message__body"
+        }, "message_body_goes_here"))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
+          className: "channels-panel-channel-users"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "channel-users-user"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "channel-users-user__avatar"
+        }, "user_avatar"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "channel-users-user__username"
+        }, "username")))));
+      } else {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "LOADING");
+      }
     }
   }]);
 
   return Channels;
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
-var mapStateToProps = function mapStateToProps(state) {
-  return {};
+var mapStateToProps = function mapStateToProps(state, ownProps) {
+  debugger;
+  return {
+    server: state.entities.servers[ownProps.match.params.serverId],
+    channel: state.entities.channels[ownProps.match.params.channelId]
+  };
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
@@ -650,7 +669,9 @@ function (_Component) {
         className: "card__icon card__icon--create"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: function onClick() {
-          return _this.props.openModal("createServer");
+          return _this.props.openModal({
+            name: "createServer"
+          });
         },
         className: "modal__btn modal__btn--blue"
       }, "Create a server")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -663,7 +684,9 @@ function (_Component) {
         className: "card__icon card__icon--join"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: function onClick() {
-          return _this.props.openModal("joinServer");
+          return _this.props.openModal({
+            name: "joinServer"
+          });
         },
         className: "modal__btn modal__btn--green"
       }, "Join a server"))));
@@ -740,7 +763,8 @@ function (_Component) {
     }
   }, {
     key: "componentDidMount",
-    value: function componentDidMount() {// this.props.removeChannelErrors();
+    value: function componentDidMount() {
+      this.props.removeChannelErrors();
     }
   }, {
     key: "update",
@@ -756,26 +780,41 @@ function (_Component) {
     value: function handleSubmit(e) {
       var _this3 = this;
 
-      e.preventDefault(); // this.props.removeChannelErrors();
-
+      e.preventDefault();
       this.props.channelCreate({
         name: this.state.channelNameInput,
         server_id: this.serverId()
       }).then(function () {
         return _this3.props.closeModal();
+      }).then(function () {
+        return _this3.props.removeChannelErrors();
       });
     }
   }, {
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "modal"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "modal-body-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "modal__heading"
+      }, "Create a text channel"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        className: "form__label ".concat(this.props.channelErrors.length > 0 ? 'form__label--error' : '', " ")
+      }, "channel name"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "form__error-description"
+      }, this.props.channelErrors.length > 0 ? " - ".concat(this.props.channelErrors, " ") : ''), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         value: this.state.channelNameInput,
         placeholder: "Enter a channel name",
-        onChange: this.update('channelNameInput')
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        onClick: this.handleSubmit
-      }, "Create Channel"));
+        onChange: this.update('channelNameInput'),
+        className: "form__input"
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "modal-footer-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.handleSubmit,
+        className: "modal__btn modal__btn--blue"
+      }, "Create Channel")));
     }
   }]);
 
@@ -783,6 +822,92 @@ function (_Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(ChannelCreate));
+
+/***/ }),
+
+/***/ "./frontend/components/app/modals/channel_delete_modal.jsx":
+/*!*****************************************************************!*\
+  !*** ./frontend/components/app/modals/channel_delete_modal.jsx ***!
+  \*****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ChannelDeleteModal; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/react.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _actions_ui_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../actions/ui_actions */ "./frontend/actions/ui_actions.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+var ChannelDeleteModal =
+/*#__PURE__*/
+function (_Component) {
+  _inherits(ChannelDeleteModal, _Component);
+
+  function ChannelDeleteModal(props) {
+    var _this;
+
+    _classCallCheck(this, ChannelDeleteModal);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(ChannelDeleteModal).call(this, props));
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(ChannelDeleteModal, [{
+    key: "handleSubmit",
+    value: function handleSubmit(e) {
+      var _this2 = this;
+
+      e.preventDefault();
+      this.props.channelDelete(this.props.channel.id).then(function () {
+        return _this2.props.closeModal();
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "modal"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "modal-body-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+        className: "modal__heading"
+      }, "Delete Channel"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "modal__text"
+      }, "Are you sure you want to delete #", this.props.channel.name, "? This cannot be undone.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "modal-footer-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.handleSubmit,
+        className: "modal__btn modal__btn--red"
+      }, "Delete Channel")));
+    }
+  }]);
+
+  return ChannelDeleteModal;
+}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
+
+
 
 /***/ }),
 
@@ -1034,14 +1159,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Modals; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/react.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _add_server_modal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./add_server_modal */ "./frontend/components/app/modals/add_server_modal.jsx");
-/* harmony import */ var _create_server_modal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./create_server_modal */ "./frontend/components/app/modals/create_server_modal.jsx");
-/* harmony import */ var _join_server_modal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./join_server_modal */ "./frontend/components/app/modals/join_server_modal.jsx");
-/* harmony import */ var _server_invite_modal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./server_invite_modal */ "./frontend/components/app/modals/server_invite_modal.jsx");
-/* harmony import */ var _server_leave_modal__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./server_leave_modal */ "./frontend/components/app/modals/server_leave_modal.jsx");
-/* harmony import */ var _session_logout__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./session_logout */ "./frontend/components/app/modals/session_logout.jsx");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
+/* harmony import */ var _add_server_modal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./add_server_modal */ "./frontend/components/app/modals/add_server_modal.jsx");
+/* harmony import */ var _create_server_modal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./create_server_modal */ "./frontend/components/app/modals/create_server_modal.jsx");
+/* harmony import */ var _join_server_modal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./join_server_modal */ "./frontend/components/app/modals/join_server_modal.jsx");
+/* harmony import */ var _server_invite_modal__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./server_invite_modal */ "./frontend/components/app/modals/server_invite_modal.jsx");
+/* harmony import */ var _server_leave_modal__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./server_leave_modal */ "./frontend/components/app/modals/server_leave_modal.jsx");
+/* harmony import */ var _session_logout__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./session_logout */ "./frontend/components/app/modals/session_logout.jsx");
 /* harmony import */ var _channel_create_modal__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./channel_create_modal */ "./frontend/components/app/modals/channel_create_modal.jsx");
+/* harmony import */ var _channel_delete_modal__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./channel_delete_modal */ "./frontend/components/app/modals/channel_delete_modal.jsx");
+
 
 
 
@@ -1058,22 +1185,22 @@ function Modals(props) {
 
   var component;
 
-  switch (props.state.ui.modal) {
+  switch (props.state.ui.modal.name) {
     case 'sessionLogout':
-      component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_session_logout__WEBPACK_IMPORTED_MODULE_6__["default"], {
+      component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_session_logout__WEBPACK_IMPORTED_MODULE_7__["default"], {
         logout: props.logout,
         closeModal: props.closeModal
       });
       break;
 
     case 'addServer':
-      component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_add_server_modal__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_add_server_modal__WEBPACK_IMPORTED_MODULE_2__["default"], {
         openModal: props.openModal
       });
       break;
 
     case 'createServer':
-      component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_create_server_modal__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_create_server_modal__WEBPACK_IMPORTED_MODULE_3__["default"], {
         createServer: props.createServer,
         closeModal: props.closeModal,
         serverErrors: props.state.errors.server,
@@ -1082,7 +1209,7 @@ function Modals(props) {
       break;
 
     case 'joinServer':
-      component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_join_server_modal__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_join_server_modal__WEBPACK_IMPORTED_MODULE_4__["default"], {
         joinServer: props.joinServer,
         closeModal: props.closeModal,
         serverErrors: props.state.errors.server,
@@ -1091,19 +1218,29 @@ function Modals(props) {
       break;
 
     case 'serverInvite':
-      component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_server_invite_modal__WEBPACK_IMPORTED_MODULE_4__["default"], props);
+      component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_server_invite_modal__WEBPACK_IMPORTED_MODULE_5__["default"], props);
       break;
 
     case 'serverLeave':
-      component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_server_leave_modal__WEBPACK_IMPORTED_MODULE_5__["default"], props);
+      component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_server_leave_modal__WEBPACK_IMPORTED_MODULE_6__["default"], props);
       break;
 
     case 'channelCreate':
       component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_channel_create_modal__WEBPACK_IMPORTED_MODULE_8__["default"], {
         channelCreate: props.channelCreate,
-        closeModal: props.closeModal // channelErrors={props.state.errors.channel}
-        ,
+        closeModal: props.closeModal,
+        channelErrors: props.state.errors.channel,
         removeChannelErrors: props.removeChannelErrors
+      });
+      break;
+
+    case 'channelDelete':
+      component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_channel_delete_modal__WEBPACK_IMPORTED_MODULE_9__["default"], {
+        channelDelete: props.channelDelete,
+        closeModal: props.closeModal,
+        channelErrors: props.state.errors.channel,
+        removeChannelErrors: props.removeChannelErrors,
+        channel: props.state.ui.modal.channel
       });
       break;
 
@@ -1182,6 +1319,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     removeChannelErrors: function removeChannelErrors() {
       return dispatch(Object(_actions_channel_actions__WEBPACK_IMPORTED_MODULE_6__["removeChannelErrors"])());
+    },
+    channelDelete: function channelDelete(id) {
+      return dispatch(Object(_actions_channel_actions__WEBPACK_IMPORTED_MODULE_6__["channelDelete"])(id));
     }
   };
 };
@@ -1449,6 +1589,98 @@ function (_Component) {
 
 /***/ }),
 
+/***/ "./frontend/components/app/servers/server_panel/channel_index_item.jsx":
+/*!*****************************************************************************!*\
+  !*** ./frontend/components/app/servers/server_panel/channel_index_item.jsx ***!
+  \*****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ChannelIndexItem; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/react.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+var ChannelIndexItem =
+/*#__PURE__*/
+function (_Component) {
+  _inherits(ChannelIndexItem, _Component);
+
+  function ChannelIndexItem() {
+    _classCallCheck(this, ChannelIndexItem);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(ChannelIndexItem).apply(this, arguments));
+  }
+
+  _createClass(ChannelIndexItem, [{
+    key: "render",
+    value: function render() {
+      var _this = this;
+
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        className: "channel-index-item"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
+        to: "/channels/".concat(this.props.channel.server_id, "/").concat(this.props.channel.id),
+        onMouseEnter: this.handleMouseHover,
+        onMouseLeave: this.handleMouseHover,
+        className: "channel-index-item__link",
+        activeClassName: "channel-index-item__link--active"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "channel-index-item-svg-name-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+        className: "channel-index-item__svg",
+        width: "16",
+        height: "16",
+        viewBox: "0 0 16 16"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+        fill: "currentColor",
+        d: "M2.27333333,12 L2.74666667,9.33333333 L0.08,9.33333333 L0.313333333,8 L2.98,8 L3.68666667,4 L1.02,4 L1.25333333,2.66666667 L3.92,2.66666667 L4.39333333,0 L5.72666667,0 L5.25333333,2.66666667 L9.25333333,2.66666667 L9.72666667,0 L11.06,0 L10.5866667,2.66666667 L13.2533333,2.66666667 L13.02,4 L10.3533333,4 L9.64666667,8 L12.3133333,8 L12.08,9.33333333 L9.41333333,9.33333333 L8.94,12 L7.60666667,12 L8.08,9.33333333 L4.08,9.33333333 L3.60666667,12 L2.27333333,12 L2.27333333,12 Z M5.02,4 L4.31333333,8 L8.31333333,8 L9.02,4 L5.02,4 L5.02,4 Z",
+        transform: "translate(1.333 2)"
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+        className: "channel-index-item__name"
+      }, this.props.channel.name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "channel-index-item__options"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        onClick: function onClick() {
+          return _this.props.openModal({
+            name: "channelDelete",
+            channel: _this.props.channel
+          });
+        },
+        className: "text-channel-options__delete-channel-btn"
+      }, "x"))));
+    }
+  }]);
+
+  return ChannelIndexItem;
+}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
+
+
+
+/***/ }),
+
 /***/ "./frontend/components/app/servers/server_panel/server_panel.jsx":
 /*!***********************************************************************!*\
   !*** ./frontend/components/app/servers/server_panel/server_panel.jsx ***!
@@ -1464,6 +1696,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
 /* harmony import */ var _actions_ui_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../actions/ui_actions */ "./frontend/actions/ui_actions.js");
 /* harmony import */ var _actions_channel_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../actions/channel_actions */ "./frontend/actions/channel_actions.js");
+/* harmony import */ var _channel_index_item__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./channel_index_item */ "./frontend/components/app/servers/server_panel/channel_index_item.jsx");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1488,6 +1721,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
 var ServerPanel =
 /*#__PURE__*/
 function (_Component) {
@@ -1502,6 +1736,7 @@ function (_Component) {
   _createClass(ServerPanel, [{
     key: "componentDidMount",
     value: function componentDidMount() {
+      // theres gotta be a better way
       this.props.fetchServerChannels(this.props.match.params.serverId);
     }
   }, {
@@ -1516,22 +1751,12 @@ function (_Component) {
     value: function channelList() {
       var _this = this;
 
-      debugger;
       return Object.values(this.props.channels).map(function (channel) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["NavLink"], {
-          to: "/channels/".concat(_this.props.server.id)
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-          className: "server-panel-text-channel"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
-          className: "server-panel-text-channel__name"
-        }, "# ", channel.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "text-channel-options"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-          onClick: function onClick() {
-            return _this.props.openModal("channelDelete");
-          },
-          className: "text-channel-options__delete-channel-btn"
-        }, "-"))));
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_channel_index_item__WEBPACK_IMPORTED_MODULE_5__["default"], {
+          key: channel.id,
+          openModal: _this.props.openModal,
+          channel: channel
+        });
       });
     }
   }, {
@@ -1557,12 +1782,16 @@ function (_Component) {
         className: "nav-options"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         onClick: function onClick() {
-          return _this2.props.openModal("serverInvite");
+          return _this2.props.openModal({
+            name: "serverInvite"
+          });
         },
         className: "nav-options__invite-btn"
       }, "+"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         onClick: function onClick() {
-          return _this2.props.openModal("serverLeave");
+          return _this2.props.openModal({
+            name: "serverLeave"
+          });
         },
         className: "nav-options__leave-server-btn"
       }, "x"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
@@ -1575,16 +1804,20 @@ function (_Component) {
         className: "text-channels-options__title"
       }, "text channels"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         onClick: function onClick() {
-          return _this2.props.openModal("channelCreate");
+          return _this2.props.openModal({
+            name: "channelCreate"
+          });
         },
         className: "text-channels-options__create-channel-btn"
-      }, "create")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, this.channelList()))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("footer", {
+      }, "+")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, this.channelList()))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("footer", {
         className: "server-panel-user-controls"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
         className: "server-panel-user-controls__username"
       }, this.props.user.username), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: function onClick() {
-          return _this2.props.openModal("sessionLogout");
+          return _this2.props.openModal({
+            name: "sessionLogout"
+          });
         },
         className: "server-panel-user-controls__logout-btn"
       }, "Log Out")));
@@ -1595,7 +1828,6 @@ function (_Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
-  debugger;
   return {
     server: state.entities.servers[ownProps.match.params.serverId],
     user: state.entities.users[state.session.id],
@@ -1703,7 +1935,9 @@ function (_Component) {
         className: "server-panel-user-controls__username"
       }, this.props.user.username), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: function onClick() {
-          return _this.props.openModal("sessionLogout");
+          return _this.props.openModal({
+            name: "sessionLogout"
+          });
         },
         className: "server-panel-user-controls__logout-btn"
       }, "Log Out")));
@@ -1929,7 +2163,9 @@ function (_Component) {
 
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         onClick: function onClick() {
-          return _this.props.openModal("addServer");
+          return _this.props.openModal({
+            name: "addServer"
+          });
         },
         className: "server-add"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
@@ -2991,7 +3227,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = (function () {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
-  debugger;
 
   switch (action.type) {
     case _actions_channel_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_SERVER_CHANNELS"]:
@@ -2999,6 +3234,11 @@ __webpack_require__.r(__webpack_exports__);
 
     case _actions_channel_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_SERVER_CHANNEL"]:
       return lodash_merge__WEBPACK_IMPORTED_MODULE_1___default()({}, state, action.channel);
+
+    case _actions_channel_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_CHANNEL"]:
+      var copiedState = Object.assign({}, state);
+      delete copiedState[Object.values(action.channel)[0].id];
+      return copiedState;
 
     default:
       return state;
@@ -3122,10 +3362,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = (function () {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
   var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(state);
 
   switch (action.type) {
     case _actions_channel_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CHANNEL_ERRORS"]:
-      return action.errorsa;
+      return action.errors;
 
     case _actions_channel_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_CHANNEL_ERRORS"]:
       return [];
@@ -3374,13 +3615,14 @@ var configureStore = function configureStore() {
 /*!*******************************************!*\
   !*** ./frontend/util/channel_api_util.js ***!
   \*******************************************/
-/*! exports provided: channelCreate, fetchServerChannels */
+/*! exports provided: channelCreate, fetchServerChannels, channelDelete */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "channelCreate", function() { return channelCreate; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchServerChannels", function() { return fetchServerChannels; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "channelDelete", function() { return channelDelete; });
 var channelCreate = function channelCreate(data) {
   return $.ajax({
     method: "POST",
@@ -3399,6 +3641,12 @@ var fetchServerChannels = function fetchServerChannels(server_id) {
         server_id: server_id
       }
     }
+  });
+};
+var channelDelete = function channelDelete(id) {
+  return $.ajax({
+    method: "DELETE",
+    url: "/api/channels/".concat(id)
   });
 };
 

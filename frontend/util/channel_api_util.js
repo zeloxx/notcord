@@ -13,3 +13,10 @@ export const fetchServerChannels = (server_id) => {
         data: { channel_info: { server_id } },
     })
 }
+
+export const channelDelete = (id) => {
+    return $.ajax({
+        method: "DELETE",
+        url: `/api/channels/${id}`
+    })
+}

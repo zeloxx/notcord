@@ -1,12 +1,13 @@
 import React from 'react'
+import { Route, Switch } from 'react-router-dom';
 import AddServerModal from './add_server_modal';
 import CreateServerModal from './create_server_modal';
 import JoinServerModal from './join_server_modal';
 import ServerInviteModal from './server_invite_modal';
 import ServerLeaveModal from './server_leave_modal';
 import SessionLogout from './session_logout';
-import { Route, Switch } from 'react-router-dom';
 import ChannelCreateModal from './channel_create_modal';
+import ChannelDeleteModal from './channel_delete_modal';
 
 export default function Modals(props) {
 
@@ -15,7 +16,7 @@ export default function Modals(props) {
     }
 
     let component;
-    switch (props.state.ui.modal) {
+    switch (props.state.ui.modal.name) {
         case 'sessionLogout':
             component = <SessionLogout
                 logout={props.logout}
@@ -61,8 +62,18 @@ export default function Modals(props) {
             component = <ChannelCreateModal
                 channelCreate={props.channelCreate}
                 closeModal={props.closeModal}
-                // channelErrors={props.state.errors.channel}
+                channelErrors={props.state.errors.channel}
                 removeChannelErrors={props.removeChannelErrors}
+            />
+            break;
+
+        case 'channelDelete':
+            component = <ChannelDeleteModal
+                channelDelete={props.channelDelete}
+                closeModal={props.closeModal}
+                channelErrors={props.state.errors.channel}
+                removeChannelErrors={props.removeChannelErrors}
+                channel={props.state.ui.modal.channel}
             />
             break;
         default:

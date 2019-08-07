@@ -45,11 +45,13 @@
 .text-channels-options {
     display: flex;
     justify-content: space-between;
-    padding: 20px 16px;
     color: #8E9297;
     text-transform: uppercase;
     font-size: 12px;
     font-weight: 500;
+    padding: 8px;
+    margin: 14px 12px 3px;
+    align-items: baseline;
 }
 
 .text-channels-options__title {
@@ -57,22 +59,8 @@
 }
 
 .text-channels-options__create-channel-btn {
+    font-size: 20px;
     cursor: pointer;
-}
-
-.server-panel-text-channel {
-    display: flex;
-    justify-content: space-between;
-    padding: 0px 16px;
-    color: #8E9297;
-}
-
-.server-panel-text-channel__name {
-
-}
-
-.text-channel-options {
-
 }
 
 .server-panel-user-controls {

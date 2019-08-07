@@ -8,7 +8,7 @@ import { Route, withRouter } from 'react-router-dom';
 
 class AppRoot extends Component {
 
-    
+
 
     render() {
 
@@ -16,22 +16,14 @@ class AppRoot extends Component {
             <div id="app-root">
                 <Modals />
                 <Servers />
-                <Channels />
+                <Route
+                    exact path={"/channels/:serverId/:channelId"}
+                    component={Channels}
+                />
+
             </div>
         )
     }
 }
 
-const mapStateToProps = (state, ownProps) => {
-    return {
-
-    }
-}
-
-const mapDispatchToProps = (dispatch) => {
-    return {
-        logout: () => dispatch(logout()),
-    }
-}
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AppRoot));
+export default withRouter(AppRoot);

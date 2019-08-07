@@ -20,7 +20,7 @@ class ChannelCreate extends Component {
     }
 
     componentDidMount() {
-        // this.props.removeChannelErrors();
+        this.props.removeChannelErrors();
     }
 
     update(property) {
@@ -29,24 +29,30 @@ class ChannelCreate extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        // this.props.removeChannelErrors();
-        this.props.channelCreate({ name: this.state.channelNameInput, server_id: this.serverId() }).then(() => this.props.closeModal());
+
+        this.props.channelCreate({ name: this.state.channelNameInput, server_id: this.serverId() })
+            .then(() => this.props.closeModal())
+            .then(() => this.props.removeChannelErrors())
     }
 
     render() {
         return (
-            <div>
-                <form>
-                    {/* <span className={`session-form__label ${this.props.state.errors.channelErrors.length > 0 ? 'session-form__label--error' : ''}`}>Server Name</span>
-                    <span className="session-form__error-description">{this.props.state.errors.channelErrors.length > 0 ? ` - ${this.props.state.channelErrors}` : ''}</span> */}
+            <div className="modal">
+                <div className="modal-body-container">
+                    <p className="modal__heading">Create a text channel</p>
+                    <label className={`form__label ${this.props.channelErrors.length > 0 ? 'form__label--error' : ''} `}>channel name</label>
+                    <span className="form__error-description">{this.props.channelErrors.length > 0 ? ` - ${this.props.channelErrors} ` : ''}</span>
                     < input
                         type="text"
                         value={this.state.channelNameInput}
                         placeholder="Enter a channel name"
                         onChange={this.update('channelNameInput')}
+                        className="form__input"
                     />
-                </form>
-                <button onClick={this.handleSubmit}>Create Channel</button>
+                </div>
+                <div className="modal-footer-container">
+                    <button onClick={this.handleSubmit} className="modal__btn modal__btn--blue">Create Channel</button>
+                </div>
             </div>
         )
     }
