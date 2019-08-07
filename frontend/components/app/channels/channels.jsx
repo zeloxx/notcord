@@ -1,5 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { removeMessageErrors, messageCreate, fetchMessages } from '../../../actions/message_actions';
+import { fetchUsers } from '../../../actions/user_actions';
+import MessageIndexItem from './message_index_item';
+import ChannelUserIndexItem from './channel_user_item';
 
 export class Channels extends Component {
     constructor(props) {
@@ -7,16 +11,47 @@ export class Channels extends Component {
         this.state = {
             message: '',
         }
-
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
+
+    componentDidMount() {
+        this.props.removeMessageErrors();
+        this.props.fetchMessages({ channel_id: this.props.match.params.channelId });
+        this.props.fetchUsers({ channel_id: this.props.match.params.channelId });
+    }
+
+    componentDidUpdate(prevProps) {
+        debugger;
+        if (prevProps.match.params.channelId !== this.props.match.params.channelId) {
+            this.props.fetchMessages({ channel_id: this.props.match.params.channelId })
+            this.props.fetchUsers({ channel_id: this.props.match.params.channelId });
+        }
+    }
+
     update(property) {
         return e => this.setState({ [property]: e.target.value });
     }
 
+    handleSubmit(e) {
+        e.preventDefault();
+        this.props.messageCreate({ body: this.state.message, channel_id: this.props.channel.id, author_id: this.props.currentUser.id })
+        this.setState({ message: "" })
+        this.props.removeMessageErrors();
+    }
+
+    messageList() {
+        if (this.props.messages) {
+            return Object.values(this.props.messages).map(message => <MessageIndexItem key={message.id} message={message} user={this.props.users[message.author_id]} />)
+        }
+    }
+
+    channelUserList() {
+        if (this.props.users) {
+            return Object.values(this.props.users).map(user => <ChannelUserIndexItem key={user.id} user={user} />)
+        }
+    }
 
     render() {
-
-        debugger;
         if (this.props.channel) {
             return (
                 <div className="channels-panel">
@@ -27,23 +62,14 @@ export class Channels extends Component {
 
                     <div className="chat-channel-users-container">
                         <section className="channels-panel-chat">
-                            <div className="chat-conversation">
-                                <div className="chat-conversation-message">
-                                    <div className="chat-conversation-message__avatar">avatar_icon</div>
-                                    <div className="message-container">
-                                        <div className="username-timestamp-container">
-                                            <div className="chat-conversation-message__username">username</div>
-                                            <div className="chat-conversation-message__timestamp">timestamp</div>
-                                        </div>
-                                        <div className="chat-conversation-message__body">message_body_goes_here</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <form className="message-form">
+                            <ul className="chat-conversation">
+                                {this.messageList()}
+                            </ul>
+                            <form onSubmit={this.handleSubmit} className="message-form">
                                 <div className="message-form__input-container">
                                     < input
                                         type="text"
-                                        value={this.state.channelNameInput}
+                                        value={this.state.message}
                                         placeholder={`Send a message to ${this.props.channel.name}`}
                                         onChange={this.update('message')}
                                         className="message-form__input"
@@ -52,10 +78,9 @@ export class Channels extends Component {
                             </form>
                         </section>
                         <section className="channels-panel-channel-users">
-                            <div className="channel-users-user">
-                                <div className="channel-users-user__avatar">user_avatar</div>
-                                <div className="channel-users-user__username">username</div>
-                            </div>
+                            <ul>
+                                {this.channelUserList()}
+                            </ul>
                         </section>
                     </div>
 
@@ -68,15 +93,20 @@ export class Channels extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-    debugger;
     return ({
         server: state.entities.servers[ownProps.match.params.serverId],
         channel: state.entities.channels[ownProps.match.params.channelId],
+        currentUser: state.entities.users[state.session.id],
+        users: state.entities.users,
+        messages: state.entities.messages,
     })
 }
 
 const mapDispatchToProps = (dispatch) => ({
-
+    messageCreate: (message) => dispatch(messageCreate(message)),
+    removeMessageErrors: () => dispatch(removeMessageErrors()),
+    fetchMessages: (message) => dispatch(fetchMessages(message)),
+    fetchUsers: (user) => dispatch(fetchUsers(user)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Channels)

@@ -39,8 +39,8 @@ export const removeChannel = (channel) => {
     }
 }
 
-export const channelCreate = data => dispatch => {
-    return APIUtil.channelCreate(data)
+export const channelCreate = channel => dispatch => {
+    return APIUtil.channelCreate(channel)
         .then(channel => dispatch(receiveServerChannel(channel)),
             err => dispatch(receiveChannelErrors(err.responseJSON)));
 }

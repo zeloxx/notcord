@@ -25,9 +25,9 @@ class ServerPanelHome extends Component {
                             <h1 className="text-channels-options__title">Direct Messages</h1>
                         </div>
                         <ul>
-                            <li className="server-panel-text-channel">
+                            {/* <li className="server-panel-text-channel">
                                 <h1 className="server-panel-text-channel__name">user</h1>
-                            </li>
+                            </li> */}
                         </ul>
                     </div>
                 </section>

@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
     resources :channels, only: [:create, :index, :destroy]
     resources :direct_message_channel_users, only: [:create, :destroy]
-    resources :messages, only: [:create, :destroy, :update]
+    resources :messages, only: [:index, :create, :destroy, :update]
     resources :servers, only: [:create, :index, :destroy] do
 
       collection do
@@ -18,7 +18,7 @@ Rails.application.routes.draw do
       end
 
     end
-    resources :users, only: [:create]
+    resources :users, only: [:index, :create]
 
     resources :server_users, only: [:create, :index, :destroy]
   end

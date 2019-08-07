@@ -3,7 +3,6 @@ class Api::ChannelsController < ApplicationController
     def index
         server = Server.find_by(id: channel_params[:server_id])
         @channels = server.channels
-        render :index
     end
 
     def create
@@ -24,6 +23,6 @@ class Api::ChannelsController < ApplicationController
     private
     
     def channel_params
-        params.require(:channel_info).permit(:name, :server_id)
+        params.require(:channel).permit(:name, :server_id)
     end
 end

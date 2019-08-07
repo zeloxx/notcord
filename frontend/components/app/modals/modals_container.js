@@ -21,7 +21,7 @@ const mapDispatchToProps = (dispatch) => {
         openModal: (modal) => dispatch(openModal(modal)),
         closeModal: () => dispatch(closeModal()),
         logout: () => dispatch(logout()),
-        channelCreate: (data) => dispatch(channelCreate(data)),
+        channelCreate: (channel) => dispatch(channelCreate(channel)),
         removeChannelErrors: () => dispatch(removeChannelErrors()),
         channelDelete: (id) => dispatch(channelDelete(id)),
     }

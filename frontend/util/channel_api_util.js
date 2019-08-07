@@ -1,8 +1,8 @@
-export const channelCreate = (data) => {
+export const channelCreate = (channel) => {
     return $.ajax({
         method: "POST",
         url: "/api/channels",
-        data: { channel_info: data },
+        data: { channel },
     })
 }
 
@@ -10,7 +10,7 @@ export const fetchServerChannels = (server_id) => {
     return $.ajax({
         method: "GET",
         url: "/api/channels",
-        data: { channel_info: { server_id } },
+        data: { channel: { server_id } },
     })
 }
 
