@@ -23,5 +23,7 @@ Rails.application.routes.draw do
     resources :server_users, only: [:create, :index, :destroy]
   end
 
+  mount ActionCable.server => '/cable'
+  
   root "static_pages#root"
 end

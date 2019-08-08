@@ -17,4 +17,7 @@ class Message < ApplicationRecord
     belongs_to :author,
     class_name: :User
 
+    after_create_commit do
+        ChatMessageCreationEventBroadcastJob.perform_later(self)
+    end
 end

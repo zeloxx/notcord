@@ -7,16 +7,21 @@ class Api::MessagesController < ApplicationController
     end
     
     def create
-        @message = Message.new(message_params)
-        if @message.save
+        if message_params[:id]
+            @message = Message.find_by(id: message_params[:id])
             render :show
         else
-            render json: @message.errors.full_messages, status: 422
+            @message = Message.new(message_params)
+            if @message.save
+                render :show
+            else
+                render json: @message.errors.full_messages, status: 422
+            end
         end
     end
 
     private
     def message_params
-        params.require(:message).permit(:body, :author_id, :channel_id)
+        params.require(:message).permit(:id, :body, :author_id, :channel_id, :created)
     end
 end
