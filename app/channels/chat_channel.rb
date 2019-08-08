@@ -1,6 +1,5 @@
 class ChatChannel < ApplicationCable::Channel
   def subscribed
-    # debugger
     stream_from 'chat_channel'
   end
 
@@ -9,7 +8,6 @@ class ChatChannel < ApplicationCable::Channel
   end
 
   def create(opts)
-    # debugger
     Message.create(
       body: opts.fetch('body'),
       author_id: opts.fetch('author_id'),

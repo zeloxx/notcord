@@ -2,7 +2,6 @@ class ChatMessageCreationEventBroadcastJob < ApplicationJob
   queue_as :default
 
   def perform(message)
-    # debugger
     ActionCable
       .server
       .broadcast('chat_channel',
