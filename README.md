@@ -24,11 +24,11 @@ Notcord is a full-stack clone application inspired by [Discord](https://discorda
 * errors  
 ![errors](https://i.ibb.co/Sw90Fpk/custom-errors.png)
 * Servers - create, leave, join
-![servers](https://i.ibb.co/hRgsmK8/notcord-herokuapp-com-2.png)
+![servers](https://i.ibb.co/jv38LX1/create-join-server.png)
 * Channels - create, delete
 * Server user-list
-![live-chat](https://i.ibb.co/DLYGM0X/notcord-herokuapp-com-3.png)
 * Realtime text chat with other users
+![live-chat](https://i.ibb.co/2Z55sJQ/notcord-herokuapp-com-5.png)
 
 ## COMING SOON!
 * Direct Messaging
