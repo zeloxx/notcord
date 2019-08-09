@@ -19,10 +19,6 @@ export class Channels extends Component {
 
     updateChatLogs() {
         return (message) => {
-            // let chatLogs = this.state.chatLogs;
-            // chatLogs.push(data);
-            // this.setState({ chatLogs: chatLogs });
-            // { message.id: { id: message.id, author_id: message.author_id, } }
             this.props.messageCreate(message);
         }
     }

@@ -11,12 +11,12 @@ class Api::MessagesController < ApplicationController
             @message = Message.find_by(id: message_params[:id])
             render :show
         else
-            @message = Message.new(message_params)
-            if @message.save
-                render :show
-            else
-                render json: @message.errors.full_messages, status: 422
-            end
+            # @message = Message.new(message_params)
+            # if @message.save
+            #     render :show
+            # else
+            #     render json: @message.errors.full_messages, status: 422
+            # end
         end
     end
 
