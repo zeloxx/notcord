@@ -11,7 +11,6 @@ export class Channels extends Component {
         super(props)
         this.state = {
             message: '',
-            chatLogs: []
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.updateChatLogs = this.updateChatLogs.bind(this);
@@ -41,17 +40,6 @@ export class Channels extends Component {
             });
     }
 
-    renderChatLog() {
-        return this.state.chatLogs.map((el) => {
-            return (
-                <li key={`chat_${el.id}`}>
-                    <span className='chat-message'>{el.body}</span>
-                    <span className='chat-created-at'>{el.created_at}</span>
-                </li>
-            );
-        });
-    }
-
     componentDidMount() {
         this.createSocket();
         this.props.removeMessageErrors();
@@ -60,6 +48,7 @@ export class Channels extends Component {
     }
 
     componentDidUpdate(prevProps) {
+        document.querySelector("#scroll-to").scrollIntoView();
         if (prevProps.match.params.channelId !== this.props.match.params.channelId) {
             this.props.fetchMessages({ channel_id: this.props.match.params.channelId })
             this.props.fetchUsers({ channel_id: this.props.match.params.channelId });
@@ -73,14 +62,16 @@ export class Channels extends Component {
     handleSubmit(e) {
         e.preventDefault();
         this.chats.create(this.state.message, this.props.channel.id, this.props.currentUser.id);
-        // this.props.messageCreate({ body: this.state.message, channel_id: this.props.channel.id, author_id: this.props.currentUser.id })
         this.setState({ message: "" })
         this.props.removeMessageErrors();
     }
 
     messageList() {
+        debugger;
         if (this.props.messages) {
-            return Object.values(this.props.messages).map(message => <MessageIndexItem key={message.id} message={message} user={this.props.users[message.author_id]} />)
+            let messages = Object.values(this.props.messages)
+            messages = messages.filter(message => message.channel_id === this.props.channel.id)
+            return messages.map(message => <MessageIndexItem key={message.id} message={message} user={this.props.users[message.author_id]} />)
         }
     }
 
@@ -103,7 +94,7 @@ export class Channels extends Component {
                         <section className="channels-panel-chat">
                             <ul className="chat-conversation">
                                 {this.messageList()}
-                                {this.renderChatLog()}
+                                <div id="scroll-to"></div>
                             </ul>
                             <form onSubmit={this.handleSubmit} className="message-form">
                                 <div className="message-form__input-container">
@@ -127,7 +118,7 @@ export class Channels extends Component {
                 </div>
             )
         } else {
-            return <h1>LOADING</h1>
+            return null
         }
     }
 }
