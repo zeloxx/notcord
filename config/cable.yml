@@ -6,5 +6,5 @@ test:
 
 production:
   adapter: redis
-  url: <%= ENV.fetch("REDIS_URL") { "redis://notcord.herokuapp.com/cable" } %>  #CHECK url: <%= ENV['REDIS_URL'] %>
+  url: <%= ENV.fetch("REDIS_URL") { "redis://redistogo:4d42a26f4897b2550ec5fbdeedf300d9@hammerjaw.redistogo.com:11087/" } %>  #CHECK url: <%= ENV['REDIS_URL'] %>
   channel_prefix: notcord_production
