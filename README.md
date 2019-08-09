@@ -3,10 +3,10 @@
 ## NOTCORD
 [Live Site](https://notcord.herokuapp.com/)  
     
-![](https://ibb.co/Fm9dhM1)
+![splash](https://i.ibb.co/6r2qyxS/splash.png)
 
 ## OVERVIEW
-Notcord is a full-stack clone application inspired by [Discord](https://discordapp.com/). Users can create "servers" and invite their friends to send text messages to each other in realtime!
+Notcord is a full-stack clone application inspired by [Discord](https://discordapp.com/) Where users can create "servers" and invite their friends to send text messages to each other in realtime!
 
 ## TECHNOLOGIES
 * React - front-end JavaScript library
@@ -22,10 +22,12 @@ Notcord is a full-stack clone application inspired by [Discord](https://discorda
 ## FEATURES
 * User authentication
 * errors  
-![](https://ibb.co/jk1GnFC)
+![errors](https://i.ibb.co/Sw90Fpk/custom-errors.png)
 * Servers - create, leave, join
+![servers](https://i.ibb.co/hRgsmK8/notcord-herokuapp-com-2.png)
 * Channels - create, delete
-* Server user list
+* Server user-list
+![live-chat](https://i.ibb.co/DLYGM0X/notcord-herokuapp-com-3.png)
 * Realtime text chat with other users
 
 ## COMING SOON!
