@@ -1,9 +1,7 @@
 ## README
 
 ## NOTCORD
-[Live Site](https://notcord.herokuapp.com/)  
-    
-![splash](https://i.ibb.co/6r2qyxS/splash.png)
+[Live Site](https://notcord.herokuapp.com/) 
 
 ## OVERVIEW
 Notcord is a full-stack clone application inspired by [Discord](https://discordapp.com/) Where users can create "servers" and invite their friends to send text messages to each other in realtime!
@@ -18,6 +16,8 @@ Notcord is a full-stack clone application inspired by [Discord](https://discorda
 * jQuery - JavaScript library used for AJAX requests
 * Jbuilder - rendering and formatting JSON responses from my API
 * Webpack - JavaScript module bundler
+    
+![splash](https://i.ibb.co/6r2qyxS/splash.png)
 
 ## FEATURES
 * User authentication
