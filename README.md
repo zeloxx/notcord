@@ -21,7 +21,7 @@ Notcord is a full-stack clone application inspired by [Discord](https://discorda
 
 ## FEATURES
 * User authentication
-* errors  
+* error handling
 ![errors](https://i.ibb.co/Sw90Fpk/custom-errors.png)
 * Servers - create, leave, join
 ![servers](https://i.ibb.co/jv38LX1/create-join-server.png)
