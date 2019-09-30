@@ -45,7 +45,8 @@ createSocket() {
                     });
                 }
             });
-    }```
+    }
+```
 
 ## COMING SOON!
 * Direct Messaging
