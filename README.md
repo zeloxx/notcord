@@ -29,6 +29,7 @@ Notcord is a full-stack clone application inspired by [Discord](https://discorda
 * Server user-list
 * Realtime text chat with other users
 ![live-chat](https://i.ibb.co/2Z55sJQ/notcord-herokuapp-com-5.png)
+
 The following code snippet is called in `componentDidMount()` inside the React component that displays user messages. This code allows my front end to communicate with my backend using Rails Action Cable to open a WebSocket connection that allows messages to be sent to and from the server in real-time.
 ```javascript
 createSocket() {
