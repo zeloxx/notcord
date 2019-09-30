@@ -29,6 +29,22 @@ Notcord is a full-stack clone application inspired by [Discord](https://discorda
 * Server user-list
 * Realtime text chat with other users
 ![live-chat](https://i.ibb.co/2Z55sJQ/notcord-herokuapp-com-5.png)
+        createSocket() {
+                let cable = Cable.createConsumer('wss://notcord.herokuapp.com/cable');
+                this.chats = cable.subscriptions.create({
+                    channel: 'ChatChannel'
+                }, {
+                        connected: () => { },
+                        received: this.updateChatLogs(),
+                        create: function (body, channelId, authorId) {
+                            this.perform('create', {
+                                body: body,
+                                channel_id: channelId,
+                                author_id: authorId,
+                            });
+                        }
+                    });
+            }
 
 ## COMING SOON!
 * Direct Messaging
