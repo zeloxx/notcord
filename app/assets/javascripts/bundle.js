@@ -718,7 +718,7 @@ function (_Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(Channels).call(this, props));
     _this.state = {
-      message: ''
+      message: ""
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.updateChatLogs = _this.updateChatLogs.bind(_assertThisInitialized(_this));
@@ -738,14 +738,14 @@ function (_Component) {
   }, {
     key: "createSocket",
     value: function createSocket() {
-      var cable = actioncable__WEBPACK_IMPORTED_MODULE_6___default.a.createConsumer('wss://notcord.herokuapp.com/cable');
+      var cable = actioncable__WEBPACK_IMPORTED_MODULE_6___default.a.createConsumer("wss://notcord.herokuapp.com/cable");
       this.chats = cable.subscriptions.create({
-        channel: 'ChatChannel'
+        channel: "ChatChannel"
       }, {
         connected: function connected() {},
         received: this.updateChatLogs(),
         create: function create(body, channelId, authorId) {
-          this.perform('create', {
+          this.perform("create", {
             body: body,
             channel_id: channelId,
             author_id: authorId
@@ -807,8 +807,6 @@ function (_Component) {
     value: function messageList() {
       var _this4 = this;
 
-      debugger;
-
       if (this.props.messages) {
         var messages = Object.values(this.props.messages);
         messages = messages.filter(function (message) {
@@ -862,7 +860,7 @@ function (_Component) {
           type: "text",
           value: this.state.message,
           placeholder: "Send a message to ".concat(this.props.channel.name),
-          onChange: this.update('message'),
+          onChange: this.update("message"),
           className: "message-form__input"
         })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
           className: "channels-panel-channel-users"
