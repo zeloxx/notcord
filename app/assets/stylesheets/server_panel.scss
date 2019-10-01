@@ -1,87 +1,82 @@
 .server-panel {
-    display: flex;
-    flex-direction: column;
-    background-color: #2F3136;
-    width: 240px;
+  display: flex;
+  flex-direction: column;
+  background-color: #2f3136;
+  width: 240px;
 }
 
 .server-panel-nav {
-    display: flex;
-    justify-content: space-between;
-    padding: 16px;
-    border-bottom: 1px solid #222;
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+  border-bottom: 1px solid #242424;
 }
 
 .server-panel-nav__name {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .nav-options {
-
 }
 
 .nav-options__invite-btn {
-    margin-right: 10px;
-    cursor: pointer;
+  margin-right: 10px;
+  cursor: pointer;
 }
 
 .nav-options__leave-server-btn {
-    cursor: pointer;
+  cursor: pointer;
 }
 
-
 .server-panel-channels {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow-y: scroll;
 }
 
 .server-panel-text-channels {
-
 }
 
 .text-channels-options {
-    display: flex;
-    justify-content: space-between;
-    color: #8E9297;
-    text-transform: uppercase;
-    font-size: 12px;
-    font-weight: 500;
-    padding: 8px;
-    margin: 14px 12px 3px;
-    align-items: baseline;
+  display: flex;
+  justify-content: space-between;
+  color: #8e9297;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 8px;
+  margin: 14px 12px 3px;
+  align-items: baseline;
 }
 
 .text-channels-options__title {
-
 }
 
 .text-channels-options__create-channel-btn {
-    font-size: 20px;
-    cursor: pointer;
+  font-size: 20px;
+  cursor: pointer;
 }
 
 .server-panel-user-controls {
-    display: flex;
-    justify-content: space-between;
-    padding: 16px 16px;
-    background-color: #2B2C31;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding: 16px 16px;
+  background-color: #2b2c31;
+  align-items: center;
 }
 
 .server-panel-user-controls__username {
-
 }
 
 .server-panel-user-controls__logout-btn {
-    padding: 8px 14px;
-    border-radius: 5px;
-    background-color: #454545;
-    color: #fff;
-    border-style: none;
-    font-size: 12px;
-    cursor: pointer;
+  padding: 8px 14px;
+  border-radius: 5px;
+  background-color: #454545;
+  color: #fff;
+  border-style: none;
+  font-size: 12px;
+  cursor: pointer;
 }
