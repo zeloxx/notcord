@@ -5,10 +5,6 @@
   height: 420px;
   overflow: hidden;
   border-radius: 5px;
-  background-image: url(https://discordapp.com/assets/19494428f3a5649ffd64818fc75d0e76.png), url(https://discordapp.com/assets/6906eb345e3aeb89322c5167db31c1f6.png);
-  background-position: 0 100%,100% 100%;
-  background-size: 155px auto,75px auto;
-  background-repeat: no-repeat;
 }
 
 .cards__container {
@@ -19,17 +15,17 @@
 }
 
 .card {
-    width: 220px;
-    border-radius: 3px;
-    overflow: hidden;
-    padding: 10px;
-    display: inline-block;
-    cursor: pointer;
-    text-align: center;
-    border: 1px solid rgba(0,0,0,.1);
-    background: hsla(0,0%,100%,.75);
-    -webkit-box-shadow: 0 2px 4px rgba(0,0,0,.08);
-    box-shadow: 0 2px 4px rgba(0,0,0,.08);
+  width: 220px;
+  border-radius: 3px;
+  overflow: hidden;
+  padding: 10px;
+  display: inline-block;
+  cursor: pointer;
+  text-align: center;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: hsla(0, 0%, 100%, 0.75);
+  -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
 }
 
 .card__header {
@@ -38,10 +34,10 @@
   text-transform: uppercase;
   margin-top: 20px;
 
-  &--green{
+  &--green {
     color: #3ca374;
   }
-  
+
   &--blue {
     color: #7289da;
   }
@@ -125,19 +121,19 @@
 }
 
 .create-server-body__input {
-    height: 40px;
-    margin-top: 12px;
-    padding-left: 4px;
-    padding-right: 4px;
-    border-radius: 0;
-    border-width: 0 0 2px;
-    border-bottom-style: solid;
-    font-size: 16px;
-    font-weight: 400;
-    width: 100%;
-    border-color: rgba(79,84,92,.3);
-    color: #2f3136;
-    border-bottom-color: #f0f0f0;
+  height: 40px;
+  margin-top: 12px;
+  padding-left: 4px;
+  padding-right: 4px;
+  border-radius: 0;
+  border-width: 0 0 2px;
+  border-bottom-style: solid;
+  font-size: 16px;
+  font-weight: 400;
+  width: 100%;
+  border-color: rgba(79, 84, 92, 0.3);
+  color: #2f3136;
+  border-bottom-color: #f0f0f0;
 }
 
 .create-server-footer {
@@ -184,7 +180,6 @@
 }
 
 .join-server-header {
-
 }
 
 .join-server-header__heading {
@@ -219,7 +214,7 @@
   text-transform: uppercase;
   display: block;
   color: #87909c;
-  text-align: left
+  text-align: left;
 }
 
 .join-server-body__input {
@@ -268,7 +263,7 @@
 }
 
 .session-logout-modal {
-  background: #36393F;
+  background: #36393f;
   width: 440px;
   height: 200px;
   overflow: hidden;
@@ -291,7 +286,6 @@
 }
 
 .session-logout-modal__body {
-
 }
 
 .session-logout-modal-logout-button-container {
@@ -301,7 +295,7 @@
   flex-wrap: nowrap;
   flex-direction: row-reverse;
   padding: 18px 40px;
-  background-color: #2F3136;
+  background-color: #2f3136;
 }
 
 .session-logout-modal__logout-button {
@@ -322,7 +316,7 @@
 }
 
 .server-leave-modal {
-  background: #36393F;
+  background: #36393f;
   width: 440px;
   height: 200px;
   overflow: hidden;
@@ -345,7 +339,6 @@
 }
 
 .server-leave-modal__body {
-
 }
 
 .server-leave-modal-leave-container {
@@ -355,7 +348,7 @@
   flex-wrap: nowrap;
   flex-direction: row-reverse;
   padding: 18px 40px;
-  background-color: #2F3136;
+  background-color: #2f3136;
 }
 
 .server-leave-modal__leave {
@@ -376,7 +369,7 @@
 }
 
 .server-invite-modal {
-  background: #36393F;
+  background: #36393f;
   width: 440px;
   height: 150px;
   overflow: hidden;
@@ -400,8 +393,8 @@
   height: 40px;
   border-radius: 3px;
   color: #f6f6f7;
-  background-color: rgba(0,0,0,.1);
-  border-color: rgba(0,0,0,.3);
+  background-color: rgba(0, 0, 0, 0.1);
+  border-color: rgba(0, 0, 0, 0.3);
 }
 
 .modal-background {
@@ -423,7 +416,7 @@
 .modal {
   background-color: #36393f;
   width: 440px;
- 
+
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -456,7 +449,6 @@
 }
 
 .modal__text {
-
 }
 
 .modal-footer-container {
@@ -466,7 +458,7 @@
   flex-wrap: nowrap;
   flex-direction: row-reverse;
   padding: 20px;
-  background-color: #2F3136;
+  background-color: #2f3136;
 }
 
 .modal__btn {
@@ -491,5 +483,5 @@
 }
 
 .modal__btn--green {
-  background-color: #3ca374
+  background-color: #3ca374;
 }
