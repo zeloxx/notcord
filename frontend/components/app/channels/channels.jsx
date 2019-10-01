@@ -22,8 +22,8 @@ export class Channels extends Component {
         }
     }
 
+    // let cable = Cable.createConsumer('ws://localhost:3000/cable');
     createSocket() {
-        // let cable = Cable.createConsumer('ws://localhost:3000/cable');
         let cable = Cable.createConsumer('wss://notcord.herokuapp.com/cable');
         this.chats = cable.subscriptions.create({
             channel: 'ChatChannel'
@@ -48,7 +48,10 @@ export class Channels extends Component {
     }
 
     componentDidUpdate(prevProps) {
-        document.querySelector("#scroll-to").scrollIntoView();
+        let scrollTo = document.querySelector("#scroll-to")
+        if (scrollTo) {
+            scrollTo.scrollIntoView();
+        }
         if (prevProps.match.params.channelId !== this.props.match.params.channelId) {
             this.props.fetchMessages({ channel_id: this.props.match.params.channelId })
             this.props.fetchUsers({ channel_id: this.props.match.params.channelId });

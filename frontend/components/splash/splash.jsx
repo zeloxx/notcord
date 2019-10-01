@@ -19,7 +19,7 @@ export default class Splash extends Component {
                     <nav className="splash-nav">
                         <div className="splash-nav__logo">Notcord</div>
                         <div className="splash-nav__right">
-                            <a href="https://github.com/zeloxx">
+                            <a href="https://github.com/zeloxx/notcord">
                                 <i className="fa fa-github splash-nav__github"></i>
                             </a>
                             <Link to="/login" className="splash-nav__login">{this.props.currentUserId ? "Open" : "Login"}</Link>

@@ -14,11 +14,19 @@
 # Configure Using Gemfile
 # gem 'pg'
 #
+
+# default: &default
+#   adapter: postgresql
+#   encoding: unicode
+#   # For details on connection pooling, see Rails configuration guide
+#   # http://guides.rubyonrails.org/configuring.html#database-pooling
+#   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
 default: &default
   adapter: postgresql
   encoding: unicode
-  # For details on connection pooling, see Rails configuration guide
-  # http://guides.rubyonrails.org/configuring.html#database-pooling
+  # Here we make sure we can pass the connection URL for the database
+  url: <%= ENV['DATABASE_URL'] %>
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 development:
@@ -78,8 +86,17 @@ test:
 #   production:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
+
+# production:
+#   <<: *default
+#   database: notcord_production
+#   username: notcord
+#   password: <%= ENV['NOTCORD_DATABASE_PASSWORD'] %>
+
 production:
   <<: *default
-  database: notcord_production
-  username: notcord
-  password: <%= ENV['NOTCORD_DATABASE_PASSWORD'] %>
+  adapter: postgresql
+  host: db
+  username: postgres
+  # we don't need to specify a password
+  password:
