@@ -16,13 +16,13 @@
  */
 
 #app-root {
-  display:flex;
+  display: flex;
   max-height: 100vh;
 }
 
 * {
-    box-sizing: border-box;
-    font-family: Whitney,Helvetica Neue,Helvetica,Arial,sans-serif;
+  box-sizing: border-box;
+  font-family: Whitney, Helvetica Neue, Helvetica, Arial, sans-serif;
 }
 
 html {
@@ -55,29 +55,38 @@ button {
 }
 
 a {
-  outline:none !important; 
+  outline: none !important;
 }
 
 .input {
-    -webkit-writing-mode: horizontal-tb !important;
-    text-rendering: auto;
-    color: initial;
-    letter-spacing: normal;
-    word-spacing: normal;
-    text-transform: none;
-    text-indent: 0px;
-    text-shadow: none;
-    display: inline-block;
-    text-align: start;
-    -webkit-appearance: textfield;
-    background-color: white;
-    -webkit-rtl-ordering: logical;
-    cursor: text;
-    margin: 0em;
-    font: 400 11px system-ui;
-    padding: 1px;
-    border-width: 2px;
-    border-style: inset;
-    border-color: initial;
-    border-image: initial;
+  -webkit-writing-mode: horizontal-tb !important;
+  text-rendering: auto;
+  color: initial;
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-transform: none;
+  text-indent: 0px;
+  text-shadow: none;
+  display: inline-block;
+  text-align: start;
+  -webkit-appearance: textfield;
+  background-color: white;
+  -webkit-rtl-ordering: logical;
+  cursor: text;
+  margin: 0em;
+  font: 400 11px system-ui;
+  padding: 1px;
+  border-width: 2px;
+  border-style: inset;
+  border-color: initial;
+  border-image: initial;
+}
+
+.logo {
+  background-image: image_url("notcord-logo-white-32.png");
+  width: 32px;
+  height: 32px;
+  background-size: 26px;
+  background-repeat: no-repeat;
+  background-position: center;
 }

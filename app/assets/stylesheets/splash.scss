@@ -1,363 +1,369 @@
 @import "font-awesome";
 
 html {
-    background-color: #25252B;
+  background-color: #25252b;
 }
 
 .splash {
-    background-color: #26252B;
-    color: #fff;
+  background-color: #26252b;
+  color: #fff;
 }
 
 .splash-header {
-    padding: 20px 40px;
+  padding: 20px 40px;
 }
 
 .splash-nav {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .splash-nav__logo {
-    text-transform: uppercase;
-    font-weight: 900;
-    font-size: 22px;
+  text-transform: uppercase;
+  font-weight: 900;
+  font-size: 22px;
+}
+
+.splash-nav__logo-img {
+  background-image: url("notcord-logo-white-32.png");
+  width: 32px;
+  height: 32px;
+  margin-right: 15px;
+}
+
+.splash-nav__logo-container {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
 }
 
 .splash-nav__right {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .splash-nav__github {
-    font-size: 20px !important;
-    color: #fff;
-    margin-right: 15px;
-    opacity: .75;
+  font-size: 20px !important;
+  color: #fff;
+  margin-right: 15px;
+  opacity: 0.75;
 
-    &:hover {
-        transition: .5s;
-        opacity: 1;
-        cursor: pointer;
-    }
+  &:hover {
+    transition: 0.5s;
+    opacity: 1;
+    cursor: pointer;
+  }
 }
 
 .splash-nav__login {
-    display: inline-block;
-    text-decoration: none;
-    color: #fff;
-    border: solid #fff 2px;
-    border-radius: 20px;
-    padding: 7px 15px;
-    font-size: 14px;
-    opacity: .75;
-    transition: .5s;
+  display: inline-block;
+  text-decoration: none;
+  color: #fff;
+  border: solid #fff 2px;
+  border-radius: 20px;
+  padding: 7px 15px;
+  font-size: 14px;
+  opacity: 0.75;
+  transition: 0.5s;
 
-    &:hover {
-        transition: .5s;
-        opacity: 1;
-    }
+  &:hover {
+    transition: 0.5s;
+    opacity: 1;
+  }
 }
 
 .splash-main {
-
 }
 
 .splash-main-hero {
-    padding: 72px 50px 0;
-    max-width: 1200px;
-    text-align: center;
-    margin: auto;
+  padding: 72px 50px 0;
+  max-width: 1200px;
+  text-align: center;
+  margin: auto;
 }
 
 .splash-main-hero__header {
-    font-size: 36px;
-    font-weight: 700;
-    margin-bottom: 20px;
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 20px;
 }
 
 .splash-main-hero__text {
-    max-width: 710px;
-    margin: auto;
-    color: #737f8d;
-    line-height: 1.5;
+  max-width: 710px;
+  margin: auto;
+  color: #737f8d;
+  line-height: 1.5;
 }
 
 .splash-main-hero__cta-container {
-    margin-top: 30px;
+  margin-top: 30px;
 }
 
 .splash-collage {
-    height: 629px;
-    position: relative;
+  height: 629px;
+  position: relative;
 }
 
 .triangle-1 {
-    opacity: 0.3;
-    position: absolute;
-    left: 88%;
-    top: 8%;
-    transform: translate(-50%, -100%);
+  opacity: 0.3;
+  position: absolute;
+  left: 88%;
+  top: 8%;
+  transform: translate(-50%, -100%);
 }
 
 .triangle-2 {
-    opacity: 0.3;
-    position: absolute;
-    left: 3%;
-    top: 51%;
-    transform: translate(-50%, -100%);
+  opacity: 0.3;
+  position: absolute;
+  left: 3%;
+  top: 51%;
+  transform: translate(-50%, -100%);
 }
 
 .triangle-3 {
-   opacity: 0.3;
-    position: absolute;
-    left: 50%;
-    top: 11%;
-    transform: translate(-50%, -100%);
+  opacity: 0.3;
+  position: absolute;
+  left: 50%;
+  top: 11%;
+  transform: translate(-50%, -100%);
 }
 
 .dot-1 {
-    opacity: 0.3;
-    position: absolute;
-    left: 85%;
-    top: 32%;
-    transform: translate(-50%, -100%);
+  opacity: 0.3;
+  position: absolute;
+  left: 85%;
+  top: 32%;
+  transform: translate(-50%, -100%);
 }
 
 .dot-2 {
-    opacity: 0.3;
-    position: absolute;
-    left: 26%;
-    top: 10%;
-    transform: translate(-50%, -100%);
+  opacity: 0.3;
+  position: absolute;
+  left: 26%;
+  top: 10%;
+  transform: translate(-50%, -100%);
 }
 
 .dot-3 {
-    opacity: 0.3;
-    position: absolute;
-    left: 42%;
-    top: 88%;
-    transform: translate(-50%, -100%);
+  opacity: 0.3;
+  position: absolute;
+  left: 42%;
+  top: 88%;
+  transform: translate(-50%, -100%);
 }
 
 .dot-4 {
-    opacity: 0.3;
-    position: absolute;
-    left: 21%;
-    top: 32%;
-    transform: translate(-50%, -100%);
+  opacity: 0.3;
+  position: absolute;
+  left: 21%;
+  top: 32%;
+  transform: translate(-50%, -100%);
 }
 
 .dot-5 {
-    opacity: 0.3;
-    position: absolute;
-    left: 92%;
-    top: 2%;
-    transform: translate(-50%, -100%);
+  opacity: 0.3;
+  position: absolute;
+  left: 92%;
+  top: 2%;
+  transform: translate(-50%, -100%);
 }
 
 .circle-1 {
-    opacity: 0.3;
-    position: absolute;
-    left: 8%;
-    top: 70%;
-    transform: translate(-50%, -100%);
+  opacity: 0.3;
+  position: absolute;
+  left: 8%;
+  top: 70%;
+  transform: translate(-50%, -100%);
 }
 
 .circle-2 {
-    opacity: 0.3;
-    position: absolute;
-    left: 11%;
-    top: 7%;
-    transform: translate(-50%, -100%);
+  opacity: 0.3;
+  position: absolute;
+  left: 11%;
+  top: 7%;
+  transform: translate(-50%, -100%);
 }
 
 .circle-3 {
-    opacity: 0.3;
-    position: absolute;
-    left: 44%;
-    top: 27%;
-    transform: translate(-50%, -100%);
+  opacity: 0.3;
+  position: absolute;
+  left: 44%;
+  top: 27%;
+  transform: translate(-50%, -100%);
 }
 
 .square-1 {
-    opacity: 0.3;
-    position: absolute;
-    left: 73%;
-    top: 12%;
-    transform: translate(-50%, -100%);
+  opacity: 0.3;
+  position: absolute;
+  left: 73%;
+  top: 12%;
+  transform: translate(-50%, -100%);
 }
 
 .square-2 {
-    opacity: 0.3;
-    position: absolute;
-    left: 97%;
-    top: 48%;
-    transform: translate(-50%, -100%);
+  opacity: 0.3;
+  position: absolute;
+  left: 97%;
+  top: 48%;
+  transform: translate(-50%, -100%);
 }
 
 .square-3 {
-    opacity: 0.3;
-    position: absolute;
-    left: 94%;
-    top: 25%;
-    transform: translate(-50%, -100%);
+  opacity: 0.3;
+  position: absolute;
+  left: 94%;
+  top: 25%;
+  transform: translate(-50%, -100%);
 }
 
 .diagonal-1 {
-    opacity: 0.3;
-    position: absolute;
-    left: 95%;
-    top: 79%;
-    transform: translate(-50%, -100%);
+  opacity: 0.3;
+  position: absolute;
+  left: 95%;
+  top: 79%;
+  transform: translate(-50%, -100%);
 }
 
 .diagonal-2 {
-    opacity: 0.3;
-    position: absolute;
-    left: 78%;
-    top: 41%;
-    transform: translate(-50%, -100%);
+  opacity: 0.3;
+  position: absolute;
+  left: 78%;
+  top: 41%;
+  transform: translate(-50%, -100%);
 }
 
 .diagonal-3 {
-    opacity: 0.3;
-    position: absolute;
-    left: 10%;
-    top: 27%;
-    transform: translate(-50%, -100%);
+  opacity: 0.3;
+  position: absolute;
+  left: 10%;
+  top: 27%;
+  transform: translate(-50%, -100%);
 }
 
 .potion {
-    position: absolute;
-    left: 5%;
-    top: 100%;
-    transform: translate(0%, -100%);
+  position: absolute;
+  left: 5%;
+  top: 100%;
+  transform: translate(0%, -100%);
 }
 
 .bomb {
-    position: absolute;
-    left: 13%;
-    top: 52%;
-    transform: translate(-50%, -100%);
+  position: absolute;
+  left: 13%;
+  top: 52%;
+  transform: translate(-50%, -100%);
 }
 
 .coin-1 {
-    position: absolute;
-    left: 17%;
-    top: 58%;
-    transform: translate(-50%, -100%);
+  position: absolute;
+  left: 17%;
+  top: 58%;
+  transform: translate(-50%, -100%);
 }
 
 .coin-2 {
-    position: absolute;
-    left: 56%;
-    top: 23%;
-    transform: translate(-50%, -100%);
+  position: absolute;
+  left: 56%;
+  top: 23%;
+  transform: translate(-50%, -100%);
 }
 
 .cartridge {
-    position: absolute;
-    left: 72%;
-    top: 33%;
-    transform: translate(-50%, -100%);
+  position: absolute;
+  left: 72%;
+  top: 33%;
+  transform: translate(-50%, -100%);
 }
 
 .shield {
-    position: absolute;
-    left: 100%;
-    top: 100%;
-    transform: translate(-100%, -100%);
+  position: absolute;
+  left: 100%;
+  top: 100%;
+  transform: translate(-100%, -100%);
 }
 
 .question-mark-box {
-    position: absolute;
-    left: 32%;
-    top: 29%;
-    transform: translate(-50%, -100%);
+  position: absolute;
+  left: 32%;
+  top: 29%;
+  transform: translate(-50%, -100%);
 }
 
 .desktop-monitor {
-    position: absolute;
-    left: 50%;
-    top: 100%;
-    transform: translate(-50%, -100%);
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  transform: translate(-50%, -100%);
 }
 
 .android {
-    position: absolute;
-    left: 16%;
-    top: 100%;
-    transform: translate(-50%, -100%);
+  position: absolute;
+  left: 16%;
+  top: 100%;
+  transform: translate(-50%, -100%);
 }
 
 .iphone {
-    position: absolute;
-    left: 25%;
-    top: 100%;
-    transform: translate(-50%, -100%);
+  position: absolute;
+  left: 25%;
+  top: 100%;
+  transform: translate(-50%, -100%);
 }
 
 .game-controller {
-    position: absolute;
-    left: 34%;
-    top: 100%;
-    transform: translate(-50%, -100%);
+  position: absolute;
+  left: 34%;
+  top: 100%;
+  transform: translate(-50%, -100%);
 }
 
 .laptop {
-    position: absolute;
-    left: 73%;
-    top: 100%;
-    transform: translate(-50%, -100%);
+  position: absolute;
+  left: 73%;
+  top: 100%;
+  transform: translate(-50%, -100%);
 }
 
 .headphones {
-    position: absolute;
-    left: 84%;
-    top: 83%;
-    transform: translate(-50%, -100%);
+  position: absolute;
+  left: 84%;
+  top: 83%;
+  transform: translate(-50%, -100%);
 }
 
 .splash-footer {
-    max-width: 756px;
-    margin: auto;
-    display: flex;
-    justify-content: space-between;
-    margin-top: 150px;
-    margin-bottom: 150px;
+  max-width: 756px;
+  margin: 150px auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .splash-footer__header {
-    font-size: 26px;
-    color: #fff;
-    line-height: 34px;
+  font-size: 26px;
+  color: #fff;
+  line-height: 34px;
 }
 
 .splash-footer__text {
-    font-size: 14px;
-    color: #A6A5A7;
-    font-weight: 500;
-    margin-top: 4px;
+  font-size: 14px;
+  color: #a6a5a7;
+  font-weight: 500;
+  margin-top: 4px;
 }
 
 .splash-footer-text-container {
-    
 }
 
 .splash-footer__signup {
-    color: #fff;
-    border-radius: 5px;
-    padding: 18px;
-    background-color: #7289DA;
-    text-decoration: none;
-    display: inline-block;
-    width: 130px;
-    box-shadow: 3px 4px 4px -2px rgba(0, 0, 0, 0.3);
-    font-size: 14px;
-    text-align: center;
-
-    &:hover {
-        cursor: pointer;
-    }
+  color: #fff;
+  border-radius: 5px;
+  padding: 16px;
+  background-color: #7289da;
+  text-decoration: none;
+  display: inline-block;
+  box-shadow: 3px 4px 4px -2px rgba(0, 0, 0, 0.3);
+  font-size: 14px;
+  text-align: center;
+  cursor: pointer;
 }
