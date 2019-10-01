@@ -100,8 +100,8 @@ html {
 }
 
 .splash-collage {
-  height: 629px;
-  position: relative;
+  text-align: center;
+  margin-top: 30px;
 }
 
 .triangle-1 {
@@ -290,10 +290,6 @@ html {
 }
 
 .desktop-monitor {
-  position: absolute;
-  left: 50%;
-  top: 100%;
-  transform: translate(-50%, -100%);
 }
 
 .android {
@@ -333,7 +329,7 @@ html {
 
 .splash-footer {
   max-width: 756px;
-  margin: 150px auto;
+  margin: 50px auto;
   display: flex;
   align-items: center;
   justify-content: space-between;

@@ -1,16 +1,22 @@
 .btn {
-    color: #fff;
-    border-radius: 5px;
-    padding: 15px 0px;
-    background-color: #7289DA;
-    text-decoration: none;
-    display: inline-block;
-    width: 250px;
-    box-shadow: 3px 4px 4px -2px rgba(0,0,0,0.3);
-    cursor: pointer;
+  color: #fff;
+  border-radius: 5px;
+  padding: 15px 0px;
+  background-color: #7289da;
+  text-decoration: none;
+  display: inline-block;
+  width: 250px;
+  box-shadow: 3px 4px 4px -2px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
 
-    &--green {
-        background-color: #5AB682;
-    }
+  &--green {
+    background-color: #5ab682;
+  }
+}
 
+.opacity-transition {
+  transition: all 0.15s ease-in-out;
+}
+.opacity-transition:hover {
+  opacity: 0.8;
 }
