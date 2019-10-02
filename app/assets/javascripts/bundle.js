@@ -733,12 +733,12 @@ function (_Component) {
       return function (message) {
         _this2.props.messageCreate(message);
       };
-    } // let cable = Cable.createConsumer('ws://localhost:3000/cable');
-
+    }
   }, {
     key: "createSocket",
     value: function createSocket() {
-      var cable = actioncable__WEBPACK_IMPORTED_MODULE_6___default.a.createConsumer("wss://notcord.herokuapp.com/cable");
+      // let cable = Cable.createConsumer("wss://notcord.herokuapp.com/cable");
+      var cable = actioncable__WEBPACK_IMPORTED_MODULE_6___default.a.createConsumer("ws://localhost:3000/cable");
       this.chats = cable.subscriptions.create({
         channel: "ChatChannel"
       }, {
@@ -964,9 +964,7 @@ function (_Component) {
         className: "username-timestamp-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "chat-conversation-message__username"
-      }, this.props.user.username), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "chat-conversation-message__timestamp"
-      }, this.props.message.created_at)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, this.props.user.username)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "chat-conversation-message__body"
       }, this.props.message.body)));
     }
@@ -2457,7 +2455,6 @@ __webpack_require__.r(__webpack_exports__);
 
 var mapStateToProps = function mapStateToProps(_ref, ownProps) {
   var entities = _ref.entities;
-  console.log(ownProps.match);
   return {
     servers: Object.values(entities.servers)
   };
@@ -3901,7 +3898,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var configureStore = function configureStore() {
   var preloadedState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  return Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(_reducers_root_reducer__WEBPACK_IMPORTED_MODULE_3__["default"], preloadedState, Object(redux__WEBPACK_IMPORTED_MODULE_0__["applyMiddleware"])(redux_thunk__WEBPACK_IMPORTED_MODULE_2__["default"], redux_logger__WEBPACK_IMPORTED_MODULE_1___default.a));
+  return Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(_reducers_root_reducer__WEBPACK_IMPORTED_MODULE_3__["default"], preloadedState, Object(redux__WEBPACK_IMPORTED_MODULE_0__["applyMiddleware"])(redux_thunk__WEBPACK_IMPORTED_MODULE_2__["default"]));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (configureStore);
