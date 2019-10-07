@@ -28,8 +28,8 @@ export class Channels extends Component {
   }
 
   createSocket() {
-    // let cable = Cable.createConsumer("wss://notcord.herokuapp.com/cable");
-    let cable = Cable.createConsumer("ws://localhost:3000/cable");
+    let cable = Cable.createConsumer("wss://notcord.herokuapp.com/cable");
+    // let cable = Cable.createConsumer("ws://localhost:3000/cable");
     this.chats = cable.subscriptions.create(
       {
         channel: "ChatChannel"
