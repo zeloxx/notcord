@@ -756,6 +756,7 @@ function (_Component) {
   }, {
     key: "componentDidMount",
     value: function componentDidMount() {
+      debugger;
       this.createSocket();
       this.props.removeMessageErrors();
       this.props.fetchMessages({
@@ -771,6 +772,7 @@ function (_Component) {
       var scrollTo = document.querySelector("#scroll-to");
 
       if (scrollTo) {
+        debugger;
         scrollTo.scrollIntoView();
       }
 

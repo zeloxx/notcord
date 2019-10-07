@@ -49,6 +49,7 @@ export class Channels extends Component {
   }
 
   componentDidMount() {
+    debugger;
     this.createSocket();
     this.props.removeMessageErrors();
     this.props.fetchMessages({ channel_id: this.props.match.params.channelId });
@@ -58,6 +59,7 @@ export class Channels extends Component {
   componentDidUpdate(prevProps) {
     let scrollTo = document.querySelector("#scroll-to");
     if (scrollTo) {
+      debugger;
       scrollTo.scrollIntoView();
     }
     if (
