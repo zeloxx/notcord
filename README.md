@@ -1,5 +1,3 @@
-## README
-
 ## NOTCORD
 [Live Site](https://notcord.herokuapp.com/) 
 
